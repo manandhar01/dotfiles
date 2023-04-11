@@ -8,9 +8,13 @@ Plug 'tpope/vim-fugitive'
 
 Plug 'gruvbox-community/gruvbox'
 
+Plug 'jesseleite/vim-noh'
+
 Plug 'junegunn/fzf.vim'
 
 Plug 'junegunn/vim-peekaboo'
+
+Plug 'luochen1990/rainbow'
 
 Plug 'mattn/emmet-vim'
 
@@ -22,7 +26,11 @@ Plug 'preservim/nerdtree'
 
 Plug 'preservim/tagbar'
 
+Plug 'raimondi/delimitmate'
+
 Plug 'sheerun/vim-polyglot'
+
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 Plug 'tpope/vim-commentary'
 

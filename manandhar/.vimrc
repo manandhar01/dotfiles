@@ -3,7 +3,7 @@ so ~/.vim/plugins.vim
 
 " MAPPINGS ------------------------------------------------ {{{
 nmap <F8> :TagbarTogggle<CR>
-noremap <Esc> :noh<CR>
+" noremap <Esc> :noh<CR>
 
 
 " }}}
@@ -85,3 +85,5 @@ autocmd GUIEnter * set visualbell t_vb=
 " Enable mouse support
 set mouse=a
 
+" Rainbow
+let g:rainbow_active=1
