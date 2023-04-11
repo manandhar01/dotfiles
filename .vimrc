@@ -1,0 +1,82 @@
+" Plugins
+so ~/.vim/plugins.vim
+
+" MAPPINGS ------------------------------------------------ {{{
+
+" }}}
+
+" VIMSCRIPT ------------------------------------------------ {{{
+
+" This will enable code folding.
+" Use the marker method of folding.
+augroup filetype_vim
+	autocmd!
+	autocmd FileType vim setlocal foldmethod=marker
+augroup END
+
+" Different cursor in NORMAL and INSERT mode
+if has ("autocmd")
+	au VimEnter,InsertLeave * silent execute '!echo -ne "\e[1 q"' | redraw!
+	au InsertEnter,InsertChange *
+				\ if v:insertmode == 'i' |
+				\ 	silent execute '!echo -ne "\e[5 q"' | redraw! |
+				\ elseif v:insertmode == 'r' |
+				\	silent execute '!echo -ne "\e[3 q"' | redraw! |
+				\ endif
+	au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
+endif
+set ttimeout
+set ttimeoutlen=1
+set ttyfast
+
+" }}}
+
+
+" Disable compatibility with vi which can cause unexpected issues
+set nocompatible
+
+" Line Numbering
+set relativenumber
+
+" Syntax and Indentation Support
+syntax on
+
+" Highlight cursor line underneath the cursor horizontally
+set cursorline
+
+" Highlight cursor line underneath the cursor vertically
+set cursorcolumn
+
+" Set shift width to 4 spaces
+set shiftwidth=4
+
+" Set tab width to 4 columns
+set tabstop=4
+
+" Use space characters instead of tabs
+" set expandtab
+
+" Use highlighting when doing a search
+set hlsearch
+
+" Set the commands to save in history (default is 20)
+set history=1000
+
+
+" Theme
+set t_Co=256
+set bg=dark
+colorscheme gruvbox
+
+" Airline status line theme
+let g:airline_theme='angr'
+
+" Indent Guides
+let g:indent_guides_enable_on_vim_startup=1
+
+" Turn off error beeping and flashing
+" set belloff=all
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
+
+
