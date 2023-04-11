@@ -4,6 +4,8 @@ Plug 'airblade/vim-gitgutter'
 
 Plug 'dense-analysis/ale'
 
+Plug 'tpope/vim-fugitive'
+
 Plug 'gruvbox-community/gruvbox'
 
 Plug 'junegunn/fzf.vim'
@@ -24,8 +26,12 @@ Plug 'sheerun/vim-polyglot'
 
 Plug 'tpope/vim-commentary'
 
+Plug 'tpope/vim-surround'
+
 Plug 'vim-airline/vim-airline'
 
 Plug 'vim-airline/vim-airline-themes'
+
+Plug 'yggdroot/indentline'
 
 call plug#end()

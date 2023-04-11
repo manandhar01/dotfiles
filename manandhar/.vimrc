@@ -2,6 +2,9 @@
 so ~/.vim/plugins.vim
 
 " MAPPINGS ------------------------------------------------ {{{
+nmap <F8> :TagbarTogggle<CR>
+noremap <Esc> :noh<CR>
+
 
 " }}}
 
@@ -79,4 +82,6 @@ let g:indent_guides_enable_on_vim_startup=1
 set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
 
+" Enable mouse support
+set mouse=a
 
