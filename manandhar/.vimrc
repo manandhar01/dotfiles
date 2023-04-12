@@ -93,7 +93,8 @@ let g:rainbow_active=1
 let g:javascript_plugin_jsdoc=1
 
 " Autoformat
-" au BufWritePre * Autoformat
+let g:formatdef_javascript='"prettier --write" %s'
+au BufWritePre * Autoformat
 
 " Always show hidden files in NERDTree
 let g:NERDTreeShowHidden=1
@@ -101,5 +102,24 @@ let g:NERDTreeShowHidden=1
 " Icons in NERDTree
 let g:NERDTreeGitStatusUseXicons=1
 let g:NERDTreeGitStatusUseNerdFonts=1
-" let g:WebDevIconsUnicodeDecorateFolderNodes=1
-" let g:WebDevIconsUnicodeDecorateFileNodes=1
+
+" ALE
+highlight AleErrorUnderline cterm=underline ctermfg=red
+highlight AleWarningUnderline cterm=underline ctermfg=yellow
+highlight AleErrorSign ctermfg=red
+highlight AleWarningSign ctermfg=yellow
+
+let g:ale_linters = {'python': ['flake8']}
+let g:ale_fixers = {}
+" let g:ale_sign_error = '✖'
+" let g:ale_sign_warning = '⚠'
+let g:ale_sign_error='>>'
+let g:ale_sign_warning='>>'
+let g:ale_sign_error_highlight = 'AleErrorUnderline'
+let g:ale_sign_warning_highlight = 'AleWarningUnderline'
+
+highlight link ALEErrorLine AleErrorUnderline
+highlight link ALWarningLine AleWarningUnderline
+sign define AleErrorSign texthl=AleErrorSign
+sign define AleWarningSign texthl=AleWarningSign
+

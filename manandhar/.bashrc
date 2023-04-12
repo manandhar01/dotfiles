@@ -34,7 +34,7 @@ rotatepdfleft () {
 rotatepdfright () {
 	pdftk "$1" cat 1-endright output "$2";
 }
-export PATH=$PATH:/home/manandhar/bin
+export PATH=$PATH:/home/manandhar/bin:/home/manandhar/.local/bin
 export CHROME_EXECUTABLE=/usr/bin/chromium
 # export PATH=$PATH:$HOME/.config/composer/vendor/bin:/opt/lampp/bin:/root/.local/share/gem/ruby/2.7.0/bin:~/dart-sass:$HOME/.local/bin/
 # export WINEPREFIX=~/.local/share/wineprefixes/epic_games
@@ -44,8 +44,8 @@ export CHROME_EXECUTABLE=/usr/bin/chromium
 
 # If not running interactively, don't do anything
 case $- in
-  *i*) ;;
-    *) return;;
+	*i*) ;;
+	*) return;;
 esac
 
 # Path to the bash it configuration
