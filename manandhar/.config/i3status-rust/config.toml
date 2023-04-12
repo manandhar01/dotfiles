@@ -1,0 +1,68 @@
+[theme]
+theme = "gruvbox-dark"
+# theme = "space-villain"
+# theme = "native"
+# theme = "dracula"
+
+[icons]
+icons = "material-nf"
+
+[[block]]
+block = "focused_window"
+[block.format]
+full = " $title.str(max_w:50) |"
+short = " $title.str(max_w:20) |"
+
+[[block]]
+block = "music"
+format = " $icon {$combo.str(max_w:20,min_w:20,rot_interval:0.5)) $play $next |}"
+player = "spotify"
+[[block.click]]
+button = "left"
+action = "play_pause"
+
+[[block]]
+block = "cpu"
+
+[[block]]
+block = "memory"
+format = " $icon $mem_used_percents "
+
+[[block]]
+block = "temperature"
+format = " $icon $max "
+interval = 5
+
+[[block]]
+block = "net"
+format = " $icon ^icon_net_down $speed_down.eng(prefix:K) ^icon_net_up $speed_up.eng(prefix:K) {$signal_strength $ssid $frequency|$device} "
+
+# [[block]]
+# block = "pacman"
+# signal = 1
+# format = " $icon $pacman + $aur = $both "
+# aur_command = "yay -Qua"
+
+[[block]]
+block = "backlight"
+
+[[block]]
+block = "sound"
+
+[[block]]
+block = "sound"
+device_kind = "source"
+
+[[block]]
+block = "battery"
+format = " $icon $percentage "
+not_charging_format = " $icon $percentage " 
+
+
+[[block]]
+block = "time"
+interval = 1
+[block.format]
+full = " $icon $timestamp.datetime(f:'%a, %b %d, %Y | %r') "
+short = " $icon $timestamp.datetime(f:%R) "
+
