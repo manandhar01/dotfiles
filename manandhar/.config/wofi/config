@@ -1,0 +1,10 @@
+height=50%
+term=alacritty
+prompt=Search
+hide_scroll=true
+no_actions=true
+allow-images=true
+allow-markup=true
+filter_rate=200
+insensitive=true
+show=run
