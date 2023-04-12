@@ -1,4 +1,5 @@
 [theme]
+# theme = "gruvbox-light"
 theme = "gruvbox-dark"
 # theme = "space-villain"
 # theme = "native"
@@ -37,11 +38,13 @@ interval = 5
 block = "net"
 format = " $icon ^icon_net_down $speed_down.eng(prefix:K) ^icon_net_up $speed_up.eng(prefix:K) {$signal_strength $ssid $frequency|$device} "
 
-# [[block]]
-# block = "pacman"
-# signal = 1
-# format = " $icon $pacman + $aur = $both "
-# aur_command = "yay -Qua"
+[[block]]
+block = "pacman"
+signal = 1
+aur_command = "yay -Qua"
+[block.format]
+full = " $icon $pacman + $aur = $both "
+short = " $icon $both "
 
 [[block]]
 block = "backlight"
@@ -56,7 +59,7 @@ device_kind = "source"
 [[block]]
 block = "battery"
 format = " $icon $percentage "
-not_charging_format = " $icon $percentage " 
+not_charging_format = " $icon $percentage "
 
 
 [[block]]
@@ -64,5 +67,5 @@ block = "time"
 interval = 1
 [block.format]
 full = " $icon $timestamp.datetime(f:'%a, %b %d, %Y | %r') "
-short = " $icon $timestamp.datetime(f:%R) "
+short = " $icon $timestamp.datetime(f:%r) "
 
