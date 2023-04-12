@@ -1,7 +1,7 @@
 font=Delius 14
 
-background-color=#2e3440
-text-color=#d8dee9
+background-color=#55887777
+text-color=#ffffff
 
 width=500
 height=150
@@ -12,25 +12,10 @@ margin=15,0,15
 padding=10
 
 border-size=2
-border-color=#5e3440
+border-color=#ffffffaa
 border-radius=10
 
 text-alignment=center
 
 default-timeout=5000
 
-# highlight-background-color = "#3b4252"
-# highlight-foreground-color = "#eceff4"
-
-# separator-color = "#4c566a"
-# progress-color = "#88c0d0"
-# urgent-color = "#bf616a"
-
-# border-size = 2
-# border-radius = 6
-
-# max-width = 35ch
-
-# padding = 8
-# horizontal-padding = 16
-# vertical-padding = 12
