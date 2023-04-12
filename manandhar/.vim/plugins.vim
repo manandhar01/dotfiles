@@ -38,6 +38,8 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 Plug 'tpope/vim-commentary'
 
+Plug 'tpope/vim-fugitive'
+
 Plug 'tpope/vim-surround'
 
 Plug 'vim-airline/vim-airline'

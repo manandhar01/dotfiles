@@ -1,7 +1,11 @@
 #!/bin/bash
 
 if [ $1 = "select" ]; then
-	selected="$(cliphist list | wofi --dmenu | cliphist decode)"
+	selected="$(cliphist list | wofi --dmenu || echo "")"
+	if [ "$selected" = "" ]; then
+		exit 0;
+	fi
+	selected="$(echo "$selected" | cliphist decode)"
 	wl-copy $selected
 	notify-send -t 5000 Selected "$selected"
 fi
