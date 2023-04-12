@@ -22,11 +22,15 @@ Plug 'neoclide/coc.nvim'
 
 Plug 'nathanaelkane/vim-indent-guides'
 
+Plug 'pangloss/vim-javascript'
+
 Plug 'preservim/nerdtree'
 
 Plug 'preservim/tagbar'
 
 Plug 'raimondi/delimitmate'
+
+Plug 'ryanoasis/vim-devicons'
 
 Plug 'sheerun/vim-polyglot'
 
@@ -39,6 +43,10 @@ Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 
 Plug 'vim-airline/vim-airline-themes'
+
+Plug 'vim-autoformat/vim-autoformat'
+
+Plug 'xuyuanp/nerdtree-git-plugin'
 
 Plug 'yggdroot/indentline'
 

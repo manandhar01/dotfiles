@@ -22,7 +22,7 @@ if has ("autocmd")
 	au VimEnter,InsertLeave * silent execute '!echo -ne "\e[1 q"' | redraw!
 	au InsertEnter,InsertChange *
 				\ if v:insertmode == 'i' |
-				\ 	silent execute '!echo -ne "\e[5 q"' | redraw! |
+				\	silent execute '!echo -ne "\e[5 q"' | redraw! |
 				\ elseif v:insertmode == 'r' |
 				\	silent execute '!echo -ne "\e[3 q"' | redraw! |
 				\ endif
@@ -73,6 +73,7 @@ colorscheme gruvbox
 
 " Airline status line theme
 let g:airline_theme='angr'
+let g:airline_powerline_fonts=1
 
 " Indent Guides
 let g:indent_guides_enable_on_vim_startup=1
@@ -87,3 +88,18 @@ set mouse=a
 
 " Rainbow
 let g:rainbow_active=1
+
+" Javascript Language Support
+let g:javascript_plugin_jsdoc=1
+
+" Autoformat
+" au BufWritePre * Autoformat
+
+" Always show hidden files in NERDTree
+let g:NERDTreeShowHidden=1
+
+" Icons in NERDTree
+let g:NERDTreeGitStatusUseXicons=1
+let g:NERDTreeGitStatusUseNerdFonts=1
+" let g:WebDevIconsUnicodeDecorateFolderNodes=1
+" let g:WebDevIconsUnicodeDecorateFileNodes=1
