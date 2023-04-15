@@ -2,9 +2,13 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'airblade/vim-gitgutter'
 
+Plug 'christoomey/vim-tmux-navigator'
+
 Plug 'dense-analysis/ale'
 
-Plug 'tpope/vim-fugitive'
+Plug 'ervandew/supertab'
+
+Plug 'fladson/vim-kitty'
 
 Plug 'gruvbox-community/gruvbox'
 

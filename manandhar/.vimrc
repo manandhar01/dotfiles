@@ -51,10 +51,10 @@ set cursorline
 set cursorcolumn
 
 " Set shift width to 4 spaces
-set shiftwidth=4
+" set shiftwidth=4
 
 " Set tab width to 4 columns
-set tabstop=4
+" set tabstop=4
 
 " Use space characters instead of tabs
 " set expandtab
@@ -102,6 +102,13 @@ let g:NERDTreeShowHidden=1
 " Icons in NERDTree
 let g:NERDTreeGitStatusUseXicons=1
 let g:NERDTreeGitStatusUseNerdFonts=1
+
+" NERDTree Mappings
+silent! nmap <C-p> :NERDTreeToggle<CR>
+silent! map <F3> :NERDTreeFind<CR>
+
+let g:NERDTreeMapActivateNode="<F3>"
+let g:NERDTreeMapPreview="<F4>"
 
 " ALE
 highlight AleErrorUnderline cterm=underline ctermfg=red
