@@ -51,10 +51,10 @@ set cursorline
 set cursorcolumn
 
 " Set shift width to 4 spaces
-" set shiftwidth=4
+set shiftwidth=4
 
 " Set tab width to 4 columns
-" set tabstop=4
+set tabstop=4
 
 " Use space characters instead of tabs
 " set expandtab
@@ -86,8 +86,12 @@ autocmd GUIEnter * set visualbell t_vb=
 " Enable mouse support
 set mouse=a
 
-" Rainbow
-let g:rainbow_active=1
+" rainbow_parentheses
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+au Syntax * RainbowParenthesesLoadChevrons
 
 " Javascript Language Support
 let g:javascript_plugin_jsdoc=1
@@ -116,12 +120,12 @@ highlight AleWarningUnderline cterm=underline ctermfg=yellow
 highlight AleErrorSign ctermfg=red
 highlight AleWarningSign ctermfg=yellow
 
-let g:ale_linters = {'python': ['flake8']}
+let g:ale_linters = {}
 let g:ale_fixers = {}
-" let g:ale_sign_error = '✖'
-" let g:ale_sign_warning = '⚠'
-let g:ale_sign_error='>>'
-let g:ale_sign_warning='>>'
+let g:ale_sign_error = '✖'
+let g:ale_sign_warning = '⚠'
+" let g:ale_sign_error='>>'
+" let g:ale_sign_warning='>>'
 let g:ale_sign_error_highlight = 'AleErrorUnderline'
 let g:ale_sign_warning_highlight = 'AleWarningUnderline'
 

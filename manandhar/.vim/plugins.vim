@@ -18,7 +18,7 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'junegunn/vim-peekaboo'
 
-Plug 'luochen1990/rainbow'
+Plug 'kien/rainbow_parentheses.vim'
 
 Plug 'mattn/emmet-vim'
 
