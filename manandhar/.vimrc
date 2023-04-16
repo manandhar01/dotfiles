@@ -38,7 +38,7 @@ set shiftwidth=2
 set tabstop=2
 
 " Use space characters instead of tabs
-" set expandtab
+set expandtab
 
 " Use highlighting when doing a search
 set hlsearch
@@ -56,7 +56,10 @@ let g:airline_theme='angr'
 let g:airline_powerline_fonts=1
 
 " Indent Guides
-let g:indent_guides_enable_on_vim_startup=1
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=DarkGray
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=Black
 
 " Turn off error beeping and flashing
 " set belloff=all
