@@ -22,11 +22,11 @@ Plug 'kien/rainbow_parentheses.vim'
 
 Plug 'mattn/emmet-vim'
 
+Plug 'mhinz/vim-startify'
+
 Plug 'neoclide/coc.nvim'
 
 Plug 'nathanaelkane/vim-indent-guides'
-
-Plug 'pangloss/vim-javascript'
 
 Plug 'preservim/nerdtree'
 
@@ -50,10 +50,6 @@ Plug 'vim-airline/vim-airline'
 
 Plug 'vim-airline/vim-airline-themes'
 
-Plug 'vim-autoformat/vim-autoformat'
-
 Plug 'xuyuanp/nerdtree-git-plugin'
-
-Plug 'yggdroot/indentline'
 
 call plug#end()

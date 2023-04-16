@@ -1,39 +1,17 @@
 " Plugins
 so ~/.vim/plugins.vim
 
-" MAPPINGS ------------------------------------------------ {{{
 nmap <F8> :TagbarTogggle<CR>
-" noremap <Esc> :noh<CR>
-
-
-" }}}
-
-" VIMSCRIPT ------------------------------------------------ {{{
 
 " This will enable code folding.
 " Use the marker method of folding.
 augroup filetype_vim
-	autocmd!
-	autocmd FileType vim setlocal foldmethod=marker
+  autocmd!
+  autocmd FileType vim setlocal foldmethod=marker
 augroup END
 
-" Different cursor in NORMAL and INSERT mode
-if has ("autocmd")
-	au VimEnter,InsertLeave * silent execute '!echo -ne "\e[1 q"' | redraw!
-	au InsertEnter,InsertChange *
-				\ if v:insertmode == 'i' |
-				\	silent execute '!echo -ne "\e[5 q"' | redraw! |
-				\ elseif v:insertmode == 'r' |
-				\	silent execute '!echo -ne "\e[3 q"' | redraw! |
-				\ endif
-	au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
-endif
-set ttimeout
-set ttimeoutlen=1
-set ttyfast
-
-" }}}
-
+" Enable Prettier command
+command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
 
 " Disable compatibility with vi which can cause unexpected issues
 set nocompatible
@@ -50,11 +28,14 @@ set cursorline
 " Highlight cursor line underneath the cursor vertically
 set cursorcolumn
 
-" Set shift width to 4 spaces
-set shiftwidth=4
+" Expand tab to spaces
+set expandtab
 
-" Set tab width to 4 columns
-set tabstop=4
+" Set shift width to 2 spaces
+set shiftwidth=2
+
+" Set tab width to 2 columns
+set tabstop=2
 
 " Use space characters instead of tabs
 " set expandtab
@@ -64,7 +45,6 @@ set hlsearch
 
 " Set the commands to save in history (default is 20)
 set history=1000
-
 
 " Theme
 set t_Co=256
@@ -93,13 +73,6 @@ au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 au Syntax * RainbowParenthesesLoadChevrons
 
-" Javascript Language Support
-let g:javascript_plugin_jsdoc=1
-
-" Autoformat
-let g:formatdef_javascript='"prettier --write" %s'
-au BufWritePre * Autoformat
-
 " Always show hidden files in NERDTree
 let g:NERDTreeShowHidden=1
 
@@ -115,22 +88,14 @@ let g:NERDTreeMapActivateNode="<F3>"
 let g:NERDTreeMapPreview="<F4>"
 
 " ALE
-highlight AleErrorUnderline cterm=underline ctermfg=red
-highlight AleWarningUnderline cterm=underline ctermfg=yellow
-highlight AleErrorSign ctermfg=red
-highlight AleWarningSign ctermfg=yellow
-
+let g:airline#extensions#ale#enabled = 1
+let g:ale_set_highlights = 0
 let g:ale_linters = {}
 let g:ale_fixers = {}
 let g:ale_sign_error = '✖'
 let g:ale_sign_warning = '⚠'
-" let g:ale_sign_error='>>'
-" let g:ale_sign_warning='>>'
-let g:ale_sign_error_highlight = 'AleErrorUnderline'
-let g:ale_sign_warning_highlight = 'AleWarningUnderline'
+let g:ale_lint_on_text_changed = 'never'
 
-highlight link ALEErrorLine AleErrorUnderline
-highlight link ALWarningLine AleWarningUnderline
-sign define AleErrorSign texthl=AleErrorSign
-sign define AleWarningSign texthl=AleWarningSign
-
+" Different cursor styles in Normal and Insert modes
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
