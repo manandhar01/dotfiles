@@ -209,21 +209,22 @@ font pango:FiraCode Nerd Font Retina Italic 12
 #
 # Read `man 5 sway-bar` for more information about this section.
 bar {
+	swaybar_command waybar
 	font pango:FiraCode Nerd Font Italic 12
-		status_command i3status-rs
-		position top
+		# status_command i3status-rs
+		# position top
 
-		colors {
-			background #32323277
-				statusline #ffffff
-				separator #666666
+# 		colors {
+# 			background #32323277
+# 				statusline #ffffff
+# 				separator #666666
 
-				focused_workspace #4c7899 #285577 #ffffff
-				active_workspace #333333 #5f676a #ffffff
-				inactive_workspace #555555 #222222 #bbbbbb
-				urgent_workspace #2f343a #900000 #ffffff
-				binding_mode #2f343a #900000 #ffffff
-		}
+# 				focused_workspace #4c7899 #285577 #ffffff
+# 				active_workspace #333333 #5f676a #ffffff
+# 				inactive_workspace #555555 #222222 #bbbbbb
+# 				urgent_workspace #2f343a #900000 #ffffff
+# 				binding_mode #2f343a #900000 #ffffff
+# 		}
 }
 
 # Client colors
