@@ -1,0 +1,46 @@
+{
+  "layer": "bottom",
+  "position": "top",
+
+  "spacing": 5,
+
+  // Choose the order of the modules
+  "modules-left": ["sway/workspaces", "sway/mode"],
+
+  "modules-center": ["sway/window"],
+
+  "modules-right": [
+    "cpu",
+    "memory",
+    "temperature",
+    "network",
+    "backlight",
+    "battery",
+    "clock"
+  ],
+
+  "sway/window": {
+    "max-length": 50
+  },
+
+  "backlight": {
+    "format": "{icon} {percent}%",
+    "format-icons": ["", "", "", "", "", "", "", "", ""],
+    "on-scroll-up": "exec light -A 5",
+    "on-scroll-down": "exec light -U 5",
+  },
+
+  "battery": {
+    "format": "{icon} {capacity}%",
+    "format-icons": ["", "", "", "", ""]
+  },
+
+  "clock": {
+    "format-alt": "{%a, %d. %b %H:%M}"
+  },
+
+  "temperature": {
+    "format": " {temperatureC}°C"
+  }
+}
+ 

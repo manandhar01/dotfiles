@@ -1,0 +1,57 @@
+* {
+  font-family: 'FiraCode Nerd Font';
+}
+
+window#waybar {
+  border: 1px solid orange;
+  border-radius: 10px;
+}
+
+#window {
+  border: 1px solid cyan;
+  border-radius: 10px;
+  padding: 0 10px;
+}
+
+#workspaces {
+  padding: 0;
+  margin: 0;
+  border: 1px solid red;
+  border-radius: 10px;
+}
+
+#workspaces button {
+  padding: 0 2px;
+  margin: 0;
+  background: transparent;
+  border: 1px solid wheat;
+}
+
+#workspaces button:hover {
+  box-shadow: inherit;
+  text-shadow: inherit;
+}
+
+#workspaces button.focused {
+  border-color: cyan;
+  padding: 0 5px;
+  font-weight: bold;
+  color: cyan;
+}
+
+#mode {
+  background: #af005f;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#network,
+#temperature,
+#backlight {
+  padding: 0 3px;
+  margin: 0 2px;
+  border: 1px solid wheat;
+  border-radius: 10px;
+}
