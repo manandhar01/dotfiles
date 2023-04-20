@@ -4,12 +4,10 @@
 
   "spacing": 5,
 
-  // Choose the order of the modules
-  "modules-left": ["sway/workspaces", "sway/mode"],
-
-  "modules-center": ["sway/window"],
+  "modules-left": ["sway/workspaces", "sway/window", "sway/mode"],
 
   "modules-right": [
+    "custom/spotify",
     "cpu",
     "memory",
     "temperature",
@@ -19,6 +17,21 @@
     "clock"
   ],
 
+  "sway/workspaces": {
+    "disable-scroll-wraparound": true,
+    "format": "{name}: {icon}",
+    "format-icons": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "8": "",
+      "9": "",
+      "urgent": "",
+      "focused": "",
+      "default": ""
+    }
+  },
+
   "sway/window": {
     "max-length": 50
   },
@@ -27,20 +40,81 @@
     "format": "{icon} {percent}%",
     "format-icons": ["", "", "", "", "", "", "", "", ""],
     "on-scroll-up": "exec light -A 5",
-    "on-scroll-down": "exec light -U 5",
+    "on-scroll-down": "exec light -U 5"
   },
 
   "battery": {
     "format": "{icon} {capacity}%",
-    "format-icons": ["", "", "", "", ""]
+    "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+    "states": {
+      "critical": 10,
+      "warning": 20,
+      "okay": 50,
+      "good": 80,
+      "excellent": 95,
+      "full": 100
+    }
   },
 
   "clock": {
-    "format-alt": "{%a, %d. %b %H:%M}"
+    "format": " {:%r}",
+    "interval": 1
+  },
+
+  "cpu": {
+    "format": " {usage}%",
+    "states": {
+      "critical": 95,
+      "warning": 90,
+      "high": 80,
+      "moderate": 75,
+      "medium": 20,
+      "low": 0
+    }
+  },
+
+  "custom/spotify": {
+    "format": "  {}",
+    "exec": "sh /home/manandhar/bin/spotifyStatusCheck.sh",
+    "exec-if": "pgrep -x spotify > /dev/null",
+    "return-type": "json",
+    "interval": 2,
+    "on-click": "playerctl --player=spotify play-pause; pkill -SIGRTMIN+10 waybar",
+    "on-scroll-up": "playerctl --player=spotify next",
+    "on-scroll-down": "playerctl --player=spotify previous",
+    "max-length": 30
+  },
+
+  "memory": {
+    "format": " {percentage}%",
+    "states": {
+      "critical": 95,
+      "warning": 90,
+      "high": 80,
+      "moderate": 75,
+      "medium": 20,
+      "low": 0
+    }
+  },
+
+  "network": {
+    "format-icons": ["󰤟", "󰤢", "󰤥", "󰤨"],
+    "format-wifi": "{icon} {essid}",
+    "format-ethernet": "󰈀 {ifname}",
+    "format-linked": "   ",
+    "format-disconnected": " 󰯡 ",
+    "format-disabled": " 󰲜 ",
+    "max-length": 30,
+    "tooltip-format-ethernet": "Interface: {ifname}\nIP Address: {ipaddr}\nSubnet Mask: {netmask}\nDefault Gateway: {gwaddr}",
+    "tooltip-format-wifi": "Interface: {ifname}\nSSID: {essid}\nSignal Strength: {signaldBm}dB | {signalStrength}%\nFrequency: {frequency}\nIP Address: {ipaddr}\nSubnet Mask: {netmask}\nDefault Gateway: {gwaddr}",
+    "tooltip-format-linked": "Linked",
+    "tooltip-format-disconnected": "Disconnected",
+    "tooltip-format-disabled": "Disabled"
   },
 
   "temperature": {
-    "format": " {temperatureC}°C"
+    "critical-threshold": 80,
+    "format": "{icon} {temperatureC}°C",
+    "format-icons": ["", "", "", "", ""]
   }
 }
- 

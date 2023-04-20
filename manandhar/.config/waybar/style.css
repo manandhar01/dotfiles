@@ -1,42 +1,38 @@
 * {
-  font-family: 'FiraCode Nerd Font';
+  font-family: 'FiraCode Nerd Font Retina';
+  border: none;
 }
 
 window#waybar {
-  border: 1px solid orange;
-  border-radius: 10px;
+  background: rgba(25, 24, 23, 1);
+  /* border: 1px solid #fe8019; */
+  /* border-radius: 10px; */
 }
 
 #window {
-  border: 1px solid cyan;
-  border-radius: 10px;
-  padding: 0 10px;
-}
-
-#workspaces {
-  padding: 0;
-  margin: 0;
-  border: 1px solid red;
-  border-radius: 10px;
+  /* border: 1px solid #458588; */
+  /* border-radius: 10px; */
+  padding: 0 5px;
+  margin: 0 5px;
+  color: rgba(100, 230, 200, 1);
 }
 
 #workspaces button {
-  padding: 0 2px;
-  margin: 0;
+  padding: 0 5px;
+  margin: 0 2px;
   background: transparent;
-  border: 1px solid wheat;
+  border: 1px dotted;
+  color: rgba(150, 150, 150, 1);
 }
 
-#workspaces button:hover {
-  box-shadow: inherit;
-  text-shadow: inherit;
-}
+/* #workspaces button:hover { */
+/*   box-shadow: inherit; */
+/*   text-shadow: inherit; */
+/* } */
 
 #workspaces button.focused {
-  border-color: cyan;
-  padding: 0 5px;
-  font-weight: bold;
-  color: cyan;
+  padding: 0 10px;
+  color: rgba(100, 230, 200, 1);
 }
 
 #mode {
@@ -49,9 +45,63 @@ window#waybar {
 #memory,
 #network,
 #temperature,
-#backlight {
-  padding: 0 3px;
+#backlight,
+#custom-spotify {
+  padding: 0 10px;
   margin: 0 2px;
-  border: 1px solid wheat;
   border-radius: 10px;
+  border: 1px dotted;
+}
+
+#backlight {
+  color: rgba(200, 130, 50, 1);
+}
+
+#clock,
+#temperature {
+  color: rgba(0, 162, 255, 1);
+}
+
+#battery.critical,
+#network.disabled,
+#cpu.critical,
+#memory.critical {
+  color: rgba(255, 0, 0, 1);
+}
+#battery.warning,
+#network.disconnected,
+#network.linked,
+#cpu.warning,
+#memory.warning {
+  color: rgba(255, 120, 0, 1);
+}
+#battery.okay,
+#cpu.high,
+#memory.high {
+  color: rgba(200, 200, 100, 1);
+}
+#battery.good,
+#cpu.moderate,
+#memory.moderate {
+  color: rgba(150, 220, 130, 1);
+}
+#battery.excellent,
+#network.wifi,
+#network.ethernet,
+#cpu.medium,
+#memory.medium {
+  color: rgba(130, 230, 100, 1);
+}
+#battery.full,
+#cpu.low,
+#memory.low {
+  color: rgba(50, 235, 50, 1);
+}
+
+.playing {
+  color: rgba(100, 200, 50, 1);
+}
+.paused,
+.muted {
+  color: rgba(150, 150, 150, 1);
 }
