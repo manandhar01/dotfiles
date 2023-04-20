@@ -22,6 +22,10 @@ set number relativenumber
 " Syntax and Indentation Support
 syntax on
 
+" More natural splitting
+set splitbelow
+set splitright
+
 " Highlight cursor line underneath the cursor horizontally
 set cursorline
 
