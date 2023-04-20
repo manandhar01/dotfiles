@@ -8,6 +8,7 @@
 
   "modules-right": [
     "custom/spotify",
+    "pulseaudio#sink",
     "cpu",
     "memory",
     "temperature",
@@ -110,6 +111,25 @@
     "tooltip-format-linked": "Linked",
     "tooltip-format-disconnected": "Disconnected",
     "tooltip-format-disabled": "Disabled"
+  },
+
+  "pulseaudio#sink": {
+    "format": "{icon} {volume}%",
+    "format-bluetooth": "{icon}󰂯 {volume}%",
+    "format-muted": " 󰖁 ",
+    "format-icons": {
+      "headphones": "󰋋",
+      "phone": "󰷰",
+      "default": ["󰕿", "󰖀", "󰕾"],
+      "muted": "󰖁",
+    },
+  },
+
+  "pulseaudio#source": {
+    "format": "{format_source}",
+    "format_source": "  ",
+    "format-source: muted": "  ",
+    "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
   },
 
   "temperature": {

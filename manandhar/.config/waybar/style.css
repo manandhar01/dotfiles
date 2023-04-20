@@ -31,7 +31,7 @@ window#waybar {
 }
 
 #workspaces {
-  background: #a4ac86;
+  background: #5e548e;
   border-radius: 15px;
   /* padding: 2px; */
 }
@@ -41,7 +41,7 @@ window#waybar {
   margin: 0 2px;
   background: transparent;
   border: 1px dotted;
-  color: rgba(100, 100, 100, 1);
+  color: #aaaaaa;
   border-radius: 15px;
 }
 
@@ -60,7 +60,7 @@ window#waybar {
 
 #workspaces button.focused {
   padding: 0 10px;
-  color: rgba(0, 0, 0, 1);
+  color: #dddddd;
   border: 2px solid;
   margin: 1px 0;
 }
@@ -79,7 +79,8 @@ window#waybar {
 #network,
 #temperature,
 #backlight,
-#custom-spotify {
+#custom-spotify,
+#pulseaudio {
   padding: 0 5px;
   border-radius: 15px;
   color: rgba(0, 0, 0, 1);
@@ -114,8 +115,6 @@ window#waybar {
 #battery.good,
 #battery.excellent,
 #battery.full,
-#network.wifi,
-#network.ethernet,
 #cup.high,
 #cpu.moderate,
 #cpu.medium,
@@ -127,10 +126,32 @@ window#waybar {
   background-color: #60d394;
 }
 
+#network.wifi,
+#network.ethernet {
+  background-color: #1c5d99;
+  color: #ffffff;
+}
+
 .playing {
   background-color: #60d394;
 }
 .paused,
 .muted {
   background-color: #a5a5a5;
+}
+
+#pulseaudio.sink,
+#pulseaudio.source {
+  background-color: #5e548e;
+  color: #ffffff;
+}
+
+#pulseaudio.source.muted,
+#pulseaudio.sink.muted {
+  background-color: #fc9e4f;
+  color: #000000;
+  font-size: 20;
+}
+
+#pulseaudio.bluetooth {
 }
