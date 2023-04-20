@@ -17,7 +17,7 @@ command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
 set nocompatible
 
 " Line Numbering
-set relativenumber
+set number relativenumber
 
 " Syntax and Indentation Support
 syntax on
@@ -102,3 +102,9 @@ let g:ale_lint_on_text_changed = 'never'
 " Different cursor styles in Normal and Insert modes
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
+
+" CSS Syntax Highlighting
+" augroup VimCSS3Syntax
+"   autocmd!
+"   autocmd FileType css setlocal iskeyword+=-
+" augroup END

@@ -12,6 +12,8 @@ Plug 'fladson/vim-kitty'
 
 Plug 'gruvbox-community/gruvbox'
 
+Plug 'hail2u/vim-css3-syntax'
+
 Plug 'jesseleite/vim-noh'
 
 Plug 'junegunn/fzf.vim'
@@ -37,6 +39,8 @@ Plug 'raimondi/delimitmate'
 Plug 'ryanoasis/vim-devicons'
 
 Plug 'sheerun/vim-polyglot'
+
+Plug 'suan/vim-instant-markdown'
 
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
