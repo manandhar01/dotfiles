@@ -1,4 +1,5 @@
 height=50%
+width=35%
 term=alacritty
 prompt=Search
 hide_scroll=true
@@ -7,4 +8,4 @@ allow-images=true
 allow-markup=true
 filter_rate=200
 insensitive=true
-show=run
+show=drun
