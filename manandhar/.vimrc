@@ -10,6 +10,11 @@ augroup filetype_vim
   autocmd FileType vim setlocal foldmethod=marker
 augroup END
 
+" Mapping leader to <space>
+let mapleader = " "
+let maplocalleader = " "
+set showcmd
+
 " Enable Prettier command
 command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
 
@@ -21,6 +26,9 @@ set number relativenumber
 
 " Syntax and Indentation Support
 syntax on
+
+" Sign column always on
+set signcolumn=yes
 
 " More natural splitting
 set splitbelow
@@ -108,7 +116,15 @@ let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
 
 " CSS Syntax Highlighting
-" augroup VimCSS3Syntax
-"   autocmd!
-"   autocmd FileType css setlocal iskeyword+=-
-" augroup END
+augroup VimCSS3Syntax
+  autocmd!
+  autocmd FileType css setlocal iskeyword+=-
+augroup END
+
+" Curly underline
+hi default CocUnderline cterm=underline gui=undercurl
+
+" Vimtex config
+filetype plugin indent on
+
+" let g:vimtex_view_method = 'evince'

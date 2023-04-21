@@ -22,6 +22,8 @@ Plug 'junegunn/vim-peekaboo'
 
 Plug 'kien/rainbow_parentheses.vim'
 
+Plug 'lervag/vimtex'
+
 Plug 'mattn/emmet-vim'
 
 Plug 'mhinz/vim-startify'
@@ -29,6 +31,8 @@ Plug 'mhinz/vim-startify'
 Plug 'neoclide/coc.nvim'
 
 Plug 'nathanaelkane/vim-indent-guides'
+
+Plug 'peder2tm/sved'
 
 Plug 'preservim/nerdtree'
 
