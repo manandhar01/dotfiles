@@ -123,8 +123,3 @@ augroup END
 
 " Curly underline
 hi default CocUnderline cterm=underline gui=undercurl
-
-" Vimtex config
-filetype plugin indent on
-
-" let g:vimtex_view_method = 'evince'
