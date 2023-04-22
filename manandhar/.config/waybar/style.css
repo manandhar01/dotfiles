@@ -1,8 +1,12 @@
 * {
-  font-family: 'FiraCode Nerd Font Retina';
+  font-family: 'FiraCode Nerd Font';
   border: none;
   margin: 0;
   padding: 0;
+}
+
+window .modules-center {
+  margin: 0 5px;
 }
 
 /* window .modules-right, */
@@ -38,7 +42,7 @@ window#waybar {
 
 #workspaces button {
   padding: 0 5px;
-  margin: 0 2px;
+  margin: 0 1px;
   background: transparent;
   border: 1px dotted;
   color: #aaaaaa;
@@ -62,14 +66,15 @@ window#waybar {
   padding: 0 10px;
   color: #dddddd;
   border: 2px solid;
-  margin: 1px 0;
+  /* margin: 1px 0; */
 }
 
 #mode {
-  color: rgba(130, 20, 0, 1);
-  border: 1px solid;
+  background: #e76f51;
+  border-radius: 15px;
   padding: 0 5px;
-  border-radius: 5px;
+  color: black;
+  /* color: #e63946; */
 }
 
 #clock,
@@ -128,8 +133,8 @@ window#waybar {
 
 #network.wifi,
 #network.ethernet {
-  background-color: #1c5d99;
-  color: #ffffff;
+  background-color: #86bbd8;
+  color: #000000;
 }
 
 .playing {
@@ -150,8 +155,22 @@ window#waybar {
 #pulseaudio.sink.muted {
   background-color: #fc9e4f;
   color: #000000;
-  font-size: 20;
 }
 
 #pulseaudio.bluetooth {
+}
+
+#tray {
+  background: #5e548e;
+  border-radius: 15px;
+  padding: 0 10px;
+}
+
+#battery.discharging {
+}
+
+#battery.charging {
+}
+
+#battery.plugged {
 }

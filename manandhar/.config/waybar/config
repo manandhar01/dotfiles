@@ -4,25 +4,31 @@
 
   "spacing": 5,
 
-  "modules-left": ["sway/workspaces", "sway/window", "sway/mode"],
-
-  "modules-right": [
-    "custom/spotify",
-    "pulseaudio#sink",
+  "modules-left": [
+    "sway/workspaces",
     "cpu",
     "memory",
     "temperature",
+    "sway/window",
+    "sway/mode",
+  ],
+
+  "modules-center": ["clock"],
+
+  "modules-right": [
+    "custom/spotify",
     "network",
+    "pulseaudio#sink",
     "backlight",
     "battery",
-    "clock"
+    "tray"
   ],
 
   "sway/workspaces": {
     "disable-scroll-wraparound": true,
-    "format": "{name}: {icon}",
+    "format": "{name}:{icon}",
     "format-icons": {
-      "1": "",
+      "1": "",
       "2": "",
       "3": "",
       "8": "",
@@ -33,8 +39,13 @@
     }
   },
 
+  "tray": {
+    "icon-size": 23,
+    "spacing": 10
+  },
+
   "sway/window": {
-    "max-length": 50
+    "max-length": 30
   },
 
   "backlight": {
@@ -46,7 +57,11 @@
 
   "battery": {
     "format": "{icon} {capacity}%",
-    "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+    "format-icons": {
+      "discharging": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+      "plugged": "",
+      "charging": ["󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"],
+    },
     "states": {
       "critical": 10,
       "warning": 20,
@@ -58,8 +73,8 @@
   },
 
   "clock": {
-    "format": " {:%r}",
-    "interval": 1
+    "format": "󱛡 {:%a|%F|%r}",
+    "interval": 1,
   },
 
   "cpu": {
@@ -75,7 +90,7 @@
   },
 
   "custom/spotify": {
-    "format": "  {}",
+    "format": " {}",
     "exec": "sh /home/manandhar/bin/spotifyStatusCheck.sh",
     "exec-if": "pgrep -x spotify > /dev/null",
     "return-type": "json",
