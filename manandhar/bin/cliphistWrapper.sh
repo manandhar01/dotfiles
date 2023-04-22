@@ -8,14 +8,13 @@ if [ $1 = "select" ]; then
 	selected="$(echo "$selected" | cliphist decode)"
 	wl-copy $selected
 	notify-send -t 5000 Selected "$selected"
-fi
-
-if [ $1 = "delete" ]; then
+elif [ $1 = "delete" ]; then
 	selected="$(cliphist list | wofi --dmenu | tee >(cliphist decode) >(cliphist delete))"
+	if [ "$selected" = "" ]; then
+		exit 0;
+	fi
 	notify-send -t 5000 Deleted "$selected"
-fi
-
-if [ $1 = "wipe" ]; then
+elif [ $1 = "wipe" ]; then
 	cliphist wipe
 	notify-send -t 5000 "Clipboard Wiped"
 fi
