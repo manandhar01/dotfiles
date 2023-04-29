@@ -290,7 +290,7 @@ input type:touchpad {
 
 # Cursor Theme
 # input * cursor Oreo_Grey_Cursors
-exec_always --no-startup-id "export XCURSOR_THEME=Oreo_Grey_Cursors"
+exec_always --no-startup-id "export XCURSOR_THEME=Capitaine_cursors"
 
 # Clipboard Manager
 exec_always --no-startup-id wl-paste --watch cliphist store
