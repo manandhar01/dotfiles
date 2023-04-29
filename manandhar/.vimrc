@@ -66,6 +66,12 @@ colorscheme gruvbox
 " Airline status line theme
 let g:airline_theme='angr'
 let g:airline_powerline_fonts=1
+let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#left_sep = ' '
+" let g:airline#extensions#tabline#left_alt_sep = '|'
+" let g:airline#extensions#tabline#formatter = 'default'
+let g:airline#extensions#ale#enabled = 1
+
 
 " Indent Guides
 let g:indent_guides_enable_on_vim_startup = 1
@@ -103,7 +109,6 @@ let g:NERDTreeMapActivateNode="<F3>"
 let g:NERDTreeMapPreview="<F4>"
 
 " ALE
-let g:airline#extensions#ale#enabled = 1
 let g:ale_set_highlights = 0
 let g:ale_linters = {}
 let g:ale_fixers = {}
@@ -123,3 +128,8 @@ augroup END
 
 " Curly underline
 hi default CocUnderline cterm=underline gui=undercurl
+
+" Move between tabs
+nmap <C-Tab> :tabnext<CR>
+nmap <C-S-Tab> :tabprevious<CR>
+
