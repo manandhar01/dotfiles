@@ -10,18 +10,18 @@
           "leading_diamond": "\ue0b6",
           "style": "diamond",
           "type": "session",
-          "template": " {{if .SSHSession}} {{ .HostName }} @ {{ .UserName }}{{else}}{{ .UserName }}{{end}}"
+          "template": " 👻{{if .SSHSession}}🔐{{ .UserName }}@{{ .HostName }}{{else}}{{ .UserName }}{{end}} 🚀"
         },
         {
           "background": "#282828",
           "foreground": "#d08c60",
           "leading_diamond": "\ue0b6",
           "properties": {
-            "style": "agnoster_full",
-            "home_icon": " "
+            "style": "full",
+            "home_icon": "🏡"
           },
           "style": "diamond",
-          "template": " {{ .Path }}",
+          "template": "📂{{ .Path }}",
           "trailing_diamond": "\ue0b4",
           "type": "path"
         },
@@ -34,7 +34,7 @@
             "threshold": 150
           },
           "style": "diamond",
-          "template": " {{ .FormattedMs }}",
+          "template": "🚀 ⌛{{ .FormattedMs }}",
           "trailing_diamond": "\ue0b4",
           "type": "executiontime"
         },
@@ -48,7 +48,7 @@
           "properties": {
             "always_enabled": true
           },
-          "template": " $?",
+          "template": "🚀 ⚡$? 🔥",
           "style": "diamond",
           "trailing_diamond": "\ue0b4",
           "type": "text"
@@ -178,7 +178,7 @@
           "leading_diamond": "\ue0b6",
           "style": "diamond",
           "type": "text",
-          "template": "󰠖 \u276f "
+          "template": "🍀⭐\u276f "
         }
       ],
       "type": "prompt"
