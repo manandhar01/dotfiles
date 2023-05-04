@@ -1,10 +1,3 @@
-#
-# ~/.bashrc
-#
-
-# If not running interactively, don't do anything
-[[ $- != *i* ]] && return
-
 alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
 
@@ -43,11 +36,10 @@ export EDITOR=vim
 
 
 
-# If not running interactively, don't do anything
-case $- in
-	*i*) ;;
-	*) return;;
-esac
+# case $- in
+# 	*i*) ;;
+# 	*) return;;
+# esac
 
 # Path to the bash it configuration
 export BASH_IT="/home/manandhar/.bash_it"
@@ -55,7 +47,7 @@ export BASH_IT="/home/manandhar/.bash_it"
 # Lock and Load a custom theme file.
 # Leave empty to disable theming.
 # location /.bash_it/themes/
-export BASH_IT_THEME='powerline-naked-edited'
+# export BASH_IT_THEME='oh-my-posh'
 
 # Some themes can show whether `sudo` has a current token or not.
 # Set `$THEME_CHECK_SUDO` to `true` to check every prompt:
@@ -70,16 +62,16 @@ THEME_CHECK_SUDO='true'
 # export BASH_IT_DEVELOPMENT_BRANCH='master'
 
 # Your place for hosting Git repos. I use this for private repos.
-export GIT_HOSTING='git@git.domain.com'
+# export GIT_HOSTING='git@git.domain.com'
 
 # Don't check mail when opening terminal.
 unset MAILCHECK
 
 # Change this to your console based IRC client of choice.
-export IRC_CLIENT='irssi'
+# export IRC_CLIENT='irssi'
 
 # Set this to the command you use for todo.txt-cli
-export TODO="t"
+# export TODO="t"
 
 # Set this to the location of your work or project folders
 #BASH_IT_PROJECT_PATHS="${HOME}/Projects:/Volumes/work/src"
@@ -136,3 +128,4 @@ source /usr/share/nvm/init-nvm.sh
 alias few-shot="source /opt/anaconda/bin/activate few-shot"
 alias cicenv="source /opt/anaconda/bin/activate cicenv"
 
+eval "$(oh-my-posh init bash --config '/home/manandhar/.poshthemes/bubblesextra_edited.omp.json')"
