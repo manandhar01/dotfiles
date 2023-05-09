@@ -65,7 +65,7 @@ window#waybar {
 #workspaces button.focused {
   padding: 0 10px;
   color: #dddddd;
-  border: 2px solid;
+  border: 1px solid;
   /* margin: 1px 0; */
 }
 
