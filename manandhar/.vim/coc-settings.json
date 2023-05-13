@@ -1,5 +1,9 @@
 {
   "coc.preferences.formatOnSave": true,
   "prettier.singleQuote": true,
-  "prettier.jsxSingleQuote": true
+  "prettier.jsxSingleQuote": true,
+  "markdownlint.config": {
+    "MD013": false,
+    "MD025": false
+  }
 }
