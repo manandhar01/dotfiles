@@ -239,9 +239,9 @@ bar {
 
 # Client colors
 # class			border	background	text	indicator	child_border
-client.focused #68a4a5aa #4c805577 #ffffff #ffffff #68aaaa
+client.focused #68a4a5aa #4c8055 #ffffff #ffffff #68aaaa
 client.focused_inactive #666666aa #33333377 #dddddd #ffffff #55885577
-client.unfocused #333333aa #33333377 #dddddd #ffffff #000000cc
+client.unfocused #333333aa #333333 #dddddd #ffffff #000000cc
 client.urgent #4c7899aa #28557777 #ffffff #ffffff #285577aa
 client.placeholder #4c7899aa #28557777 #ffffff #ffffff #285577aa
 
