@@ -49,9 +49,6 @@ set shiftwidth=2
 " Set tab width to 2 columns
 set tabstop=2
 
-" Use space characters instead of tabs
-set expandtab
-
 " Use highlighting when doing a search
 set hlsearch
 
