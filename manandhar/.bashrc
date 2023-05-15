@@ -27,7 +27,7 @@ rotatepdfleft () {
 rotatepdfright () {
 	pdftk "$1" cat 1-endright output "$2";
 }
-export PATH=$PATH:/home/manandhar/bin:/home/manandhar/.local/bin
+export PATH=$PATH:/home/manandhar/bin:/home/manandhar/.local/bin:/home/manandhar/.local/share/gem/ruby/3.0.0/bin
 export CHROME_EXECUTABLE=/usr/bin/chromium
 export EDITOR=vim
 # export PATH=$PATH:$HOME/.config/composer/vendor/bin:/opt/lampp/bin:/root/.local/share/gem/ruby/2.7.0/bin:~/dart-sass:$HOME/.local/bin/
@@ -127,5 +127,7 @@ source /usr/share/nvm/init-nvm.sh
 
 alias few-shot="source /opt/anaconda/bin/activate few-shot"
 alias cicenv="source /opt/anaconda/bin/activate cicenv"
+
+alias portfolio="cd /mnt/Documents/JS/portfolio"
 
 eval "$(oh-my-posh init bash --config '/home/manandhar/.poshthemes/bubblesextra_edited.omp.json')"
