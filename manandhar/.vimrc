@@ -1,7 +1,7 @@
 " Plugins
 so ~/.vim/plugins.vim
 
-nmap <F8> :TagbarTogggle<CR>
+nmap <F8> :TagbarToggle<CR>
 
 " This will enable code folding.
 " Use the marker method of folding.

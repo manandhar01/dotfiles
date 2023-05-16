@@ -24,6 +24,8 @@ Plug 'kien/rainbow_parentheses.vim'
 
 Plug 'lervag/vimtex'
 
+Plug 'majutsushi/tagbar'
+
 Plug 'mattn/emmet-vim'
 
 Plug 'mhinz/vim-startify'
