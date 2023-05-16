@@ -55,6 +55,9 @@ set hlsearch
 " Set the commands to save in history (default is 20)
 set history=1000
 
+" Prevent automatic commenting
+set formatoptions-=cro
+
 " Theme
 set t_Co=256
 set bg=dark
@@ -99,8 +102,7 @@ let g:NERDTreeGitStatusUseXicons=1
 let g:NERDTreeGitStatusUseNerdFonts=1
 
 " NERDTree Mappings
-silent! nmap <C-p> :NERDTreeToggle<CR>
-silent! map <F3> :NERDTreeFind<CR>
+silent! nmap <leader>n :NERDTreeToggle<CR>
 
 let g:NERDTreeMapActivateNode="<F3>"
 let g:NERDTreeMapPreview="<F4>"
@@ -130,3 +132,5 @@ hi default CocUnderline cterm=underline gui=undercurl
 nmap <C-Tab> :tabnext<CR>
 nmap <C-S-Tab> :tabprevious<CR>
 
+" NerdTree
+autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | end

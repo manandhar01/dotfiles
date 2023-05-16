@@ -34,6 +34,10 @@ Plug 'nathanaelkane/vim-indent-guides'
 
 Plug 'peder2tm/sved'
 
+Plug 'PhilRunninger/nerdtree-buffer-ops'
+
+Plug 'PhilRunninger/nerdtree-visual-selection'
+
 Plug 'preservim/nerdtree'
 
 Plug 'preservim/tagbar'
