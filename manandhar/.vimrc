@@ -134,3 +134,9 @@ nmap <C-S-Tab> :tabprevious<CR>
 
 " NerdTree
 autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | end
+
+" mapping for moving lines
+" nnoremap <A-j> :m+1<CR>
+" nnoremap <A-k> :m-2<CR>
+" vnoremap <A-k> :m '<-2<CR>gv=gv'
+" vnoremap <A-j> :m '>+1<CR>gv=gv'

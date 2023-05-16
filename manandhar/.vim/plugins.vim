@@ -28,6 +28,8 @@ Plug 'majutsushi/tagbar'
 
 Plug 'mattn/emmet-vim'
 
+Plug 'matze/vim-move'
+
 Plug 'mhinz/vim-startify'
 
 Plug 'neoclide/coc.nvim'
