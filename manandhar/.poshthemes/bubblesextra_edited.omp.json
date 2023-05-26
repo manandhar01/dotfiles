@@ -7,7 +7,6 @@
         {
           "background": "#282828",
           "foreground": "#95b8d1",
-          "leading_diamond": "\ue0b6",
           "style": "diamond",
           "type": "session",
           "template": " 👻{{if .SSHSession}}🔐{{ .UserName }}@{{ .HostName }}{{else}}{{ .UserName }}{{end}} 🚀"
@@ -28,13 +27,12 @@
         {
           "background": "#282828",
           "foreground": "#AEA4BF",
-          "leading_diamond": "\ue0b6",
           "properties": {
             "style": "austin",
             "threshold": 150
           },
           "style": "diamond",
-          "template": "🚀 ⌛{{ .FormattedMs }}",
+          "template": "🚀⌛{{ .FormattedMs }}",
           "trailing_diamond": "\ue0b4",
           "type": "executiontime"
         },
@@ -44,13 +42,8 @@
           "foreground_templates": [
             "{{if eq $? 0}}#3EC669{{else}}#E64747{{end}}"
           ],
-          "leading_diamond": "\ue0b6",
-          "properties": {
-            "always_enabled": true
-          },
-          "template": "🚀 ⚡$? 🔥",
+          "template": "🚀⚡$? 🔥",
           "style": "diamond",
-          "trailing_diamond": "\ue0b4",
           "type": "text"
         }
       ],
@@ -69,7 +62,6 @@
             "{{ if gt .Ahead 0 }}#B388FF{{ end }}",
             "{{ if gt .Behind 0 }}#B388FF{{ end }}"
           ],
-          "leading_diamond": "\ue0b6",
           "properties": {
             "branch_max_length": 25,
             "fetch_stash_count": true,
@@ -78,79 +70,66 @@
           },
           "style": "diamond",
           "template": " {{ .UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} \uf692 {{ .StashCount }}{{ end }} ",
-          "trailing_diamond": "\ue0b4",
           "type": "git"
         },
         {
           "background": "#282828",
           "foreground": "#E4F34A",
-          "leading_diamond": "\ue0b6",
           "properties": {
             "fetch_version": false
           },
           "style": "diamond",
           "template": "\ue235 {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }}",
-          "trailing_diamond": "\ue0b4",
           "type": "python"
         },
         {
           "background": "#282828",
           "foreground": "#7FD5EA",
-          "leading_diamond": "\ue0b6",
           "properties": {
             "fetch_version": false
           },
           "style": "diamond",
           "template": "\ufcd1{{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
-          "trailing_diamond": "\ue0b4",
           "type": "go"
         },
         {
           "background": "#282828",
           "foreground": "#42E66C",
-          "leading_diamond": "\ue0b6",
           "properties": {
             "fetch_version": false
           },
           "style": "diamond",
           "template": "\ue718 {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }}",
-          "trailing_diamond": "\ue0b4",
           "type": "node"
         },
         {
           "background": "#282828",
           "foreground": "#E64747",
-          "leading_diamond": "\ue0b6",
           "properties": {
             "fetch_version": false
           },
           "style": "diamond",
           "template": "\ue791{{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
-          "trailing_diamond": "\ue0b4",
           "type": "ruby"
         },
         {
           "background": "#282828",
           "foreground": "#E64747",
-          "leading_diamond": "\ue0b6",
           "properties": {
             "fetch_version": false
           },
           "style": "diamond",
           "template": "\ue738{{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
-          "trailing_diamond": "\ue0b4",
           "type": "java"
         },
         {
           "background": "#282828",
           "foreground": "#9B6BDF",
-          "leading_diamond": "\ue0b6",
           "properties": {
             "fetch_version": false
           },
           "style": "diamond",
           "template": "\ue624{{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }} ",
-          "trailing_diamond": "\ue0b4",
           "type": "julia"
         },
         {
@@ -158,12 +137,10 @@
           "style": "diamond",
           "foreground": "#ffffff",
           "background": "#4063D8",
-          "leading_diamond": "\ue0b6",
           "properties": {
             "fetch_version": false
           },
-          "template": "\ue73d {{ .Full }} ",
-          "trailing_diamond": "\ue0b4"
+          "template": "\ue73d {{ .Full }} "
         }
       ],
       "type": "prompt"
@@ -175,7 +152,6 @@
         {
           "background": "#282828",
           "foreground": "#8ec07c",
-          "leading_diamond": "\ue0b6",
           "style": "diamond",
           "type": "text",
           "template": "🍀⭐\u276f "
