@@ -30,6 +30,7 @@ rotatepdfright () {
 export PATH=$PATH:/home/manandhar/bin:/home/manandhar/.local/bin:/home/manandhar/.local/share/gem/ruby/3.0.0/bin
 export CHROME_EXECUTABLE=/usr/bin/chromium
 export EDITOR=vim
+export QT_QPA_PLATFORM=wayland
 # export PATH=$PATH:$HOME/.config/composer/vendor/bin:/opt/lampp/bin:/root/.local/share/gem/ruby/2.7.0/bin:~/dart-sass:$HOME/.local/bin/
 # export WINEPREFIX=~/.local/share/wineprefixes/epic_games
 # export QSYS_ROOTDIR="/home/manandhar/.cache/yay/quartus-free/pkg/quartus-free-quartus/opt/intelFPGA/20.1/quartus/sopc_builder/bin"
