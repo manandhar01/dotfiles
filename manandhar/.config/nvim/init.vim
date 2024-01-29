@@ -140,3 +140,9 @@ autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | end
 " nnoremap <A-k> :m-2<CR>
 " vnoremap <A-k> :m '<-2<CR>gv=gv'
 " vnoremap <A-j> :m '>+1<CR>gv=gv'
+
+let g:LanguageClient_serverCommands = {
+\  'rust': ['rust-analyzer'],
+\}
+
+let g:ale_linters = {'rust': ['analyzer']}
