@@ -131,4 +131,5 @@ alias cicenv="source /opt/anaconda/bin/activate cicenv"
 
 alias portfolio="cd /mnt/Documents/JS/portfolio"
 
-eval "$(oh-my-posh init bash --config '/home/manandhar/.poshthemes/bubblesextra_edited.omp.json')"
+# eval "$(oh-my-posh init bash --config '/home/manandhar/.poshthemes/bubblesextra_edited.omp.json')"
+eval "$(starship init bash)"
