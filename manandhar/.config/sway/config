@@ -27,7 +27,7 @@ set $menu wofi
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-output * bg ~/Pictures/Wallpapers/houses.jpg fill
+output * bg ~/Pictures/Wallpapers/5m5kLI9.png fill
 #
 # Example configuration:
 #
@@ -55,7 +55,7 @@ exec swayidle -w \
 	resume 'swaymsg "output * dpms on"' \
 	before-sleep $lock
 
-set $lockmaan exec bash ~/bin/lockman.sh
+set $lockman exec bash ~/bin/lockman.sh
 bindsym $mod+Alt+l exec $lockman
 
 ### Input configuration
