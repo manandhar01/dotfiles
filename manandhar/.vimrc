@@ -62,6 +62,9 @@ set formatoptions-=cro
 set t_Co=256
 set bg=dark
 colorscheme gruvbox
+highlight Normal    ctermbg=None
+highlight LineNr    ctermbg=None
+highlight SignColumn    ctermbg=None
 
 " Airline status line theme
 let g:airline_theme='angr'
