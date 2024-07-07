@@ -15,38 +15,42 @@ window .modules-center {
 /*   border: none; */
 /*   /1* background: rgba(180, 180, 180, 1); *1/ */
 /*   background: #f7b267; */
-/*   border-radius: 15px; */
+/*   border-radius: 5px; */
 /*   padding: 2px 5px; */
 /* } */
 
 window#waybar {
   background: transparent;
-  /* background: rgba(25, 24, 23, 1); */
+  background: rgba(0, 0, 0, 0.4);
   /* border: 1px solid #fe8019; */
   /* border-radius: 10px; */
 }
 
 #window {
   /* border: 1px solid #458588; */
-  border-radius: 15px;
-  background: #f7b267;
-  padding: 0 5px;
-  color: rgba(0, 0, 0, 1);
+  border-radius: 5px;
+  margin: 0 5px;
+  /* background: #f7b267; */
+  /* background-color: transparent; */
+  color: white;
+  /* padding: 0 5px; */
+  /* color: rgba(0, 0, 0, 1); */
+  font-weight: bold;
 }
 
 #workspaces {
   background: #5e548e;
-  border-radius: 15px;
-  /* padding: 2px; */
+  border-radius: 5px;
+  padding: 0 0;
 }
 
 #workspaces button {
-  padding: 0 5px;
-  margin: 0 1px;
+  padding: 0 10px;
+  margin: 0 2px;
   background: transparent;
   border: 1px dotted;
   color: #aaaaaa;
-  border-radius: 15px;
+  border-radius: 5px;
 }
 
 /* #workspaces button:first-child { */
@@ -63,7 +67,7 @@ window#waybar {
 }
 
 #workspaces button.focused {
-  padding: 0 10px;
+  padding: 0 15px;
   color: #dddddd;
   border: 1px solid;
   /* margin: 1px 0; */
@@ -71,11 +75,13 @@ window#waybar {
 
 #mode {
   background: #e76f51;
-  border-radius: 15px;
+  border-radius: 5px;
   padding: 0 5px;
   color: black;
   /* color: #e63946; */
 }
+
+
 
 #clock,
 #battery,
@@ -87,7 +93,7 @@ window#waybar {
 #custom-spotify,
 #pulseaudio {
   padding: 0 5px;
-  border-radius: 15px;
+  border-radius: 5px;
   color: rgba(0, 0, 0, 1);
   /* border: 1px solid; */
 }
@@ -162,7 +168,7 @@ window#waybar {
 
 #tray {
   background: #5e548e;
-  border-radius: 15px;
+  border-radius: 5px;
   padding: 0 10px;
 }
 

@@ -51,8 +51,8 @@
   "backlight": {
     "format": "{icon} {percent}%",
     "format-icons": ["", "", "", "", "", "", "", "", ""],
-    "on-scroll-up": "exec light -A 5",
-    "on-scroll-down": "exec light -U 5"
+    "on-scroll-up": "exec brightnessctl s +5%",
+    "on-scroll-down": "exec brightnessctl s 5%-",
   },
 
   "battery": {
