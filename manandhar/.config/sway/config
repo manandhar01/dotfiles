@@ -312,7 +312,7 @@ bindsym Shift+Print exec wayshot -s "$(slurp -f '%x %y %w %h')" -f ~/Pictures/Sc
 bindsym Ctrl+Shift+Print exec wayshot -s "$(slurp -f '%x %y %w %h')" --stdout | wl-copy
 
 # Assign Apps to certain workspace
-assign [app_id="kitty"] workspace number 1
+# assign [app_id="kitty"] workspace number 1
 assign [instance="chromium"] workspace number 2
 assign [instance="code"] workspace number 3
 assign [app_id="spotube"] workspace number 9
