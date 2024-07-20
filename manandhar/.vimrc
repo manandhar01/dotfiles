@@ -143,3 +143,5 @@ autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | end
 " nnoremap <A-k> :m-2<CR>
 " vnoremap <A-k> :m '<-2<CR>gv=gv'
 " vnoremap <A-j> :m '>+1<CR>gv=gv'
+
+nnoremap <C-p> :<C-u>FZF<CR>

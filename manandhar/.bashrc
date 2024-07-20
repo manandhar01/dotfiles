@@ -40,6 +40,8 @@ export PATH=/opt/flutter/bin:$PATH
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
+# export FZF_DEFAULT_COMMAND='rg --files'
+
 # export PATH=$PATH:$HOME/.config/composer/vendor/bin:/opt/lampp/bin:/root/.local/share/gem/ruby/2.7.0/bin:~/dart-sass:$HOME/.local/bin/
 # export WINEPREFIX=~/.local/share/wineprefixes/epic_games
 # export QSYS_ROOTDIR="/home/manandhar/.cache/yay/quartus-free/pkg/quartus-free-quartus/opt/intelFPGA/20.1/quartus/sopc_builder/bin"
@@ -154,3 +156,5 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+
