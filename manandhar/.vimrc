@@ -193,3 +193,10 @@ if has('nvim')
   tnoremap <C-v><Esc> <Esc>
 endif
 " ####### TERMINAL END #######
+
+set undofile
+set undodir=~/.vim/undo
+augroup vimrc
+    autocmd!
+    autocmd BufWritePre /tmp/* setlocal noundofile
+augroup END

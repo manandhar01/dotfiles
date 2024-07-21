@@ -20,6 +20,9 @@ alias egrep='grep -E'
 # alias for vi
 alias vi='vim'
 
+# alias for documents directory
+alias documents='cd /mnt/manandhar/Documents'
+
 # functions to rotate pdf
 rotatepdfleft () {
 	pdftk "$1" cat 1-endleft output "$2";
