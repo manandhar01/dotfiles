@@ -90,7 +90,7 @@ export BASH_IT="/home/manandhar/.bash_it"
 # Lock and Load a custom theme file.
 # Leave empty to disable theming.
 # location /.bash_it/themes/
-export BASH_IT_THEME='bobby'
+export BASH_IT_THEME='powerline-naked'
 
 # Some themes can show whether `sudo` has a current token or not.
 # Set `$THEME_CHECK_SUDO` to `true` to check every prompt:
@@ -158,6 +158,8 @@ export BASH_IT_AUTOMATIC_RELOAD_AFTER_CONFIG_CHANGE=1
 
 # Uncomment this to make Bash-it create alias reload.
 export BASH_IT_RELOAD_LEGACY=1
+
+export POWERLINE_PROMPT="user_info cwd in_vim scm duration last_status"
 
 # Load Bash It
 source "$BASH_IT"/bash_it.sh
