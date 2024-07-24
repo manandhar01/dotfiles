@@ -20,6 +20,9 @@ alias egrep='grep -E'
 # alias for vi
 alias vi='vim'
 
+# alias for documents directory
+alias documents='cd /mnt/manandhar/Documents'
+
 # functions to rotate pdf
 rotatepdfleft () {
 	pdftk "$1" cat 1-endleft output "$2";
@@ -39,6 +42,8 @@ export PATH=$PATH:/home/manandhar/.local/share/gem/ruby/3.0.0/bin
 export PATH=/opt/flutter/bin:$PATH
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+# export FZF_DEFAULT_COMMAND='rg --files'
 
 # export PATH=$PATH:$HOME/.config/composer/vendor/bin:/opt/lampp/bin:/root/.local/share/gem/ruby/2.7.0/bin:~/dart-sass:$HOME/.local/bin/
 # export WINEPREFIX=~/.local/share/wineprefixes/epic_games
@@ -154,3 +159,5 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+

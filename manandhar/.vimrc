@@ -28,7 +28,7 @@ set number relativenumber
 syntax on
 
 " Sign column always on
-set signcolumn=yes
+" set signcolumn=yes
 
 " More natural splitting
 set splitbelow
@@ -44,10 +44,10 @@ set cursorcolumn
 set expandtab
 
 " Set shift width to 2 spaces
-set shiftwidth=2
+set shiftwidth=4
 
 " Set tab width to 2 columns
-set tabstop=2
+set tabstop=4
 
 " Use highlighting when doing a search
 set hlsearch
@@ -110,14 +110,6 @@ silent! nmap <leader>n :NERDTreeToggle<CR>
 let g:NERDTreeMapActivateNode="<F3>"
 let g:NERDTreeMapPreview="<F4>"
 
-" ALE
-let g:ale_set_highlights = 0
-let g:ale_linters = {}
-let g:ale_fixers = {}
-let g:ale_sign_error = '✖'
-let g:ale_sign_warning = '⚠'
-let g:ale_lint_on_text_changed = 'never'
-
 " Different cursor styles in Normal and Insert modes
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
@@ -143,3 +135,68 @@ autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | end
 " nnoremap <A-k> :m-2<CR>
 " vnoremap <A-k> :m '<-2<CR>gv=gv'
 " vnoremap <A-j> :m '>+1<CR>gv=gv'
+
+
+" ####### ALE START #######
+let g:ale_set_highlights = 0
+let g:ale_sign_column_always = 1
+let g:ale_ling_on_save = 1
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_filetype_changed = 0
+let g:ale_lint_on_text_changed = 'never'
+
+let g:ale_linters = { 
+      \ 'javascript': ['eslint'] 
+      \ }
+let g:ale_fixers = {}
+let g:ale_sign_error = '✖'
+let g:ale_sign_warning = '⚠'
+let g:ale_lint_on_text_changed = 'never'
+
+nmap <silent> [W <Plug>(ale_first)]<Esc>
+nmap <silent> [w <Plug>(ale_previous)]<Esc>
+nmap <silent> ]w <Plug>(ale_next)<Esc>
+nmap <silent> ]W <plug>(ale_last)<Esc>
+nnoremap <Leader>l :ALELint<CR>
+" ####### ALE END #######
+
+
+" ####### GREPPER START #######
+let g:grepper = {}
+let g:grepper.tools = ['grep', 'git', 'rg']
+
+" nmap gs<plug>(GreppreOperator)
+" xmap gs<plug>(GreppreOperator)
+nnoremap <Leader>* :Grepper -cword -noprompt<CR>
+nnoremap <Leader>g :Grepper -tool git<CR>
+nnoremap <Leader>G :Grepper -tool rg<CR>
+" ####### GREPPER END #######
+
+
+" ####### FZF START #######
+nnoremap <C-p> :<C-u>FZF<CR>
+" ####### FZF END #######
+
+
+" ####### TERMINAL START #######
+tnoremap <M-h> <C-w>h
+tnoremap <M-j> <C-w>j
+tnoremap <M-k> <C-w>k
+tnoremap <M-l> <C-w>l
+
+if has('nvim')
+  tnoremap <M-h> <C-\><C-n><C-w>h
+  tnoremap <M-j> <C-\><C-n><C-w>j
+  tnoremap <M-k> <C-\><C-n><C-w>k
+  tnoremap <M-l> <C-\><C-n><C-w>l
+  tnoremap <Esc> <C-\><C-n>
+  tnoremap <C-v><Esc> <Esc>
+endif
+" ####### TERMINAL END #######
+
+set undofile
+set undodir=~/.vim/undo
+augroup vimrc
+    autocmd!
+    autocmd BufWritePre /tmp/* setlocal noundofile
+augroup END
