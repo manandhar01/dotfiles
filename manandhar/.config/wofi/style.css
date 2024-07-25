@@ -1,54 +1,69 @@
 * {
   border: none;
-  background-color: transparent;
   font-family: 'FiraCode Nerd Font Retina';
 }
 
-#window {
-  background-color: #555555;
-  border: 1px solid #aacc55;
-  border-radius: 15px;
+/* General styles */
+* {
+  background-color: rgba(34, 34, 34, 1); /* Dark background */
+  color: rgba(240, 240, 240, 1); /* Light text */
   font-size: 20px;
 }
 
-/* #outer-box { */
-/*   background-color: transparent; */
-/*   border: 2px solid orange; */
-/*   border-radius: 15px; */
-/* } */
+/* Container styles */
+#window {
+  background-color: rgba(40, 40, 40, 0.95); /* Darker background */
+  border: 1px solid rgba(70, 70, 70, 0.9); /* Medium gray border */
+  border-radius: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Dark shadow */
+  padding: 10px;
+}
 
+#outer-box {
+  background-color: rgba(40, 40, 40, 0.95); /* Darker background */
+  border: 1px solid rgba(70, 70, 70, 0.9); /* Medium gray border */
+  border-radius: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Dark shadow */
+  padding: 10px;
+}
+
+/* Input styles */
 #input {
   margin: 5px;
   margin-top: 10px;
-  background-color: #333333;
+  background-color: rgba(40, 40, 40, 0.95); /* Darker background */
   border-radius: 10px;
-  color: #eeeeee;
-  padding: 15px;
-  border: 2px solid #ddaa55;
+  color: rgba(240, 240, 240, 1); /* Light text */
+  padding: 8px;
+  border: 1px solid rgba(100, 100, 100, 0.6); /* Lighter gray border */
   font-size: 25px;
 }
 
+/* Scroll styles */
 #scroll {
-  /* border: 2px solid black; */
-  border-radius: 10px;
-  margin: 5px;
+  /* Add your specific scroll styles here if needed */
 }
 
+/* Entry styles */
 #entry {
-  border: 1px solid #000000;
+  /* background-color: rgba(240, 240, 240, 0.3); /1* Dark gray border *1/ */
+  border: 1px solid rgba(50, 50, 50, 0.9); /* Dark gray border */
   border-radius: 10px;
-  padding: 0;
+  margin: 3px 7px;
 }
 
+/* Unselected item styles */
 #unselected {
-  padding: 20px 10px;
-  color: #eeeeee;
-  background-color: #555555;
+  padding: 10px 5px;
+  color: rgba(200, 200, 200, 0.9); /* Light gray text */
+  background-color: rgba(34, 34, 34, 1); /* Dark background */
 }
 
+/* Selected item styles */
 #selected {
-  padding: 20px 10px;
-  background-color: #222222;
-  color: #000000;
+  padding: 10px 5px;
+  background-color: rgba(50, 50, 50, 0.9); /* Dark gray background */
+  color: rgba(240, 240, 240, 1); /* Light text */
   font-weight: bold;
 }
+
