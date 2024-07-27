@@ -23,6 +23,9 @@ alias vi='vim'
 # alias for documents directory
 alias documents='cd /mnt/manandhar/Documents'
 
+# alias for dotfiles directory
+alias dotfiles='cd ~/Documents/dotfiles'
+
 
 # alias cicenv="source /opt/anaconda/bin/activate cicenv"
 # alias few-shot="source /opt/anaconda/bin/activate few-shot"

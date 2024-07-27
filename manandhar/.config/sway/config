@@ -316,7 +316,7 @@ bindsym Ctrl+Shift+Print exec wayshot -s "$(slurp -f '%x %y %w %h')" --stdout | 
 assign [instance="chromium"] workspace number 2
 assign [instance="code"] workspace number 3
 assign [app_id="spotube"] workspace number 9
-assign [app_id="spotify"] workspace number 9
+assign [instance="spotify"] workspace number 9
 assign [instance="signal"] workspace number 8
 assign [instance="discord"] workspace number 8
 
