@@ -1,18 +1,19 @@
-font=FiraCode Nerd Font Retina Italic 14
+font=FiraCode Nerd Font, Bold 10
+max-history=15
 
-background-color=#504945
-text-color=#eeeeee
+background-color=#DDDDDDDD
+text-color=#222222FF
 
-width=500
+width=400
 height=150
 
 outer-margin=5,0,5
-margin=15,0,15
+margin=10,0,10
 
 padding=10
 
-border-size=2
-border-color=#d79921
+border-size=1
+border-color=#333333AA
 border-radius=10
 
 text-alignment=center
