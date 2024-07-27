@@ -125,7 +125,8 @@
     "tooltip-format-wifi": "Interface: {ifname}\nSSID: {essid}\nSignal Strength: {signaldBm}dB | {signalStrength}%\nFrequency: {frequency}\nIP Address: {ipaddr}\nSubnet Mask: {netmask}\nDefault Gateway: {gwaddr}",
     "tooltip-format-linked": "Linked",
     "tooltip-format-disconnected": "Disconnected",
-    "tooltip-format-disabled": "Disabled"
+    "tooltip-format-disabled": "Disabled",
+    "on-click": "sh /home/manandhar/bin/toggleNetworkStatus.sh"
   },
 
   "pulseaudio#sink": {
