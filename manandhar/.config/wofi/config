@@ -1,6 +1,7 @@
+colors=wofi.colors
 height=50%
-width=35%
-term=alacritty
+width=50%
+term=kitty
 prompt=Search
 hide_scroll=true
 no_actions=true
@@ -9,3 +10,5 @@ allow-markup=true
 filter_rate=200
 insensitive=true
 show=drun
+location=0
+line_wrap=word
