@@ -55,8 +55,8 @@ set hlsearch
 " Set the commands to save in history (default is 20)
 set history=1000
 
-" Prevent automatic commenting
-set formatoptions-=cro
+" Disable automatic comment continuation
+autocmd FileType * setlocal formatoptions-=cro
 
 " Theme
 set t_Co=256
