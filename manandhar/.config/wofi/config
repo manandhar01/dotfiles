@@ -12,3 +12,4 @@ insensitive=true
 show=drun
 location=0
 line_wrap=word
+layer=overlay
