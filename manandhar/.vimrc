@@ -28,7 +28,7 @@ set number relativenumber
 syntax on
 
 " Sign column always on
-" set signcolumn=yes
+set signcolumn=yes
 
 " More natural splitting
 set splitbelow
@@ -97,19 +97,6 @@ au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 au Syntax * RainbowParenthesesLoadChevrons
 
-" Always show hidden files in NERDTree
-let g:NERDTreeShowHidden=1
-
-" Icons in NERDTree
-let g:NERDTreeGitStatusUseXicons=1
-let g:NERDTreeGitStatusUseNerdFonts=1
-
-" NERDTree Mappings
-silent! nmap <leader>n :NERDTreeToggle<CR>
-
-let g:NERDTreeMapActivateNode="<F3>"
-let g:NERDTreeMapPreview="<F4>"
-
 " Different cursor styles in Normal and Insert modes
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
@@ -126,9 +113,6 @@ hi default CocUnderline cterm=underline gui=undercurl
 " Move between tabs
 nmap <C-Tab> :tabnext<CR>
 nmap <C-S-Tab> :tabprevious<CR>
-
-" NerdTree
-autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | end
 
 " mapping for moving lines
 " nnoremap <A-j> :m+1<CR>
@@ -193,6 +177,36 @@ if has('nvim')
   tnoremap <C-v><Esc> <Esc>
 endif
 " ####### TERMINAL END #######
+
+
+" ####### NETRW START #######
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 30
+let g:NetrwIsOpen = 0
+let g:netrw_keepdir = 0
+let g:netrw_list_hide = '\.git/$'
+
+function! ToggleNetrw()
+    if g:NetrwIsOpen
+        let i = bufnr("$")
+        while (i >= 1)
+            if (getbufvar(i, "&filetype") == "netrw")
+                silent exe "bwipeout " . i 
+            endif
+            let i-=1
+        endwhile
+        let g:NetrwIsOpen=0
+    else
+        let g:NetrwIsOpen=1
+        silent Lexplore
+    endif
+endfunction
+noremap <silent> <C-b> :call ToggleNetrw()<CR>
+" ####### NETRW START #######
+
 
 set undofile
 set undodir=~/.vim/undo
