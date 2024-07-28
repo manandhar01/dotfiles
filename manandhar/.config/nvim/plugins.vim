@@ -1,6 +1,5 @@
 call plug#begin('~/.vim/plugged')
 
-Plug 'gruvbox-community/gruvbox'
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'MunifTanjim/nui.nvim'
@@ -12,6 +11,7 @@ Plug 'nvim-tree/nvim-web-devicons'
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'nvimdev/dashboard-nvim'
 Plug 'rmagatti/auto-session'
+Plug 'sainnhe/gruvbox-material'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'

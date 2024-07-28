@@ -30,19 +30,20 @@ vim.api.nvim_set_keymap('n', '<leader>w', ':w<CR>', { noremap = true, silent = t
 vim.api.nvim_set_keymap('n', '<leader>q', ':q<CR>', { noremap = true, silent = true })
 
 
--- ####### GRUVBOX START #######
-vim.cmd([[colorscheme gruvbox]])
+-- ####### GRUVBOX MATERIAL START #######
+vim.g.gruvbox_material_background = 'hard'
+vim.g.gruvbox_material_disable_italic_comment = 0
+vim.g.gruvbox_material_enable_italic = 1
+vim.g.gruvbox_material_sign_column_background = 'grey'
+vim.g.gruvbox_material_spell_foreground = 'colored'
 
-vim.g.gruvbox_contrast_dark = 'medium' -- 'soft', 'medium', 'hard'
-vim.g.gruvbox_invert_selection = 0
-vim.g.gruvbox_italic = 1
-vim.g.gruvbox_transparent_bg = 1
--- ####### GRUVBOX END #######
+vim.cmd([[colorscheme gruvbox-material]])
+-- ####### GRUVBOX MATERIAL END #######
 
 
 -- ####### AIRLINE START #######
 vim.g.airline_powerline_fonts = 1
-vim.g.airline_theme = 'bubblegum'
+vim.g.airline_theme = 'gruvbox_material'
 
 vim.g['airline#extensions#tabline#enabled'] = 1
 vim.g['airline#extensions#tabline#show_tabs'] = 0
