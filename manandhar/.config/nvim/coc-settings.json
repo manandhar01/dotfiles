@@ -1,18 +1,4 @@
 {
-  "coc.preferences.formatOnSave": true,
-  "prettier.singleQuote": true,
-  "prettier.jsxSingleQuote": true,
-  "markdownlint.config": {
-    "MD013": false,
-    "MD025": false
-  },
-  "solargraph.formatting": true,
-  "workspace.ignoredFolders": ["$HOME", "$HOME/.cargo/**", "$HOME/.rustup/**"],
-  "rust-analyzer.enable": true,
-  "rust-analyzer.server.path": "/usr/lib/rustup/bin/rust-analyzer",
-  "lua": {
-    "diagnostics": {
-      "globals": ["vim"]
-    }
-  }
+  "eslint.autoFixOnSave": true,
+  "coc.preferences.formatOnSave": true
 }
