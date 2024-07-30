@@ -229,10 +229,11 @@ require('telescope').setup({
             find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
         },
         live_grep = {
+            file_ignore_patterns = { '%.git/', 'node_modules/' },
             additional_args = function(opts)
                 return { "--hidden" }
             end,
-        },
+       },
     },
 })
 
