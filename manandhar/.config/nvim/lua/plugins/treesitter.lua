@@ -1,12 +1,9 @@
-return { 
-	'nvim-treesitter/nvim-treesitter',
+return {
+	"nvim-treesitter/nvim-treesitter",
 	config = function()
-
-		local treesitter = require("nvim-treesitter.configs").setup(
-		{
+		require("nvim-treesitter.configs").setup({
 			highlight = { enable = true },
-			indent = { enable = true }
-		}
-		)
-	end
+			indent = { enable = true },
+		})
+	end,
 }

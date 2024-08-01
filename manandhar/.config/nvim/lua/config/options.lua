@@ -13,4 +13,3 @@ vim.opt.updatetime = 300
 vim.opt.backup = false
 vim.opt.writebackup = false
 vim.opt.formatoptions:remove({ 'c', 'r', 'o' })
-
