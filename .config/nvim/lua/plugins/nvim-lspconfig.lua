@@ -4,7 +4,9 @@ return {
 		local lspconfig = require("lspconfig")
 
 		lspconfig.tsserver.setup({})
+
 		lspconfig.lua_ls.setup({})
+
 		lspconfig.bashls.setup({})
 
 		vim.api.nvim_create_autocmd("LspAttach", {
