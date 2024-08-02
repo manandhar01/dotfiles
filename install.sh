@@ -37,11 +37,11 @@ function bash() {
     echo "Installing new config..."
 
     local command="realpath $script_dir/.bashrc"
-    path="$("$command")"
+    path="$($command)"
     cp -rs "$path" "$HOME/"
 
     local command="realpath $script_dir/.inputrc"
-    path="$("$command")"
+    path="$($command)"
     cp -rs "$path" "$HOME/"
 
     echo "Installed"
@@ -57,7 +57,7 @@ function customScripts() {
     fi
 
     local command="realpath $script_dir/bin"
-    path="$("$command")"
+    path="$($command)"
 
     echo "Installing new config..."
     cp -rs "$path" "$HOME/"
@@ -80,11 +80,11 @@ function vim() {
     echo "Installing new config..."
 
     local command="realpath $script_dir/.vim"
-    path="$("$command")"
+    path="$($command)"
     cp -rs "$path" "$HOME/"
 
     local command="realpath $script_dir/.vimrc"
-    path="$("$command")"
+    path="$($command)"
     cp -rs "$path" "$HOME/"
 
     echo "Installed"
@@ -100,7 +100,7 @@ function posh() {
     fi
 
     local command="realpath $script_dir/.poshthemes"
-    path="$("$command")"
+    path="$($command)"
 
     echo "Installing new config..."
     cp -rs "$path" "$HOME/"
@@ -117,7 +117,7 @@ function zsh() {
     fi
 
     local command="realpath $script_dir/.zshrc"
-    path="$("$command")"
+    path="$($command)"
 
     echo "Installing new config..."
     cp -rs "$path" "$HOME/"
