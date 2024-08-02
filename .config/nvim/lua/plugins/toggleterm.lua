@@ -10,7 +10,6 @@ return {
 		})
 
 		vim.api.nvim_set_keymap("n", "<leader>tt", "<Cmd>ToggleTerm<CR>", { noremap = true, silent = true })
-		vim.api.nvim_set_keymap("t", "<leader>tt", "<C-\\><C-n><Cmd>ToggleTerm<CR>", { noremap = true, silent = true })
 		vim.api.nvim_set_keymap(
 			"n",
 			"<leader>tf",
