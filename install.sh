@@ -49,7 +49,7 @@ function bash() {
 
 function custom_scripts() {
     echo "Removing $HOME/bin directory..."
-    rm -rf "$HOME?/bin"
+    rm -rf "${HOME:?}/bin"
     echo "Removed"
 
     if [[ "$operation" -eq 2 ]]; then
