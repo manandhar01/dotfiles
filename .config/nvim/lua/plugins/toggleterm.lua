@@ -2,9 +2,11 @@ return {
 	"akinsho/toggleterm.nvim",
 	config = function()
 		require("toggleterm").setup({
-			size = 80,
+			size = 70,
+			open_mapping = [[<c-\>]],
 			hide_numbers = true,
 			shading_factor = 2,
+			direction = "vertical",
 		})
 
 		vim.api.nvim_set_keymap("n", "<leader>tt", "<Cmd>ToggleTerm<CR>", { noremap = true, silent = true })
