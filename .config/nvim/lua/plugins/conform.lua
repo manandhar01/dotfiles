@@ -6,6 +6,8 @@ return {
 				lua = { "stylua" },
 				javascript = { "prettier" },
 				typescript = { "prettier" },
+				bash = { "shfmt" },
+				sh = { "shfmt" },
 			},
 		})
 
