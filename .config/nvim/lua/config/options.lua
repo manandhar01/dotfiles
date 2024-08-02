@@ -1,15 +1,18 @@
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.opt.syntax = 'enable'
+vim.opt.syntax = "enable"
 vim.opt.smartindent = true
 vim.opt.autoindent = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
-vim.opt.signcolumn = 'yes'
+vim.opt.signcolumn = "yes"
 vim.opt.cursorline = true
 vim.opt.cursorcolumn = true
 vim.opt.updatetime = 300
 vim.opt.backup = false
 vim.opt.writebackup = false
-vim.opt.formatoptions:remove({ 'c', 'r', 'o' })
+vim.wo.wrap = false
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.formatoptions:remove({ "c", "r", "o" })
