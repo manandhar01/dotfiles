@@ -59,7 +59,24 @@ function custom_scripts() {
     local command="realpath $script_dir/bin"
     path="$($command)"
 
-    echo "Installing new config..."
+    echo "Installing new scripts..."
+    cp -rs "$path" "$HOME/"
+    echo "Installed"
+}
+
+function wallpapers() {
+    echo "Removing $HOME/wallpapers directory..."
+    rm -rf "${HOME:?}/wallpapers"
+    echo "Removed"
+
+    if [[ "$operation" -eq 2 ]]; then
+        return
+    fi
+
+    local command="realpath $script_dir/wallpapers"
+    path="$($command)"
+
+    echo "Installing new wallpapers..."
     cp -rs "$path" "$HOME/"
     echo "Installed"
 }
@@ -157,6 +174,7 @@ echo "12) alacritty"
 echo "14) posh"
 echo "15) starship"
 echo "16) zsh"
+echo "17) wallpapers"
 echo "0) Exit"
 
 read -rp "Enter a number (1-15): " userInput
@@ -181,6 +199,7 @@ case $userInput in
 14) posh ;;
 15) operate starship ;;
 16) zsh ;;
+17) wallpapers ;;
 *)
     echo "Invalid input. Exiting." >&2
     exit 1
