@@ -47,7 +47,7 @@ function bash() {
     echo "Installed"
 }
 
-function customScripts() {
+function custom_scripts() {
     echo "Removing $HOME/bin directory..."
     rm -rf "$HOME?/bin"
     echo "Removed"
@@ -165,20 +165,21 @@ printf "\n"
 case $userInput in
 0) exit 0 ;;
 1) bash ;;
-2) operate sway ;;
-3) operate nvim ;;
-4) operate kitty ;;
-5) operate waybar ;;
-6) operate wofi ;;
-7) operate mako ;;
-8) operate swaylock ;;
-9) operate fontconfig ;;
-10) vim ;;
-11) operate i3status-rust ;;
-12) operate alacritty ;;
-13) posh ;;
-14) operate starship ;;
-15) zsh ;;
+2) custom_scripts ;;
+3) operate sway ;;
+4) operate nvim ;;
+5) operate kitty ;;
+6) operate waybar ;;
+7) operate wofi ;;
+8) operate mako ;;
+9) operate swaylock ;;
+10) operate fontconfig ;;
+11) vim ;;
+12) operate i3status-rust ;;
+13) operate alacritty ;;
+14) posh ;;
+15) operate starship ;;
+16) zsh ;;
 *)
     echo "Invalid input. Exiting." >&2
     exit 1
