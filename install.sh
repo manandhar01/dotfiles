@@ -141,6 +141,23 @@ function zsh() {
     echo "Installed"
 }
 
+function bash_it() {
+    echo "Removing $HOME/.bash_it/themes/powerline-naked-edited directory..."
+    rm -rf "${HOME:?}/.bash_it/themes/powerline-naked-edited"
+    echo "Removed"
+
+    if [[ "$operation" -eq 2 ]]; then
+        return
+    fi
+
+    local command="realpath $script_dir/.bash_it/themes/powerline-naked-edited"
+    path="$($command)"
+
+    echo "Installing new scripts..."
+    cp -rs "$path" "$HOME/.bash_it/themes/"
+    echo "Installed"
+}
+
 echo "Please select an operation:"
 echo "1) Install"
 echo "2) Remove"
@@ -175,6 +192,7 @@ echo "14) posh"
 echo "15) starship"
 echo "16) zsh"
 echo "17) wallpapers"
+echo "18) bash_it (powerline-naked-edited theme)"
 echo "0) Exit"
 
 read -rp "Enter a number (1-15): " userInput
@@ -200,6 +218,7 @@ case $userInput in
 15) operate starship ;;
 16) zsh ;;
 17) wallpapers ;;
+18) bash_it ;;
 *)
     echo "Invalid input. Exiting." >&2
     exit 1
