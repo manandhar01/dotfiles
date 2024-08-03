@@ -27,8 +27,9 @@ set $menu wofi
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-output HDMI-A-1 bg ~/wallpapers/5m5kLI9.png fill
 output eDP-1 bg ~/wallpapers/gruvbox-spac.jpg fill
+output HDMI-A-1 bg ~/wallpapers/5m5kLI9.png fill
+output DP-1 bg ~/wallpapers/chinese-hills.jpg fill
 
 #
 # Example configuration:
@@ -39,6 +40,7 @@ output eDP-1 bg ~/wallpapers/gruvbox-spac.jpg fill
 
 # Secondary Display
 output HDMI-A-1 resolution 1920x1080@100.000Hz position 1920,0
+output DP-1 resolution 1360x768@60.015Hz position 560,300
 
 ### Idle configuration
 #
