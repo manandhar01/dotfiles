@@ -27,6 +27,7 @@ vim.api.nvim_set_keymap("n", "<leader>ic", "<Cmd>lua ToggleIgnoreCase()<CR>", { 
 
 vim.api.nvim_set_keymap("n", "<leader>w", ":w<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>q", ":bd<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>y", ':let @+ = @"<CR>', { noremap = true, silent = true })
 
 vim.api.nvim_set_keymap("n", "<leader>h", ":nohlsearch<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "h", "h:nohlsearch<CR>", { noremap = true, silent = true })
