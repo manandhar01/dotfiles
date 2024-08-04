@@ -8,6 +8,7 @@ return {
 				typescript = { "prettier" },
 				bash = { "shfmt" },
 				sh = { "shfmt" },
+				css = { "prettier" },
 			},
 		})
 
