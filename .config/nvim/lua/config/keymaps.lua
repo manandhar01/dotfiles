@@ -32,10 +32,6 @@ vim.api.nvim_set_keymap("n", "<leader>q", ":bd<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>y", ':let @+ = @"<CR>', opts)
 
 vim.api.nvim_set_keymap("n", "<Leader>h", "<Cmd>noh<CR>", opts)
-vim.api.nvim_set_keymap("n", "h", "<Cmd>noh<CR>h", opts)
-vim.api.nvim_set_keymap("n", "j", "<Cmd>noh<CR>j", opts)
-vim.api.nvim_set_keymap("n", "k", "<Cmd>noh<CR>k", opts)
-vim.api.nvim_set_keymap("n", "l", "<Cmd>noh<CR>l", opts)
 
 vim.api.nvim_set_keymap("n", "<C-h>", "<C-w>h", opts)
 vim.api.nvim_set_keymap("n", "<C-j>", "<C-w>j", opts)
