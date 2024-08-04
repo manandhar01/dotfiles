@@ -22,15 +22,22 @@ function ToggleIgnoreCase()
 	end
 end
 
-vim.api.nvim_set_keymap("n", "<leader>tw", "<Cmd>lua ToggleWrap()<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>ic", "<Cmd>lua ToggleIgnoreCase()<CR>", { noremap = true, silent = true })
+local opts = { noremap = true, silent = true }
 
-vim.api.nvim_set_keymap("n", "<leader>w", ":w<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>q", ":bd<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>y", ':let @+ = @"<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>tw", "<Cmd>lua ToggleWrap()<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>ic", "<Cmd>lua ToggleIgnoreCase()<CR>", opts)
 
-vim.api.nvim_set_keymap("n", "<leader>h", ":nohlsearch<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "h", "h:nohlsearch<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "j", "j:nohlsearch<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "k", "k:nohlsearch<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "l", "l:nohlsearch<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>w", ":w<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>q", ":bd<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>y", ':let @+ = @"<CR>', opts)
+
+vim.api.nvim_set_keymap("n", "<Leader>h", "<Cmd>noh<CR>", opts)
+vim.api.nvim_set_keymap("n", "h", "<Cmd>noh<CR>h", opts)
+vim.api.nvim_set_keymap("n", "j", "<Cmd>noh<CR>j", opts)
+vim.api.nvim_set_keymap("n", "k", "<Cmd>noh<CR>k", opts)
+vim.api.nvim_set_keymap("n", "l", "<Cmd>noh<CR>l", opts)
+
+vim.api.nvim_set_keymap("n", "<C-h>", "<C-w>h", opts)
+vim.api.nvim_set_keymap("n", "<C-j>", "<C-w>j", opts)
+vim.api.nvim_set_keymap("n", "<C-k>", "<C-w>k", opts)
+vim.api.nvim_set_keymap("n", "<C-l>", "<C-w>l", opts)
