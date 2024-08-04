@@ -1,6 +1,9 @@
 return {
 	"nvim-tree/nvim-tree.lua",
-	dependencies = { "nvim-tree/nvim-web-devicons" },
+	dependencies = {
+		"nvim-tree/nvim-web-devicons",
+		"b0o/nvim-tree-preview.lua",
+	},
 	config = function()
 		local function on_attach(bufnr)
 			local api = require("nvim-tree.api")
@@ -63,9 +66,25 @@ return {
 			vim.keymap.set("n", "y", api.fs.copy.filename, opts("Copy Name"))
 			vim.keymap.set("n", "Y", api.fs.copy.relative_path, opts("Copy Relative Path"))
 			vim.keymap.set("n", "<2-RightMouse>", api.tree.change_root_to_node, opts("CD"))
+
+			local preview = require("nvim-tree-preview")
+
+			vim.keymap.set("n", "p", preview.watch, opts("Preview (Watch)"))
+			vim.keymap.set("n", "<Esc>", preview.unwatch, opts("Close Preview/Unwatch"))
+
+			vim.keymap.set("n", "<Tab>", function()
+				local ok, node = pcall(api.tree.get_node_under_cursor)
+				if ok and node then
+					if node.type == "directory" then
+						api.node.open.edit()
+					else
+						preview.node(node, { toggle_focus = true })
+					end
+				end
+			end)
 		end
 
-		local tree = require("nvim-tree").setup({
+		require("nvim-tree").setup({
 			disable_netrw = true,
 			on_attach = on_attach,
 			view = {
@@ -89,8 +108,7 @@ return {
 					enable = false,
 				},
 			},
-		}
-)
+		})
 
 		vim.api.nvim_set_keymap("n", "<leader>e", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
 		vim.api.nvim_set_keymap("n", "<leader>r", ":NvimTreeRefresh<CR>", { noremap = true, silent = true })
