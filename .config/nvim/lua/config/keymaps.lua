@@ -28,7 +28,7 @@ vim.api.nvim_set_keymap("n", "<leader>tw", "<Cmd>lua ToggleWrap()<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>ic", "<Cmd>lua ToggleIgnoreCase()<CR>", opts)
 
 vim.api.nvim_set_keymap("n", "<leader>w", ":w<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader>q", ":bd<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>q", ":%bd|e#<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>y", ':let @+ = @"<CR>', opts)
 
 vim.api.nvim_set_keymap("n", "<Leader>h", "<Cmd>noh<CR>", opts)
