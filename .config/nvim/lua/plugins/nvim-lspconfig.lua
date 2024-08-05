@@ -3,14 +3,47 @@ return {
 	config = function()
 		local lspconfig = require("lspconfig")
 
-		lspconfig.tsserver.setup({})
+		local function organize_imports()
+			local params = {
+				command = "_typescript.organizeImports",
+				arguments = { vim.api.nvim_buf_get_name(0) },
+				title = "",
+			}
+			vim.lsp.buf.execute_command(params)
+		end
 
-		lspconfig.lua_ls.setup({})
+		lspconfig.tsserver.setup({
+			init_options = {
+				preferences = {
+					importModuleSpecifierPreference = "relative",
+					importModuleSpecifierEnding = "minimal",
+				},
+			},
 
-		lspconfig.bashls.setup({})
+			capabilities = require("cmp_nvim_lsp").default_capabilities(),
 
-		lspconfig.css_variables.setup({})
-		lspconfig.cssls.setup({})
+			commands = {
+				OrganizeImports = {
+					organize_imports,
+					description = "Organize Imports",
+				},
+			},
+		})
+
+		lspconfig.lua_ls.setup({
+			capabilities = require("cmp_nvim_lsp").default_capabilities(),
+		})
+
+		lspconfig.bashls.setup({
+			capabilities = require("cmp_nvim_lsp").default_capabilities(),
+		})
+
+		lspconfig.css_variables.setup({
+			capabilities = require("cmp_nvim_lsp").default_capabilities(),
+		})
+		lspconfig.cssls.setup({
+			capabilities = require("cmp_nvim_lsp").default_capabilities(),
+		})
 
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("UserLspConfig", {}),
