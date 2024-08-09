@@ -195,7 +195,7 @@ echo "17) wallpapers"
 echo "18) bash_it (powerline-naked-edited theme)"
 echo "0) Exit"
 
-read -rp "Enter a number (1-15): " userInput
+read -rp "Enter a number (1-18): " userInput
 
 printf "\n"
 
