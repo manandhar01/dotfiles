@@ -12,8 +12,9 @@ vim.opt.cursorcolumn = true
 vim.opt.updatetime = 300
 vim.opt.backup = false
 vim.opt.writebackup = false
-vim.wo.wrap = false
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.termguicolors = true
 vim.opt.formatoptions:remove({ "c", "r", "o" })
+vim.opt.mousemoveevent = true
+vim.wo.wrap = false
