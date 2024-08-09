@@ -315,7 +315,7 @@ bindsym Ctrl+Shift+Print exec wayshot -s "$(slurp -f '%x %y %w %h')" --stdout | 
 
 # Assign Apps to certain workspace
 # assign [app_id="kitty"] workspace number 1
-assign [instance="chromium"] workspace number 2
+assign [instance="chromium"] workspace number 3
 assign [instance="code"] workspace number 3
 assign [app_id="spotube"] workspace number 9
 assign [instance="spotify"] workspace number 9
