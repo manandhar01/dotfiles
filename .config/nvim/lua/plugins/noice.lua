@@ -1,7 +1,7 @@
 return {
 	"folke/noice.nvim",
-	event = "VeryLazy",
-	dependencies = {
+	vent = "VeryLazy",
+	dpendencies = {
 		"MunifTanjim/nui.nvim",
 		"rcarriga/nvim-notify",
 		"hrsh7th/nvim-cmp",
@@ -50,5 +50,7 @@ return {
 				color = { fg = "#ff9e64" },
 			},
 		})
+
+		vim.keymap.set("n", "<leader>nd", "<cmd>NoiceDismiss<CR>", { desc = "Dismiss Noice Message" })
 	end,
 }
