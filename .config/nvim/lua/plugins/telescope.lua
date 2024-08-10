@@ -31,7 +31,7 @@ return {
 				},
 				live_grep = {
 					file_ignore_patterns = { "%.git/", "node_modules/" },
-					additional_args = function(opts)
+					additional_args = function()
 						return { "--hidden" }
 					end,
 				},
