@@ -17,4 +17,5 @@ vim.opt.smartcase = true
 vim.opt.termguicolors = true
 vim.opt.formatoptions:remove({ "c", "r", "o" })
 vim.opt.mousemoveevent = true
+vim.opt.swapfile = false
 vim.wo.wrap = false
