@@ -5,6 +5,7 @@ return {
 			execution_message = {
 				enabled = false,
 			},
+			debounce_delay = 60000,
 		})
 	end,
 }
