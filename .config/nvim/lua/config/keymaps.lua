@@ -27,7 +27,7 @@ local opts = { noremap = true, silent = true }
 vim.api.nvim_set_keymap("n", "<leader>tw", "<Cmd>lua ToggleWrap()<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>ic", "<Cmd>lua ToggleIgnoreCase()<CR>", opts)
 
-vim.api.nvim_set_keymap("n", "<leader>w", ":w<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>w", ":wa<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>q", ":%bd|e#<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>y", ':let @+ = @"<CR>', opts)
 
