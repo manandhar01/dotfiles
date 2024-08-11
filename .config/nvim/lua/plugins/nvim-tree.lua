@@ -109,11 +109,33 @@ return {
 				show_on_dirs = true,
 			},
 			disable_netrw = true,
+			filters = {
+				custom = {
+					"^.git$",
+				},
+			},
 			on_attach = on_attach,
 			renderer = {
 				group_empty = true,
 				highlight_git = true,
 				highlight_opened_files = "all",
+				icons = {
+					git_placement = "after",
+					glyphs = {
+						git = {
+							unstaged = "✚",
+							staged = "✓",
+							unmerged = "≠",
+							renamed = "➜",
+							deleted = "✗",
+							untracked = "★",
+						},
+					},
+				},
+				indent_markers = {
+					enable = true,
+				},
+				symlink_destination = false,
 			},
 			sort = {
 				sorter = "case_sensitive",
