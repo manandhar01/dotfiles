@@ -12,6 +12,20 @@ return {
 				return { desc = "Tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
 			end
 
+			local function clear_and_copy()
+				api.fs.clear_clipboard()
+				api.fs.copy.node()
+			end
+
+			local function clear_and_cut()
+				api.fs.clear_clipboard()
+				api.fs.cut()
+			end
+
+			api.events.subscribe(api.events.Event.FileCreated, function(file)
+				vim.cmd("edit " .. file.fname)
+			end)
+
 			vim.keymap.set("n", "<CR>", api.node.open.edit, opts("Open"))
 			vim.keymap.set("n", "o", api.node.open.edit, opts("Open"))
 			vim.keymap.set("n", "<2-LeftMouse>", api.node.open.edit, opts("Open"))
@@ -36,7 +50,7 @@ return {
 			vim.keymap.set("n", "a", api.fs.create, opts("Create"))
 			vim.keymap.set("n", "bmv", api.marks.bulk.move, opts("Move Bookmarked"))
 			vim.keymap.set("n", "B", api.tree.toggle_no_buffer_filter, opts("Toggle No Buffer"))
-			vim.keymap.set("n", "c", api.fs.copy.node, opts("Copy"))
+			vim.keymap.set("n", "c", clear_and_copy, opts("Copy"))
 			vim.keymap.set("n", "C", api.tree.toggle_git_clean_filter, opts("Toggle Git Clean"))
 			vim.keymap.set("n", "[c", api.node.navigate.git.prev, opts("Prev Git"))
 			vim.keymap.set("n", "]c", api.node.navigate.git.next, opts("Next Git"))
@@ -62,7 +76,7 @@ return {
 			vim.keymap.set("n", "S", api.tree.search_node, opts("Search"))
 			vim.keymap.set("n", "U", api.tree.toggle_custom_filter, opts("Toggle Hidden"))
 			vim.keymap.set("n", "W", api.tree.collapse_all, opts("Collapse"))
-			vim.keymap.set("n", "x", api.fs.cut, opts("Cut"))
+			vim.keymap.set("n", "x", clear_and_cut, opts("Cut"))
 			vim.keymap.set("n", "y", api.fs.copy.filename, opts("Copy Name"))
 			vim.keymap.set("n", "Y", api.fs.copy.relative_path, opts("Copy Relative Path"))
 			vim.keymap.set("n", "<2-RightMouse>", api.tree.change_root_to_node, opts("CD"))
@@ -85,28 +99,31 @@ return {
 		end
 
 		require("nvim-tree").setup({
-			disable_netrw = true,
-			on_attach = on_attach,
-			view = {
-				adaptive_size = true,
-				centralize_selection = true,
-			},
-			renderer = {
-				group_empty = true,
-				highlight_git = true,
-				highlight_opened_files = "all",
-			},
-			update_focused_file = {
-				enable = true,
+			actions = {
+				change_dir = {
+					enable = false,
+				},
 			},
 			diagnostics = {
 				enable = true,
 				show_on_dirs = true,
 			},
-			actions = {
-				change_dir = {
-					enable = false,
-				},
+			disable_netrw = true,
+			on_attach = on_attach,
+			renderer = {
+				group_empty = true,
+				highlight_git = true,
+				highlight_opened_files = "all",
+			},
+			sort = {
+				sorter = "case_sensitive",
+			},
+			update_focused_file = {
+				enable = true,
+			},
+			view = {
+				adaptive_size = true,
+				centralize_selection = true,
 			},
 		})
 
