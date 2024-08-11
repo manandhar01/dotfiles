@@ -17,4 +17,7 @@ vim.opt.smartcase = true
 vim.opt.termguicolors = true
 vim.opt.mousemoveevent = true
 vim.opt.swapfile = false
+vim.opt.title = true
+vim.opt.titlelen = 0
+vim.opt.titlestring = "nvim %{expand('%:p')}"
 vim.wo.wrap = false
