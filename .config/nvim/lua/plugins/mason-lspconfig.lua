@@ -7,7 +7,8 @@ return {
 				"css_variables",
 				"cssls",
 				"lua_ls",
-				"tsserver",
+				"ts_ls",
+                "texlab",
 			},
 			automatic_installation = true,
 		})
