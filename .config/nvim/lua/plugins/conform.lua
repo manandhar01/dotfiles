@@ -9,6 +9,7 @@ return {
 				bash = { "shfmt" },
 				sh = { "shfmt" },
 				css = { "prettier" },
+				json = { "prettier" },
 			},
 		})
 
