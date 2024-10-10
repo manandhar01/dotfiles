@@ -12,7 +12,7 @@ return {
 			vim.lsp.buf.execute_command(params)
 		end
 
-		lspconfig.tsserver.setup({
+		lspconfig.ts_ls.setup({
 			init_options = {
 				preferences = {
 					importModuleSpecifierPreference = "relative",
@@ -46,9 +46,9 @@ return {
 			capabilities = require("cmp_nvim_lsp").default_capabilities(),
 		})
 
-        lspconfig.texlab.setup({
-            capabilities = require("cmp_nvim_lsp").default_capabilities(),
-        })
+		lspconfig.texlab.setup({
+			capabilities = require("cmp_nvim_lsp").default_capabilities(),
+		})
 
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("UserLspConfig", {}),
@@ -73,8 +73,8 @@ return {
 				-- vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
 				-- vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
 				-- vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
-				vim.keymap.set('n', 'gR', vim.lsp.buf.rename, opts)
-				vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+				vim.keymap.set("n", "gR", vim.lsp.buf.rename, opts)
+				vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
 				-- vim.keymap.set('n', '<space>f', function()
 				--     vim.lsp.buf.format { async = true }
 				-- end, opts)
