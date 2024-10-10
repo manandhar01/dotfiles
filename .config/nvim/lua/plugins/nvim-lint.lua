@@ -3,14 +3,14 @@ return {
 	config = function()
 		require("lint").linters_by_ft = {
 			markdown = { "vale" },
-			typescript = { "eslint" },
-			javascript = { "eslint" },
+			typescript = { "eslint_d" },
+			javascript = { "eslint_d" },
 			lua = { "luacheck" },
 			sh = { "shellcheck" },
 			bash = { "shellcheck" },
-			ruby = { "ruby" },
+			ruby = { "rubocop" },
 			python = { "pylint" },
-			rust = { "clippy" },
+			rust = { "ast-grep" },
 		}
 
 		vim.api.nvim_create_autocmd({ "BufWritePost" }, {
