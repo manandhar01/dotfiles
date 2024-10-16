@@ -10,7 +10,7 @@ return {
 			bash = { "shellcheck" },
 			ruby = { "rubocop" },
 			python = { "pylint" },
-			rust = { "ast-grep" },
+			go = { "golangcilint" },
 		}
 
 		-- vim.api.nvim_create_autocmd({ "BufWritePost" }, {

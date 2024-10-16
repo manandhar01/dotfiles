@@ -8,7 +8,8 @@ return {
 				"cssls",
 				"lua_ls",
 				"ts_ls",
-                "texlab",
+				"texlab",
+				"gopls",
 			},
 			automatic_installation = true,
 		})

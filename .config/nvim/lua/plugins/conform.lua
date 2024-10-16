@@ -10,6 +10,7 @@ return {
 				sh = { "shfmt" },
 				css = { "prettier" },
 				json = { "prettier" },
+				go = { "gofumpt" },
 			},
 		})
 
