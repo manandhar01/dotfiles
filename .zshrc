@@ -99,7 +99,8 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias syncClasses='slnu syncClasses && prettier --config .prettierrc --write --loglevel error ./src'
+alias syncClasses='sl syncClasses && prettier --config .prettierrc --write --loglevel error ./src'
 export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
 
-export PATH="/Users/manandhar/Downloads/Fortify_ScanCentral_Client_22.2.1_x64/bin:$PATH"
+export PATH="/Users/manandhar/Downloads/Fortify_ScanCentral_Client_22.2.1_x64/bin:/opt/homebrew/bin:$PATH"
+
