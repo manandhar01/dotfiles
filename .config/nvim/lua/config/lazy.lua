@@ -32,6 +32,23 @@ require("lazy").setup({
 	install = { colorscheme = { "gruvbox-material" } },
 	-- automatically check for plugin updates
 	checker = { enabled = true },
+	ui = {
+		icons = vim.g.have_nerd_font and {} or {
+			cmd = "⌘",
+			config = "🛠",
+			event = "📅",
+			ft = "📂",
+			init = "⚙",
+			keys = "🗝",
+			plugin = "🔌",
+			runtime = "💻",
+			require = "🌙",
+			source = "📄",
+			start = "🚀",
+			task = "📌",
+			lazy = "💤 ",
+		},
+	},
 })
 
 require("config.options")
