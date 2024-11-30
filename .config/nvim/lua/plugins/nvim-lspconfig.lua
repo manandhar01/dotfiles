@@ -1,5 +1,11 @@
 return {
 	"neovim/nvim-lspconfig",
+	dependencies = {
+		{ "williamboman/mason.nvim", config = true },
+		"williamboman/mason-lspconfig.nvim",
+		{ "j-hui/fidget.nvim", opts = {} },
+	},
+
 	config = function()
 		local lspconfig = require("lspconfig")
 
@@ -55,18 +61,24 @@ return {
 		})
 
 		vim.api.nvim_create_autocmd("LspAttach", {
-			group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-			callback = function(ev)
-				-- Enable completion triggered by <c-x><c-o>
-				vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+			group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true }),
+			callback = function(event)
+				local map = function(keys, func, desc, mode)
+					mode = mode or "n"
+					vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
+				end
 
-				-- Buffer local mappings.
-				-- See `:help vim.lsp.*` for documentation on any of the below functions
-				local opts = { buffer = ev.buf }
-				vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-				vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-				vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-				vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+				map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
+				map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+				map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
+				map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+				map("K", vim.lsp.buf.hover, "")
+
+				map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
+				map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
+				map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
+				map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
+				map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction", { "n", "x" })
 
 				-- vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
 				-- vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
@@ -74,14 +86,33 @@ return {
 				-- vim.keymap.set('n', '<space>wl', function()
 				--     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 				-- end, opts)
-				-- vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
-				-- vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
-				-- vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
-				vim.keymap.set("n", "gR", vim.lsp.buf.rename, opts)
-				vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
 				-- vim.keymap.set('n', '<space>f', function()
 				--     vim.lsp.buf.format { async = true }
 				-- end, opts)
+
+				local client = vim.lsp.get_client_by_id(event.data.client_id)
+				if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
+					local highlight_augroup = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
+					vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+						buffer = event.buf,
+						group = highlight_augroup,
+						callback = vim.lsp.buf.document_highlight,
+					})
+
+					vim.api.nvim_create_autocmd({ "CursorMoved", CursorMovedI }, {
+						buffer = event.buf,
+						group = highlight_augroup,
+						callback = vim.lsp.buf.clear_references,
+					})
+
+					vim.api.nvim_create_autocmd("LspDetach", {
+						group = vim.api.nvim_create_augroup("lsp-detach", { clear = true }),
+						callback = function(event2)
+							vim.lsp.buf.clear_references()
+							vim.api.nvim_clear_autocmds({ group = "lsp-highlight", buffer = event2.buf })
+						end,
+					})
+				end
 			end,
 		})
 	end,
