@@ -1,12 +1,12 @@
 * {
-  font-family: 'FiraCode Nerd Font';
-  border: none;
-  margin: 0;
-  padding: 0;
+    font-family: "FiraCode Nerd Font";
+    border: none;
+    margin: 0;
+    padding: 0;
 }
 
 window .modules-center {
-  margin: 0 5px;
+    margin: 0 5px;
 }
 
 /* window .modules-right, */
@@ -20,37 +20,37 @@ window .modules-center {
 /* } */
 
 window#waybar {
-  background: transparent;
-  background: rgba(0, 0, 0, 0.4);
-  /* border: 1px solid #fe8019; */
-  /* border-radius: 10px; */
+    background: transparent;
+    background: rgba(0, 0, 0, 0.4);
+    /* border: 1px solid #fe8019; */
+    /* border-radius: 10px; */
 }
 
 #window {
-  /* border: 1px solid #458588; */
-  border-radius: 5px;
-  margin: 0 5px;
-  /* background: #f7b267; */
-  /* background-color: transparent; */
-  color: white;
-  /* padding: 0 5px; */
-  /* color: rgba(0, 0, 0, 1); */
-  font-weight: bold;
+    /* border: 1px solid #458588; */
+    border-radius: 5px;
+    margin: 0 5px;
+    /* background: #f7b267; */
+    /* background-color: transparent; */
+    color: white;
+    /* padding: 0 5px; */
+    /* color: rgba(0, 0, 0, 1); */
+    font-weight: bold;
 }
 
 #workspaces {
-  background: #5e548e;
-  border-radius: 5px;
-  padding: 0 0;
+    background: #5e548e;
+    border-radius: 5px;
+    padding: 0 0;
 }
 
 #workspaces button {
-  padding: 0 10px;
-  margin: 0 2px;
-  background: transparent;
-  border: 1px dotted;
-  color: #aaaaaa;
-  border-radius: 5px;
+    padding: 0 10px;
+    margin: 0 2px;
+    background: transparent;
+    border: 1px dotted;
+    color: #aaaaaa;
+    border-radius: 5px;
 }
 
 /* #workspaces button:first-child { */
@@ -62,26 +62,24 @@ window#waybar {
 /* } */
 
 #workspaces button:hover {
-  box-shadow: inherit;
-  text-shadow: inherit;
+    box-shadow: inherit;
+    text-shadow: inherit;
 }
 
 #workspaces button.focused {
-  padding: 0 15px;
-  color: #dddddd;
-  border: 1px solid;
-  /* margin: 1px 0; */
+    padding: 0 15px;
+    color: #dddddd;
+    border: 1px solid;
+    /* margin: 1px 0; */
 }
 
 #mode {
-  background: #e76f51;
-  border-radius: 5px;
-  padding: 0 5px;
-  color: black;
-  /* color: #e63946; */
+    background: #e76f51;
+    border-radius: 5px;
+    padding: 0 5px;
+    color: black;
+    /* color: #e63946; */
 }
-
-
 
 #clock,
 #battery,
@@ -92,34 +90,34 @@ window#waybar {
 #backlight,
 #custom-spotify,
 #pulseaudio {
-  padding: 0 5px;
-  border-radius: 5px;
-  color: rgba(0, 0, 0, 1);
-  /* border: 1px solid; */
+    padding: 0 5px;
+    border-radius: 5px;
+    color: rgba(0, 0, 0, 1);
+    /* border: 1px solid; */
 }
 
 #backlight {
-  background-color: #edc531;
+    background-color: #edc531;
 }
 
 #clock,
 #temperature {
-  background-color: #ddb892;
+    background-color: #ddb892;
 }
 
 #battery.critical,
 #network.disabled,
 #cpu.critical,
 #memory.critical {
-  background-color: #9d0208;
-  color: #dddddd;
+    background-color: #9d0208;
+    color: #dddddd;
 }
 #battery.warning,
 #network.disconnected,
 #network.linked,
 #cpu.warning,
 #memory.warning {
-  background-color: #f6ae2d;
+    background-color: #f6ae2d;
 }
 
 #battery.okay,
@@ -134,42 +132,42 @@ window#waybar {
 #memory.moderate,
 #memory.medium,
 #memory.low {
-  background-color: #60d394;
+    background-color: #60d394;
 }
 
 #network.wifi,
 #network.ethernet {
-  background-color: #86bbd8;
-  color: #000000;
+    background-color: #86bbd8;
+    color: #000000;
 }
 
 .playing {
-  background-color: #60d394;
+    background-color: #60d394;
 }
 .paused,
 .muted {
-  background-color: #a5a5a5;
+    background-color: #a5a5a5;
 }
 
 #pulseaudio.sink,
 #pulseaudio.source {
-  background-color: #5e548e;
-  color: #ffffff;
+    background-color: #5e548e;
+    color: #ffffff;
 }
 
 #pulseaudio.source.muted,
 #pulseaudio.sink.muted {
-  background-color: #fc9e4f;
-  color: #000000;
+    background-color: #fc9e4f;
+    color: #000000;
 }
 
 #pulseaudio.bluetooth {
 }
 
 #tray {
-  background: #5e548e;
-  border-radius: 5px;
-  padding: 0 10px;
+    background: #5e548e;
+    border-radius: 5px;
+    padding: 0 10px;
 }
 
 #battery.discharging {

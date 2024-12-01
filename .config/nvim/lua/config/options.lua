@@ -37,5 +37,5 @@ vim.opt.foldtext = "vimtex#fold#text()"
 vim.opt.foldlevel = 2
 
 vim.schedule(function()
-	vim.opt.clipboard = "unnamedplus"
+    vim.opt.clipboard = "unnamedplus"
 end)
