@@ -10,6 +10,7 @@ return {
                 "ts_ls",
                 "texlab",
                 "gopls",
+                "rust_analyzer",
             },
             automatic_installation = true,
         })
