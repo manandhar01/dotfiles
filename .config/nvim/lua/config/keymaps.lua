@@ -1,25 +1,25 @@
 function ToggleWrap()
-	if vim.wo.wrap then
-		vim.wo.wrap = false
-		print("Text wrapping disabled")
-	else
-		vim.wo.wrap = true
-		print("Text wrapping enabled")
-	end
+    if vim.wo.wrap then
+        vim.wo.wrap = false
+        print("Text wrapping disabled")
+    else
+        vim.wo.wrap = true
+        print("Text wrapping enabled")
+    end
 end
 
 function ToggleIgnoreCase()
-	local ignorecase = vim.o.ignorecase
+    local ignorecase = vim.o.ignorecase
 
-	if ignorecase then
-		vim.o.ignorecase = false
-		vim.o.smartcase = false
-		print("Search is now case sensitive")
-	else
-		vim.o.ignorecase = true
-		vim.o.smartcase = true
-		print("Search is now case insensitive")
-	end
+    if ignorecase then
+        vim.o.ignorecase = false
+        vim.o.smartcase = false
+        print("Search is now case sensitive")
+    else
+        vim.o.ignorecase = true
+        vim.o.smartcase = true
+        print("Search is now case insensitive")
+    end
 end
 
 local opts = { noremap = true, silent = true }

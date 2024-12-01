@@ -1,10 +1,10 @@
 return {
-	"ahmedkhalf/project.nvim",
-	config = function()
-		require("project_nvim").setup({
-			show_hidden = true,
-		})
+    "ahmedkhalf/project.nvim",
+    config = function()
+        require("project_nvim").setup({
+            show_hidden = true,
+        })
 
-		require("telescope").load_extension("projects")
-	end,
+        require("telescope").load_extension("projects")
+    end,
 }

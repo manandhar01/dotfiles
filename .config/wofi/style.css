@@ -1,61 +1,65 @@
 * {
-  border: none;
-  margin: none;
-  outline: none;
-  padding: 0;
-  font-family: 'FiraCode Nerd Font';
-  background-color: transparent;
-  font-weight: bold;
+    border: none;
+    margin: none;
+    outline: none;
+    padding: 0;
+    font-family: "FiraCode Nerd Font";
+    background-color: transparent;
+    font-weight: bold;
 }
 
 #window {
-  background-color: rgba(--wofi-rgb-color11, 0.8);
-  border-radius: 10px 10px 0 0;
+    background-color: rgba(--wofi-rgb-color11, 0.8);
+    border-radius: 10px 10px 0 0;
 }
 
 #outer-box {
-  background-color: rgba(--wofi-rgb-color11, 0.8);
-  border-radius: 10px 10px 0 0;
+    background-color: rgba(--wofi-rgb-color11, 0.8);
+    border-radius: 10px 10px 0 0;
 }
 
-#inner-box {}
+#inner-box {
+}
 
 #input {
-  margin: 5px;
-  border-radius: 5px;
-  background-color: rgba(--wofi-rgb-color14, 0.7);
-  color: rgba(--wofi-rgb-color2, 1);
-  padding: 5px 10px;
-  border: none;
-  outline: none;
-  font-size: 20px;
+    margin: 5px;
+    border-radius: 5px;
+    background-color: rgba(--wofi-rgb-color14, 0.7);
+    color: rgba(--wofi-rgb-color2, 1);
+    padding: 5px 10px;
+    border: none;
+    outline: none;
+    font-size: 20px;
 }
 
-#scroll {}
+#scroll {
+}
 
-#text {}
+#text {
+}
 
-#img {}
+#img {
+}
 
 #entry {
-  border-bottom: 1px solid rgba(--wofi-rgb-color8, 1);
+    border-bottom: 1px solid rgba(--wofi-rgb-color8, 1);
 }
 
 #entry:last-child {
-  border-bottom: none;
+    border-bottom: none;
 }
 
-#expander-box {}
+#expander-box {
+}
 
 #unselected {
-  padding: 10px 25px;
-  background-color: rgba(--wofi-rgb-color13, 0.5);
+    padding: 10px 25px;
+    background-color: rgba(--wofi-rgb-color13, 0.5);
 }
 
 #selected {
-  padding: 10px 25px;
-  background-color: rgba(--wofi-rgb-color8, 1);
-  color: rgba(--wofi-rgb-color15, 1);
-  font-size: 18px;
+    padding: 10px 25px;
+    background-color: rgba(--wofi-rgb-color8, 1);
+    color: rgba(--wofi-rgb-color15, 1);
+    font-size: 18px;
 }
-
