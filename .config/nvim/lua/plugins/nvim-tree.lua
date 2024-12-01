@@ -151,6 +151,6 @@ return {
 
         vim.api.nvim_set_keymap("n", "<leader>e", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
         vim.api.nvim_set_keymap("n", "<leader>r", ":NvimTreeRefresh<CR>", { noremap = true, silent = true })
-        vim.api.nvim_set_keymap("n", "<leader>f", ":NvimTreeFindFile<CR>", { noremap = true, silent = true })
+        vim.api.nvim_set_keymap("n", "<leader><leader>f", ":NvimTreeFindFile<CR>", { noremap = true, silent = true })
     end,
 }
