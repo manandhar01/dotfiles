@@ -322,4 +322,8 @@ assign [instance="spotify"] workspace number 9
 assign [instance="signal"] workspace number 8
 assign [instance="discord"] workspace number 8
 
+# Key Repeat Settings
+input * repeat_delay 300
+input * repeat_rate 50
+
 include /etc/sway/config.d/*
