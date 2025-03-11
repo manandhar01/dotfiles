@@ -34,7 +34,7 @@ return {
             bash = { "shfmt" },
             sh = { "shfmt" },
             css = { "prettier" },
-            json = { "prettier" },
+            json = { "prettier", "jq", stop_after_first = true },
             go = { "gofumpt" },
         },
     },

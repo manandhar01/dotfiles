@@ -1,164 +1,163 @@
 {
-  "layer": "bottom",
-  "position": "top",
+    "layer": "bottom",
+    "position": "top",
+    "spacing": 5,
 
-  "spacing": 5,
+    "modules-left": [
+        "sway/workspaces",
+        "cpu",
+        "memory",
+        "temperature",
+        "sway/window",
+        "sway/mode"
+    ],
 
-  "modules-left": [
-    "sway/workspaces",
-    "cpu",
-    "memory",
-    "temperature",
-    "sway/window",
-    "sway/mode",
-  ],
+    "modules-center": ["clock"],
 
-  "modules-center": ["clock"],
+    "modules-right": [
+        "custom/spotify",
+        "network",
+        "wireplumber",
+        "bluetooth",
+        "backlight",
+        "battery",
+        "tray"
+    ],
 
-  "modules-right": [
-    "custom/spotify",
-    "network",
-    "wireplumber",
-    "bluetooth",
-    "backlight",
-    "battery",
-    "tray"
-  ],
-
-  "sway/workspaces": {
-    "disable-scroll-wraparound": true,
-    "format": " {name}:{icon} ",
-    "format-icons": {
-      "1": "",
-      "2": "",
-      "3": "",
-      "8": "",
-      "9": "",
-      "urgent": "",
-      "focused": "",
-      "default": ""
-    }
-  },
-
-  "tray": {
-    "icon-size": 23,
-    "spacing": 5 
-  },
-
-  "sway/window": {
-    "max-length": 30
-  },
-
-  "backlight": {
-    "format": " {icon} {percent}% ",
-    "format-icons": ["", "", "", "", "", "", "", "", ""],
-    "on-scroll-up": "exec brightnessctl s +5%",
-    "on-scroll-down": "exec brightnessctl s 5%-",
-  },
-
-  "battery": {
-    "format": " {icon} {capacity}% ",
-    "format-icons": {
-      "discharging": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
-      "plugged": "",
-      "charging": ["󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"],
+    "sway/workspaces": {
+        "disable-scroll-wraparound": true,
+        "format": " {name}:{icon} ",
+        "format-icons": {
+            "1": "",
+            "2": "",
+            "3": "",
+            "8": "",
+            "9": "",
+            "urgent": "",
+            "focused": "",
+            "default": ""
+        }
     },
-    "states": {
-      "critical": 10,
-      "warning": 20,
-      "okay": 50,
-      "good": 80,
-      "excellent": 95,
-      "full": 100
-    }
-  },
 
-  "clock": {
-    "format": " 󱛡 {:%a|%F|%r} ",
-    "interval": 1,
-  },
-
-  "cpu": {
-    "format": "  {usage}% ",
-    "states": {
-      "critical": 95,
-      "warning": 90,
-      "high": 80,
-      "moderate": 75,
-      "medium": 20,
-      "low": 0
-    }
-  },
-
-  "custom/spotify": {
-    "format": "  {} ",
-    "exec": "sh /home/manandhar/bin/spotifyStatusCheck.sh",
-    "exec-if": "pgrep -x spotify > /dev/null",
-    "return-type": "json",
-    "interval": 2,
-    "on-click": "playerctl --player=spotify play-pause; pkill -SIGRTMIN+10 waybar",
-    "on-scroll-up": "playerctl --player=spotify next",
-    "on-scroll-down": "playerctl --player=spotify previous",
-    "max-length": 30
-  },
-
-  "memory": {
-    "format": "  {percentage}% ",
-    "states": {
-      "critical": 95,
-      "warning": 90,
-      "high": 80,
-      "moderate": 75,
-      "medium": 20,
-      "low": 0
-    }
-  },
-
-  "network": {
-    "format-icons": ["󰤟", "󰤢", "󰤥", "󰤨"],
-    "format-wifi": " {icon} {essid} ",
-    "format-ethernet": " 󰈀 {ifname} ",
-    "format-linked": "   ",
-    "format-disconnected": " 󰯡 ",
-    "format-disabled": " 󰲜 ",
-    "max-length": 30,
-    "tooltip-format-ethernet": "Interface: {ifname}\nIP Address: {ipaddr}\nSubnet Mask: {netmask}\nDefault Gateway: {gwaddr}",
-    "tooltip-format-wifi": "Interface: {ifname}\nSSID: {essid}\nSignal Strength: {signaldBm}dB | {signalStrength}%\nFrequency: {frequency}\nIP Address: {ipaddr}\nSubnet Mask: {netmask}\nDefault Gateway: {gwaddr}",
-    "tooltip-format-linked": "Linked",
-    "tooltip-format-disconnected": "Disconnected",
-    "tooltip-format-disabled": "Disabled",
-    "on-click": "sh /home/manandhar/bin/toggleNetworkStatus.sh"
-  },
-
-  "wireplumber": {
-    "format": " {icon} {volume}% ",
-    "format-muted": " 󰖁 ",
-    "format-icons": {
-      "bluetooth": "󰂯",
-      "headphones": "󰋋",
-      "phone": "󰷰",
-      "default": ["󰕿", "󰖀", "󰕾"],
-      "muted": "󰖁",
+    "tray": {
+        "icon-size": 23,
+        "spacing": 5
     },
-    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-    "on-scroll-up": "pactl set-sink-mute @DEFAULT_SINK@ 0 && pactl set-sink-volume @DEFAULT_SINK@ +1%",
-    "on-scroll-down": "pactl set-sink-mute @DEFAULT_SINK@ 0 && pactl set-sink-volume @DEFAULT_SINK@ -1%"
-  },
 
-  "temperature": {
-    "thermal-zone": 6,
-    "critical-threshold": 80,
-    "format": " {icon} {temperatureC}°C ",
-    "format-icons": ["", "", "", "", ""]
-  },
+    "sway/window": {
+        "max-length": 30
+    },
 
-  "bluetooth": {
-    "format": " 󰂯 {status} ",
-    "format-connected": " 󰂯 {device_alias} ",
-    "format-connected-battery": " 󰂯 {device_alias} ",
-    "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
-    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
-    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
-  }
+    "backlight": {
+        "format": " {icon} {percent}% ",
+        "format-icons": ["", "", "", "", "", "", "", "", ""],
+        "on-scroll-up": "exec brightnessctl s +5%",
+        "on-scroll-down": "exec brightnessctl s 5%-"
+    },
+
+    "battery": {
+        "format": " {icon} {capacity}% ",
+        "format-icons": {
+            "discharging": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+            "plugged": "",
+            "charging": ["󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"]
+        },
+        "states": {
+            "critical": 10,
+            "warning": 20,
+            "okay": 50,
+            "good": 80,
+            "excellent": 95,
+            "full": 100
+        }
+    },
+
+    "clock": {
+        "format": " 󱛡 {:%a|%F|%r} ",
+        "interval": 1
+    },
+
+    "cpu": {
+        "format": "  {usage}% ",
+        "states": {
+            "critical": 95,
+            "warning": 90,
+            "high": 80,
+            "moderate": 75,
+            "medium": 20,
+            "low": 0
+        }
+    },
+
+    "custom/spotify": {
+        "format": "  {} ",
+        "exec": "sh /home/manandhar/bin/spotifyStatusCheck.sh",
+        "exec-if": "pgrep -x spotify > /dev/null",
+        "return-type": "json",
+        "interval": 2,
+        "on-click": "playerctl --player=spotify play-pause; pkill -SIGRTMIN+10 waybar",
+        "on-scroll-up": "playerctl --player=spotify next",
+        "on-scroll-down": "playerctl --player=spotify previous",
+        "max-length": 30
+    },
+
+    "memory": {
+        "format": "  {percentage}% ",
+        "states": {
+            "critical": 95,
+            "warning": 90,
+            "high": 80,
+            "moderate": 75,
+            "medium": 20,
+            "low": 0
+        }
+    },
+
+    "network": {
+        "format-icons": ["󰤟", "󰤢", "󰤥", "󰤨"],
+        "format-wifi": " {icon} {essid} ",
+        "format-ethernet": " 󰈀 {ifname} ",
+        "format-linked": "   ",
+        "format-disconnected": " 󰯡 ",
+        "format-disabled": " 󰲜 ",
+        "max-length": 30,
+        "tooltip-format-ethernet": "Interface: {ifname}\nIP Address: {ipaddr}\nSubnet Mask: {netmask}\nDefault Gateway: {gwaddr}",
+        "tooltip-format-wifi": "Interface: {ifname}\nSSID: {essid}\nSignal Strength: {signaldBm}dB | {signalStrength}%\nFrequency: {frequency}\nIP Address: {ipaddr}\nSubnet Mask: {netmask}\nDefault Gateway: {gwaddr}",
+        "tooltip-format-linked": "Linked",
+        "tooltip-format-disconnected": "Disconnected",
+        "tooltip-format-disabled": "Disabled",
+        "on-click": "sh /home/manandhar/bin/toggleNetworkStatus.sh"
+    },
+
+    "wireplumber": {
+        "format": " {icon} {volume}% ",
+        "format-muted": " 󰖁 ",
+        "format-icons": {
+            "bluetooth": "󰂯",
+            "headphones": "󰋋",
+            "phone": "󰷰",
+            "default": ["󰕿", "󰖀", "󰕾"],
+            "muted": "󰖁"
+        },
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-scroll-up": "pactl set-sink-mute @DEFAULT_SINK@ 0 && pactl set-sink-volume @DEFAULT_SINK@ +1%",
+        "on-scroll-down": "pactl set-sink-mute @DEFAULT_SINK@ 0 && pactl set-sink-volume @DEFAULT_SINK@ -1%"
+    },
+
+    "temperature": {
+        "thermal-zone": 6,
+        "critical-threshold": 80,
+        "format": " {icon} {temperatureC}°C ",
+        "format-icons": ["", "", "", "", ""]
+    },
+
+    "bluetooth": {
+        "format": " 󰂯 {status} ",
+        "format-connected": " 󰂯 {device_alias} ",
+        "format-connected-battery": " 󰂯 {device_alias} ",
+        "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+        "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
+    }
 }
