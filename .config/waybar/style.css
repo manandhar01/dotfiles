@@ -5,18 +5,17 @@
     padding: 0;
 }
 
-window .modules-center {
+window,
+.modules-center {
     margin: 0 5px;
 }
 
 /* window .modules-right, */
 /* window .modules-left { */
-/*   padding: 0 10px; */
 /*   border: none; */
 /*   /1* background: rgba(180, 180, 180, 1); *1/ */
 /*   background: #f7b267; */
 /*   border-radius: 5px; */
-/*   padding: 2px 5px; */
 /* } */
 
 window#waybar {
@@ -33,7 +32,6 @@ window#waybar {
     /* background: #f7b267; */
     /* background-color: transparent; */
     color: white;
-    /* padding: 0 5px; */
     /* color: rgba(0, 0, 0, 1); */
     font-weight: bold;
 }
@@ -41,14 +39,12 @@ window#waybar {
 #workspaces {
     background: #5e548e;
     border-radius: 5px;
-    padding: 0 0;
 }
 
 #workspaces button {
-    padding: 0 10px;
     margin: 0 2px;
     background: transparent;
-    border: 1px dotted;
+    border: 1px dashed;
     color: #aaaaaa;
     border-radius: 5px;
 }
@@ -64,19 +60,18 @@ window#waybar {
 #workspaces button:hover {
     box-shadow: inherit;
     text-shadow: inherit;
+    border: 1px solid;
 }
 
 #workspaces button.focused {
-    padding: 0 15px;
-    color: #dddddd;
-    border: 1px solid;
+    color: orange;
+    border: 1px solid orange;
     /* margin: 1px 0; */
 }
 
 #mode {
     background: #e76f51;
     border-radius: 5px;
-    padding: 0 5px;
     color: black;
     /* color: #e63946; */
 }
@@ -89,8 +84,7 @@ window#waybar {
 #temperature,
 #backlight,
 #custom-spotify,
-#pulseaudio {
-    padding: 0 5px;
+#wireplumber {
     border-radius: 5px;
     color: rgba(0, 0, 0, 1);
     /* border: 1px solid; */
@@ -149,32 +143,35 @@ window#waybar {
     background-color: #a5a5a5;
 }
 
-#pulseaudio.sink,
-#pulseaudio.source {
+#bluetooth {
+    background-color: #5e548e;
+    border-radius: 5px;
+    color: #ffffff;
+}
+
+#wireplumber {
     background-color: #5e548e;
     color: #ffffff;
 }
 
-#pulseaudio.source.muted,
-#pulseaudio.sink.muted {
+#wireplumber.muted {
     background-color: #fc9e4f;
     color: #000000;
 }
 
-#pulseaudio.bluetooth {
-}
+/* #wireplumber.bluetooth { */
+/* } */
 
 #tray {
     background: #5e548e;
     border-radius: 5px;
-    padding: 0 10px;
 }
 
-#battery.discharging {
-}
+/* #battery.discharging { */
+/* } */
 
-#battery.charging {
-}
+/* #battery.charging { */
+/* } */
 
-#battery.plugged {
-}
+/* #battery.plugged { */
+/* } */

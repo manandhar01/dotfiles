@@ -18,7 +18,8 @@
   "modules-right": [
     "custom/spotify",
     "network",
-    "pulseaudio#sink",
+    "wireplumber",
+    "bluetooth",
     "backlight",
     "battery",
     "tray"
@@ -26,7 +27,7 @@
 
   "sway/workspaces": {
     "disable-scroll-wraparound": true,
-    "format": "{name}:{icon}",
+    "format": " {name}:{icon} ",
     "format-icons": {
       "1": "",
       "2": "",
@@ -41,7 +42,7 @@
 
   "tray": {
     "icon-size": 23,
-    "spacing": 10
+    "spacing": 5 
   },
 
   "sway/window": {
@@ -49,14 +50,14 @@
   },
 
   "backlight": {
-    "format": "{icon} {percent}%",
+    "format": " {icon} {percent}% ",
     "format-icons": ["", "", "", "", "", "", "", "", ""],
     "on-scroll-up": "exec brightnessctl s +5%",
     "on-scroll-down": "exec brightnessctl s 5%-",
   },
 
   "battery": {
-    "format": "{icon} {capacity}%",
+    "format": " {icon} {capacity}% ",
     "format-icons": {
       "discharging": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
       "plugged": "",
@@ -73,12 +74,12 @@
   },
 
   "clock": {
-    "format": "󱛡 {:%a|%F|%r}",
+    "format": " 󱛡 {:%a|%F|%r} ",
     "interval": 1,
   },
 
   "cpu": {
-    "format": " {usage}%",
+    "format": "  {usage}% ",
     "states": {
       "critical": 95,
       "warning": 90,
@@ -90,7 +91,7 @@
   },
 
   "custom/spotify": {
-    "format": " {}",
+    "format": "  {} ",
     "exec": "sh /home/manandhar/bin/spotifyStatusCheck.sh",
     "exec-if": "pgrep -x spotify > /dev/null",
     "return-type": "json",
@@ -102,7 +103,7 @@
   },
 
   "memory": {
-    "format": " {percentage}%",
+    "format": "  {percentage}% ",
     "states": {
       "critical": 95,
       "warning": 90,
@@ -115,8 +116,8 @@
 
   "network": {
     "format-icons": ["󰤟", "󰤢", "󰤥", "󰤨"],
-    "format-wifi": "{icon} {essid}",
-    "format-ethernet": "󰈀 {ifname}",
+    "format-wifi": " {icon} {essid} ",
+    "format-ethernet": " 󰈀 {ifname} ",
     "format-linked": "   ",
     "format-disconnected": " 󰯡 ",
     "format-disabled": " 󰲜 ",
@@ -129,11 +130,11 @@
     "on-click": "sh /home/manandhar/bin/toggleNetworkStatus.sh"
   },
 
-  "pulseaudio#sink": {
-    "format": "{icon} {volume}%",
-    "format-bluetooth": "{icon}󰂯 {volume}%",
+  "wireplumber": {
+    "format": " {icon} {volume}% ",
     "format-muted": " 󰖁 ",
     "format-icons": {
+      "bluetooth": "󰂯",
       "headphones": "󰋋",
       "phone": "󰷰",
       "default": ["󰕿", "󰖀", "󰕾"],
@@ -141,17 +142,20 @@
     },
   },
 
-  "pulseaudio#source": {
-    "format": "{format_source}",
-    "format_source": "  ",
-    "format-source: muted": "  ",
-    "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
-  },
-
   "temperature": {
     "thermal-zone": 6,
     "critical-threshold": 80,
-    "format": "{icon} {temperatureC}°C",
+    "format": " {icon} {temperatureC}°C ",
     "format-icons": ["", "", "", "", ""]
+  },
+
+  "bluetooth": {
+    "format": " 󰂯 {status} ",
+    "format-connected": " 󰂯 {device_alias} ",
+    "format-connected-battery": " 󰂯 {device_alias} ",
+    "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
   }
 }
