@@ -40,7 +40,7 @@
     },
 
     "tray": {
-        "icon-size": 23,
+        "icon-size": 20,
         "spacing": 5
     },
 
@@ -49,14 +49,14 @@
     },
 
     "backlight": {
-        "format": " {icon} {percent}% ",
+        "format": "{icon} {percent}%",
         "format-icons": ["", "", "", "", "", "", "", "", ""],
         "on-scroll-up": "exec brightnessctl s +5%",
         "on-scroll-down": "exec brightnessctl s 5%-"
     },
 
     "battery": {
-        "format": " {icon} {capacity}% ",
+        "format": "{icon} {capacity}%",
         "format-icons": {
             "discharging": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
             "plugged": "",
@@ -73,12 +73,12 @@
     },
 
     "clock": {
-        "format": " 󱛡 {:%a|%F|%r} ",
+        "format": "󱛡 {:%a|%F|%r}",
         "interval": 1
     },
 
     "cpu": {
-        "format": "  {usage}% ",
+        "format": " {usage}%",
         "states": {
             "critical": 95,
             "warning": 90,
@@ -90,7 +90,7 @@
     },
 
     "custom/spotify": {
-        "format": "  {} ",
+        "format": " {}",
         "exec": "sh /home/manandhar/bin/spotifyStatusCheck.sh",
         "exec-if": "pgrep -x spotify > /dev/null",
         "return-type": "json",
@@ -102,7 +102,7 @@
     },
 
     "memory": {
-        "format": "  {percentage}% ",
+        "format": " {percentage}%",
         "states": {
             "critical": 95,
             "warning": 90,
@@ -115,9 +115,9 @@
 
     "network": {
         "format-icons": ["󰤟", "󰤢", "󰤥", "󰤨"],
-        "format-wifi": " {icon} {essid} ",
-        "format-ethernet": " 󰈀 {ifname} ",
-        "format-linked": "   ",
+        "format-wifi": "{icon} {essid}",
+        "format-ethernet": "󰈀 {ifname}",
+        "format-linked": "  ",
         "format-disconnected": " 󰯡 ",
         "format-disabled": " 󰲜 ",
         "max-length": 30,
@@ -130,7 +130,7 @@
     },
 
     "wireplumber": {
-        "format": " {icon} {volume}% ",
+        "format": "{icon} {volume}%",
         "format-muted": " 󰖁 ",
         "format-icons": {
             "bluetooth": "󰂯",
@@ -147,14 +147,14 @@
     "temperature": {
         "thermal-zone": 6,
         "critical-threshold": 80,
-        "format": " {icon} {temperatureC}°C ",
+        "format": "{icon} {temperatureC}°C",
         "format-icons": ["", "", "", "", ""]
     },
 
     "bluetooth": {
-        "format": " 󰂯 {status} ",
-        "format-connected": " 󰂯 {device_alias} ",
-        "format-connected-battery": " 󰂯 {device_alias} ",
+        "format": "󰂯 {status}",
+        "format-connected": "󰂯 {device_alias}",
+        "format-connected-battery": "󰂯 {device_alias}",
         "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
         "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
         "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
