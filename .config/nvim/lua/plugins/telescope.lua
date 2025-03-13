@@ -40,6 +40,7 @@ return {
                         ["<M-p>"] = action_layout.toggle_preview,
                         ["<C-s>"] = actions.cycle_previewers_next,
                         ["<C-a>"] = actions.cycle_previewers_prev,
+                        ["<C-h>"] = "which_key",
                     },
                 },
             },
