@@ -308,10 +308,10 @@ bindsym $mod+F10 exec /home/manandhar/bin/cliphistWrapper.sh delete
 bindsym $mod+F8 exec /home/manandhar/bin/cliphistWrapper.sh wipe
 
 # Screenshot
-bindsym Print exec wayshot -f ~/Pictures/Screenshots/"$(date -Is)".png
-bindsym Ctrl+Print exec wayshot --stdout | wl-copy
-bindsym Shift+Print exec wayshot -s "$(slurp -f '%x %y %w %h')" -f ~/Pictures/Screenshots/"$(date -Is)".png
-bindsym Ctrl+Shift+Print exec wayshot -s "$(slurp -f '%x %y %w %h')" --stdout | wl-copy
+bindsym $mod+F5 exec wayshot -f ~/Pictures/Screenshots/IMG_"$(date +'%Y-%m-%d_%H:%M:%S')".png
+bindsym $mod+Ctrl+F5 exec wayshot --stdout | wl-copy
+bindsym $mod+Shift+F5 exec wayshot -s "$(slurp -f '%x %y %w %h')" -f ~/Pictures/Screenshots/IMG_"$(date +'%Y-%m-%d_%H:%M:%S')".png
+bindsym $mod+Ctrl+Shift+F5 exec wayshot -s "$(slurp -f '%x %y %w %h')" --stdout | wl-copy
 
 # Assign Apps to certain workspace
 # assign [app_id="kitty"] workspace number 1
