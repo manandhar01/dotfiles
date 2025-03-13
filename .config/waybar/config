@@ -139,9 +139,9 @@
             "default": ["󰕿", "󰖀", "󰕾"],
             "muted": "󰖁"
         },
-        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-        "on-scroll-up": "pactl set-sink-mute @DEFAULT_SINK@ 0 && pactl set-sink-volume @DEFAULT_SINK@ +1%",
-        "on-scroll-down": "pactl set-sink-mute @DEFAULT_SINK@ 0 && pactl set-sink-volume @DEFAULT_SINK@ -1%"
+        "on-click": "wpctl set-mute @DEFAULT_SINK@ toggle",
+        "on-scroll-up": "wpctl set-mute @DEFAULT_SINK@ 0 && wpctl set-volume @DEFAULT_SINK@ 1%+",
+        "on-scroll-down": "wpctl set-mute @DEFAULT_SINK@ 0 && wpctl set-volume @DEFAULT_SINK@ 1%-"
     },
 
     "temperature": {
