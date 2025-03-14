@@ -3,7 +3,7 @@
     border: none;
     margin: 0;
     padding: 0;
-    color: white;
+    color: #eeeeee;
 }
 
 window {
@@ -21,8 +21,10 @@ window {
 /* window .modules-left { */
 /* } */
 
-#window {
+#window,
+#window > * {
     font-weight: bold;
+    color: #a1e3f9;
 }
 
 #workspaces {
@@ -61,16 +63,22 @@ window {
 #battery,
 #cpu,
 #memory,
+#disk,
 #network,
 #temperature,
 #backlight,
 #custom-spotify,
+#custom-network-speed,
 #wireplumber,
 #bluetooth,
 #window,
 #tray {
     border-bottom: 3px solid;
-    margin: 0 2px;
+    margin: 0 1px;
+}
+
+#clock {
+    color: #ead196;
 }
 
 #backlight {
@@ -79,6 +87,10 @@ window {
 
 #temperature {
     color: #d4bee4;
+}
+
+#custom-network-speed {
+    color: #7bc9ff;
 }
 
 #battery.critical,
@@ -105,6 +117,7 @@ window {
 #cpu.moderate,
 #cpu.medium,
 #cpu.low,
+#disk,
 #memory.high,
 #memory.moderate,
 #memory.medium,
