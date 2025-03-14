@@ -7,6 +7,8 @@
         "sway/workspaces",
         "cpu",
         "memory",
+        "disk",
+        "custom/network-speed",
         "temperature",
         "sway/window",
         "sway/mode"
@@ -89,6 +91,13 @@
         }
     },
 
+    "custom/network-speed": {
+        "format": "{}",
+        "exec": "sh /home/manandhar/bin/networkSpeed.sh",
+        "interval": 1,
+        "return-type": "json"
+    },
+
     "custom/spotify": {
         "format": " {}",
         "exec": "sh /home/manandhar/bin/spotifyStatusCheck.sh",
@@ -110,7 +119,8 @@
             "moderate": 75,
             "medium": 20,
             "low": 0
-        }
+        },
+        "tooltip-format": "Total: {total} GiB\nUsed: {used} GiB\nAvailable: {avail} GiB"
     },
 
     "network": {
@@ -149,6 +159,12 @@
         "critical-threshold": 80,
         "format": "{icon} {temperatureC}°C",
         "format-icons": ["", "", "", "", ""]
+    },
+
+    "disk": {
+        "format": " {percentage_free}%",
+        "unit": "GB",
+        "tooltip-format": "Path: {path}\nTotal: {specific_total:0.2f} GB\nUsed: {specific_used:0.2f} GB\nFree: {specific_free:0.2f} GB\nPercentage Used: {percentage_used}%\nPercentage Free: {percentage_free}%"
     },
 
     "bluetooth": {
