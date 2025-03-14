@@ -18,8 +18,8 @@
     border-radius: 10px 10px 0 0;
 }
 
-#inner-box {
-}
+/* #inner-box { */
+/* } */
 
 #input {
     margin: 5px;
@@ -32,14 +32,14 @@
     font-size: 20px;
 }
 
-#scroll {
-}
+/* #scroll { */
+/* } */
 
-#text {
-}
+/* #text { */
+/* } */
 
-#img {
-}
+/* #img { */
+/* } */
 
 #entry {
     border-bottom: 1px solid rgba(--wofi-rgb-color8, 1);
@@ -49,8 +49,8 @@
     border-bottom: none;
 }
 
-#expander-box {
-}
+/* #expander-box { */
+/* } */
 
 #unselected {
     padding: 10px 25px;
