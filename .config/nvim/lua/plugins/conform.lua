@@ -36,6 +36,7 @@ return {
             css = { "prettier" },
             json = { "prettier", "jq", stop_after_first = true },
             go = { "gofumpt" },
+            sql = { "sleek" },
         },
     },
 }
