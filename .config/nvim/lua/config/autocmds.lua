@@ -27,3 +27,12 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
         vim.opt.titlestring = "nvim " .. get_project_root()
     end,
 })
+
+vim.api.nvim_create_augroup("LspDiagnosticsFloat", { clear = true })
+
+vim.api.nvim_create_autocmd("CursorHold", {
+    group = "LspDiagnosticsFloat",
+    callback = function()
+        vim.diagnostic.open_float(nil, { focusable = false })
+    end,
+})
