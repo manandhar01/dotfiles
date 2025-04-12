@@ -15,6 +15,7 @@ vim.opt.inccommand = "split"
 vim.opt.cursorline = true
 vim.opt.cursorcolumn = true
 vim.opt.scrolloff = 10
+vim.opt.sidescrolloff = 10
 vim.opt.syntax = "enable"
 vim.opt.smartindent = true
 vim.opt.autoindent = true
@@ -34,7 +35,8 @@ vim.g.vimtex_view_method = "zathura"
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "vimtex#fold#level(v:lnum)"
 vim.opt.foldtext = "vimtex#fold#text()"
-vim.opt.foldlevel = 2
+vim.opt.foldlevel = 10
+vim.opt.foldenable = false
 
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
@@ -53,8 +55,8 @@ vim.diagnostic.config({
     float = {
         border = "rounded",
         source = "always",
-        header = "",
-        prefix = "",
+        -- header = "",
+        -- prefix = "",
         focusable = false,
         -- max_width = 60,
     },
