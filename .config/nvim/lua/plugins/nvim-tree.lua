@@ -107,6 +107,14 @@ return {
             diagnostics = {
                 enable = true,
                 show_on_dirs = true,
+                show_on_open_dirs = true,
+                debounce_delay = 50,
+                icons = {
+                    error = "✘",
+                    warning = "⚑",
+                    info = "",
+                    hint = "",
+                },
             },
             disable_netrw = true,
             filters = {
