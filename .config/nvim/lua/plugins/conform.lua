@@ -31,6 +31,8 @@ return {
             lua = { "stylua" },
             javascript = { "prettier" },
             typescript = { "prettier" },
+            javascriptreact = { "prettier" },
+            typescriptreact = { "prettier" },
             bash = { "shfmt" },
             sh = { "shfmt" },
             css = { "prettier" },
