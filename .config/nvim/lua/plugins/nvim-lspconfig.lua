@@ -1,14 +1,12 @@
 return {
     "neovim/nvim-lspconfig",
     dependencies = {
-        { "williamboman/mason.nvim", config = true },
-        "williamboman/mason-lspconfig.nvim",
+        { "mason-org/mason.nvim", config = true },
+        "mason-org/mason-lspconfig.nvim",
         { "j-hui/fidget.nvim", opts = {} },
     },
 
     config = function()
-        local lspconfig = require("lspconfig")
-
         local function organize_imports()
             local params = {
                 command = "_typescript.organizeImports",
@@ -18,7 +16,7 @@ return {
             vim.lsp.buf.execute_command(params)
         end
 
-        lspconfig.ts_ls.setup({
+        vim.lsp.config("ts_ls", {
             init_options = {
                 preferences = {
                     importModuleSpecifierPreference = "relative",
@@ -36,27 +34,27 @@ return {
             },
         })
 
-        lspconfig.lua_ls.setup({
+        vim.lsp.config("lua_ls", {
             capabilities = require("cmp_nvim_lsp").default_capabilities(),
         })
 
-        lspconfig.bashls.setup({
+        vim.lsp.config("bashls", {
             capabilities = require("cmp_nvim_lsp").default_capabilities(),
         })
 
-        lspconfig.css_variables.setup({
+        vim.lsp.config("css_variables", {
             capabilities = require("cmp_nvim_lsp").default_capabilities(),
         })
 
-        lspconfig.cssls.setup({
+        vim.lsp.config("cssls", {
             capabilities = require("cmp_nvim_lsp").default_capabilities(),
         })
 
-        lspconfig.texlab.setup({
+        vim.lsp.config("texlab", {
             capabilities = require("cmp_nvim_lsp").default_capabilities(),
         })
 
-        lspconfig.gopls.setup({
+        vim.lsp.config("gopls", {
             capabilities = require("cmp_nvim_lsp").default_capabilities(),
         })
 
