@@ -5,6 +5,9 @@ PS1='[\u@\h \W]\$ '
 alias gcco='gcc -lm -lglut -lGL -lGLU'
 alias gppo='g++ -lm -lglut -lGL -lGLU'
 
+# alias to fix pacman conflit files
+alias fixpac='sudo pacman -Syu 2>&1 | tee >(./bin/remove_conflict_files.sh)'
+
 # alias to StarUML_cracker
 alias crackstaruml='sudo /home/manandhar/bin/StarUML_cracker/crack.py'
 
