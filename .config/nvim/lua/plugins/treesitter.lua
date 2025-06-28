@@ -14,6 +14,7 @@ return {
             "javascript",
             "json",
             "json5",
+            "latex",
             "lua",
             "luadoc",
             "markdown",
@@ -32,7 +33,6 @@ return {
         auto_install = true,
         highlight = {
             enable = true,
-            disable = { "latex" },
         },
         indent = { enable = true },
     },
