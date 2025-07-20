@@ -16,6 +16,8 @@ return {
             vim.lsp.buf.execute_command(params)
         end
 
+        local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
         vim.lsp.config("ts_ls", {
             init_options = {
                 preferences = {
@@ -24,38 +26,40 @@ return {
                 },
             },
 
-            capabilities = require("cmp_nvim_lsp").default_capabilities(),
+            capabilities = capabilities,
 
-            commands = {
-                OrganizeImports = {
-                    organize_imports,
-                    description = "Organize Imports",
-                },
-            },
+            vim.api.nvim_create_user_command("OrganizeImports", organize_imports, { desc = "Organize Imports" }),
+
+            -- commands = {
+            --     OrganizeImports = {
+            --         organize_imports,
+            --         description = "Organize Imports",
+            --     },
+            -- },
         })
 
         vim.lsp.config("lua_ls", {
-            capabilities = require("cmp_nvim_lsp").default_capabilities(),
+            capabilities = capabilities,
         })
 
         vim.lsp.config("bashls", {
-            capabilities = require("cmp_nvim_lsp").default_capabilities(),
+            capabilities = capabilities,
         })
 
         vim.lsp.config("css_variables", {
-            capabilities = require("cmp_nvim_lsp").default_capabilities(),
+            capabilities = capabilities,
         })
 
         vim.lsp.config("cssls", {
-            capabilities = require("cmp_nvim_lsp").default_capabilities(),
+            capabilities = capabilities,
         })
 
         vim.lsp.config("texlab", {
-            capabilities = require("cmp_nvim_lsp").default_capabilities(),
+            capabilities = capabilities,
         })
 
         vim.lsp.config("gopls", {
-            capabilities = require("cmp_nvim_lsp").default_capabilities(),
+            capabilities = capabilities,
         })
 
         vim.api.nvim_create_autocmd("LspAttach", {
