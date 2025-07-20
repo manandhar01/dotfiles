@@ -7,14 +7,7 @@ return {
     },
 
     config = function()
-        local function organize_imports()
-            local params = {
-                command = "_typescript.organizeImports",
-                arguments = { vim.api.nvim_buf_get_name(0) },
-                title = "",
-            }
-            vim.lsp.buf.execute_command(params)
-        end
+        local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
         vim.lsp.config("ts_ls", {
             init_options = {
@@ -24,38 +17,31 @@ return {
                 },
             },
 
-            capabilities = require("cmp_nvim_lsp").default_capabilities(),
-
-            commands = {
-                OrganizeImports = {
-                    organize_imports,
-                    description = "Organize Imports",
-                },
-            },
+            capabilities = capabilities,
         })
 
         vim.lsp.config("lua_ls", {
-            capabilities = require("cmp_nvim_lsp").default_capabilities(),
+            capabilities = capabilities,
         })
 
         vim.lsp.config("bashls", {
-            capabilities = require("cmp_nvim_lsp").default_capabilities(),
+            capabilities = capabilities,
         })
 
         vim.lsp.config("css_variables", {
-            capabilities = require("cmp_nvim_lsp").default_capabilities(),
+            capabilities = capabilities,
         })
 
         vim.lsp.config("cssls", {
-            capabilities = require("cmp_nvim_lsp").default_capabilities(),
+            capabilities = capabilities,
         })
 
         vim.lsp.config("texlab", {
-            capabilities = require("cmp_nvim_lsp").default_capabilities(),
+            capabilities = capabilities,
         })
 
         vim.lsp.config("gopls", {
-            capabilities = require("cmp_nvim_lsp").default_capabilities(),
+            capabilities = capabilities,
         })
 
         vim.api.nvim_create_autocmd("LspAttach", {
