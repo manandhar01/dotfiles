@@ -12,7 +12,7 @@ return {
             set_cursor = false,
             set_cursorline = false,
             set_number = true,
-            ignore_filetypes = { "NvimTree", "TelescopePrompt" },
+            ignore = { "NvimTree", "TelescopePrompt" },
         })
     end,
 }
