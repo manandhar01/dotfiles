@@ -7,15 +7,6 @@ return {
     },
 
     config = function()
-        local function organize_imports()
-            local params = {
-                command = "_typescript.organizeImports",
-                arguments = { vim.api.nvim_buf_get_name(0) },
-                title = "",
-            }
-            vim.lsp.buf.execute_command(params)
-        end
-
         local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
         vim.lsp.config("ts_ls", {
@@ -27,15 +18,6 @@ return {
             },
 
             capabilities = capabilities,
-
-            vim.api.nvim_create_user_command("OrganizeImports", organize_imports, { desc = "Organize Imports" }),
-
-            -- commands = {
-            --     OrganizeImports = {
-            --         organize_imports,
-            --         description = "Organize Imports",
-            --     },
-            -- },
         })
 
         vim.lsp.config("lua_ls", {
