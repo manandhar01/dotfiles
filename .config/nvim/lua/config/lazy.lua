@@ -54,3 +54,5 @@ require("lazy").setup({
 require("config.options")
 require("config.keymaps")
 require("config.autocmds")
+
+vim.cmd("colorscheme rose-pine")
