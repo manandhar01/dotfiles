@@ -2,160 +2,141 @@
 
 script_dir="$(realpath "$(dirname "$0")")"
 
+function install_symlink_if_missing() {
+    local src="$1"
+    local dst="$2"
+
+    if [ ! -e "$dst" ]; then
+        ln -rs "$src" "$dst"
+        echo "Installed: $dst"
+    else
+        echo "Already exists: $dst (skipped)"
+    fi
+}
+
 function operate() {
     local tool="$1"
-    echo "Removing $HOME/.config/$tool directory..."
-    rm -rf "$HOME/.config/$tool"
-    echo "Removed"
+    local src_path="$script_dir/.config/$tool"
+    local dst_path="$HOME/.config/$tool"
+
+    echo "Operating on $tool..."
 
     if [[ "$operation" -eq 2 ]]; then
+        echo "Removing $dst_path..."
+        rm -rf "$dst_path"
+        echo "Removed"
         return
     fi
 
-    local command="realpath $script_dir/.config/$tool"
-    path="$($command)"
-
-    echo "Installing new config..."
+    echo "Installing (only missing files)..."
     mkdir -p "$HOME/.config"
-    cp -rs "$path" "$HOME/.config/"
-    echo "Installed"
+    install_symlink_if_missing "$src_path" "$dst_path"
 }
 
 function bash() {
-    echo "Removing $HOME/.bashrc..."
-    rm -rf "$HOME/.bashrc"
-    echo "Removed"
-
-    echo "Removing $HOME/.inputrc..."
-    rm -rf "$HOME/.inputrc"
-    echo "Removed"
+    echo "Operating on bash config..."
 
     if [[ "$operation" -eq 2 ]]; then
+        echo "Removing $HOME/.bashrc and $HOME/.inputrc..."
+        rm -rf "$HOME/.bashrc" "$HOME/.inputrc"
+        echo "Removed"
         return
     fi
 
-    echo "Installing new config..."
+    echo "Installing (only missing files)..."
 
-    local command="realpath $script_dir/.bashrc"
-    path="$($command)"
-    cp -rs "$path" "$HOME/"
-
-    local command="realpath $script_dir/.inputrc"
-    path="$($command)"
-    cp -rs "$path" "$HOME/"
-
-    echo "Installed"
+    install_symlink_if_missing "$script_dir/.bashrc" "$HOME/.bashrc"
+    install_symlink_if_missing "$script_dir/.inputrc" "$HOME/.inputrc"
 }
 
 function custom_scripts() {
-    echo "Removing $HOME/bin directory..."
-    rm -rf "${HOME:?}/bin"
-    echo "Removed"
+    local src="$script_dir/bin"
+    local dst="$HOME/bin"
+
+    echo "Operating on custom scripts..."
 
     if [[ "$operation" -eq 2 ]]; then
+        echo "Removing $dst..."
+        rm -rf "$dst"
+        echo "Removed"
         return
     fi
 
-    local command="realpath $script_dir/bin"
-    path="$($command)"
-
-    echo "Installing new scripts..."
-    cp -rs "$path" "$HOME/"
-    echo "Installed"
+    echo "Installing (only missing files)..."
+    install_symlink_if_missing "$src" "$dst"
 }
 
 function wallpapers() {
-    echo "Removing $HOME/wallpapers directory..."
-    rm -rf "${HOME:?}/wallpapers"
-    echo "Removed"
+    local src="$script_dir/wallpapers"
+    local dst="$HOME/wallpapers"
+
+    echo "Operating on wallpapers..."
 
     if [[ "$operation" -eq 2 ]]; then
+        echo "Removing $dst..."
+        rm -rf "$dst"
+        echo "Removed"
         return
     fi
 
-    local command="realpath $script_dir/wallpapers"
-    path="$($command)"
-
-    echo "Installing new wallpapers..."
-    cp -rs "$path" "$HOME/"
-    echo "Installed"
+    echo "Installing (only missing files)..."
+    install_symlink_if_missing "$src" "$dst"
 }
 
 function vim() {
-    echo "Removing $HOME/.vim directory..."
-    rm -rf "$HOME/.vim"
-    echo "Removed"
-
-    echo "Removing $HOME/.vimrc..."
-    rm -rf "$HOME/.vimrc"
-    echo "Removed"
+    echo "Operating on vim config..."
 
     if [[ "$operation" -eq 2 ]]; then
+        rm -rf "$HOME/.vim" "$HOME/.vimrc"
+        echo "Removed"
         return
     fi
 
-    echo "Installing new config..."
-
-    local command="realpath $script_dir/.vim"
-    path="$($command)"
-    cp -rs "$path" "$HOME/"
-
-    local command="realpath $script_dir/.vimrc"
-    path="$($command)"
-    cp -rs "$path" "$HOME/"
-
-    echo "Installed"
+    echo "Installing (only missing files)..."
+    install_symlink_if_missing "$script_dir/.vim" "$HOME/.vim"
+    install_symlink_if_missing "$script_dir/.vimrc" "$HOME/.vimrc"
 }
 
 function posh() {
-    echo "Removing $HOME/.poshthemes directory..."
-    rm -rf "$HOME?/.poshthemes"
-    echo "Removed"
+    echo "Operating on poshthemes..."
 
     if [[ "$operation" -eq 2 ]]; then
+        rm -rf "$HOME/.poshthemes"
+        echo "Removed"
         return
     fi
 
-    local command="realpath $script_dir/.poshthemes"
-    path="$($command)"
-
-    echo "Installing new config..."
-    cp -rs "$path" "$HOME/"
-    echo "Installed"
+    echo "Installing (only missing files)..."
+    install_symlink_if_missing "$script_dir/.poshthemes" "$HOME/.poshthemes"
 }
 
 function zsh() {
-    echo "Removing $HOME/.zshrc..."
-    rm -rf "$HOME/.zshrc"
-    echo "Removed"
+    echo "Operating on zsh config..."
 
     if [[ "$operation" -eq 2 ]]; then
+        rm -rf "$HOME/.zshrc"
+        echo "Removed"
         return
     fi
 
-    local command="realpath $script_dir/.zshrc"
-    path="$($command)"
-
-    echo "Installing new config..."
-    cp -rs "$path" "$HOME/"
-    echo "Installed"
+    echo "Installing (only missing files)..."
+    install_symlink_if_missing "$script_dir/.zshrc" "$HOME/.zshrc"
 }
 
 function bash_it() {
-    echo "Removing $HOME/.bash_it/themes/powerline-naked-edited directory..."
-    rm -rf "${HOME:?}/.bash_it/themes/powerline-naked-edited"
-    echo "Removed"
+    local theme_path="$HOME/.bash_it/themes/powerline-naked-edited"
+    local src_path="$script_dir/.bash_it/themes/powerline-naked-edited"
+
+    echo "Operating on bash_it theme..."
 
     if [[ "$operation" -eq 2 ]]; then
+        rm -rf "$theme_path"
+        echo "Removed"
         return
     fi
 
-    local command="realpath $script_dir/.bash_it/themes/powerline-naked-edited"
-    path="$($command)"
-
-    echo "Installing new scripts..."
-    cp -rs "$path" "$HOME/.bash_it/themes/"
-    echo "Installed"
+    echo "Installing (only missing files)..."
+    install_symlink_if_missing "$src_path" "$theme_path"
 }
 
 echo "Please select an operation:"
