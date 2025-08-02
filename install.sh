@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 script_dir="$(realpath "$(dirname "$0")")"
 
@@ -32,6 +32,44 @@ function install_symlink_if_missing() {
     fi
 }
 
+function remove_symlink_if_present() {
+    local src="$1"
+    local dst="$2"
+
+    if [ -f "$src" ]; then
+        if [ -e "$dst" ]; then
+            rm -rf "$dst"
+            echo "Deleted: $dst"
+        else
+            echo "Does not exists: $dst (skipped)"
+        fi
+    elif [ -d "$src" ]; then
+        find "$src" -type f | while read -r file; do
+            rel_path="${file#"$src"/}"
+            target="$dst/$rel_path"
+
+            if [ -e "$target" ]; then
+                rm -rf "$target"
+                echo "Deleted: $target"
+            else
+                echo "Does not exist: $target (skipped)"
+            fi
+        done
+
+        find "$src" -type d | while read -r dir; do
+            rel_path="${dir#"$src"/}"
+            target_dir="$dst/$rel_path"
+
+            if [ -d "$target_dir" ] && [ -z "$(ls -A "$target_dir")" ]; then
+                rmdir "$target_dir"
+                echo "Removed empty directory: $target_dir"
+            fi
+        done
+    else
+        echo "Warning: $src does not exist or is not a regular file/directory" >&2
+    fi
+}
+
 function operate() {
     local tool="$1"
     local src_path="$script_dir/.config/$tool"
@@ -40,30 +78,28 @@ function operate() {
     echo "Operating on $tool..."
 
     if [[ "$operation" -eq 2 ]]; then
-        echo "Removing $dst_path..."
-        rm -rf "$dst_path"
-        echo "Removed"
-        return
+        echo "Removing $tool..."
+        remove_symlink_if_present "$src_path" "$dst_path"
+    else
+        echo "Installing $tool..."
+        install_symlink_if_missing "$src_path" "$dst_path"
     fi
-
-    echo "Installing (only missing files)..."
-    install_symlink_if_missing "$src_path" "$dst_path"
 }
 
 function bash() {
     echo "Operating on bash config..."
 
     if [[ "$operation" -eq 2 ]]; then
-        echo "Removing $HOME/.bashrc and $HOME/.inputrc..."
-        rm -rf "$HOME/.bashrc" "$HOME/.inputrc"
-        echo "Removed"
-        return
+        echo "Removing bash config..."
+        remove_symlink_if_present "$script_dir/.bashrc" "$HOME/.bashrc"
+        remove_symlink_if_present "$script_dir/.inputrc" "$HOME/.inputrc"
+    else
+        echo "Installing bash config..."
+        install_symlink_if_missing "$script_dir/.bashrc" "$HOME/.bashrc"
+        install_symlink_if_missing "$script_dir/.inputrc" "$HOME/.inputrc"
+
     fi
 
-    echo "Installing (only missing files)..."
-
-    install_symlink_if_missing "$script_dir/.bashrc" "$HOME/.bashrc"
-    install_symlink_if_missing "$script_dir/.inputrc" "$HOME/.inputrc"
 }
 
 function custom_scripts() {
@@ -73,14 +109,12 @@ function custom_scripts() {
     echo "Operating on custom scripts..."
 
     if [[ "$operation" -eq 2 ]]; then
-        echo "Removing $dst..."
-        rm -rf "$dst"
-        echo "Removed"
-        return
+        echo "Removing custom scripts..."
+        remove_symlink_if_present "$src" "$dst"
+    else
+        echo "Installing custom scripts..."
+        install_symlink_if_missing "$src" "$dst"
     fi
-
-    echo "Installing (only missing files)..."
-    install_symlink_if_missing "$src" "$dst"
 }
 
 function wallpapers() {
@@ -90,54 +124,50 @@ function wallpapers() {
     echo "Operating on wallpapers..."
 
     if [[ "$operation" -eq 2 ]]; then
-        echo "Removing $dst..."
-        rm -rf "$dst"
-        echo "Removed"
-        return
+        echo "Removing wallpapers..."
+        remove_symlink_if_present "$src" "$dst"
+    else
+        echo "Installing wallpapers..."
+        install_symlink_if_missing "$src" "$dst"
     fi
-
-    echo "Installing (only missing files)..."
-    install_symlink_if_missing "$src" "$dst"
 }
 
 function vim() {
     echo "Operating on vim config..."
 
     if [[ "$operation" -eq 2 ]]; then
-        rm -rf "$HOME/.vim" "$HOME/.vimrc"
-        echo "Removed"
-        return
+        echo "Removing vim config..."
+        remove_symlink_if_present "$script_dir/.vim" "$HOME/.vim"
+        remove_symlink_if_present "$script_dir/.vimrc" "$HOME/.vimrc"
+    else
+        echo "Installing vim config..."
+        install_symlink_if_missing "$script_dir/.vim" "$HOME/.vim"
+        install_symlink_if_missing "$script_dir/.vimrc" "$HOME/.vimrc"
     fi
-
-    echo "Installing (only missing files)..."
-    install_symlink_if_missing "$script_dir/.vim" "$HOME/.vim"
-    install_symlink_if_missing "$script_dir/.vimrc" "$HOME/.vimrc"
 }
 
 function posh() {
     echo "Operating on poshthemes..."
 
     if [[ "$operation" -eq 2 ]]; then
-        rm -rf "$HOME/.poshthemes"
-        echo "Removed"
-        return
+        echo "Removing poshthemes..."
+        remove_symlink_if_present "$script_dir/.poshthemes" "$HOME/.poshthemes"
+    else
+        echo "Installing poshthemes..."
+        install_symlink_if_missing "$script_dir/.poshthemes" "$HOME/.poshthemes"
     fi
-
-    echo "Installing (only missing files)..."
-    install_symlink_if_missing "$script_dir/.poshthemes" "$HOME/.poshthemes"
 }
 
 function zsh() {
     echo "Operating on zsh config..."
 
     if [[ "$operation" -eq 2 ]]; then
-        rm -rf "$HOME/.zshrc"
-        echo "Removed"
-        return
+        echo "Removing zsh config..."
+        remove_symlink_if_present "$script_dir/.zshrc" "$HOME/.zshrc"
+    else
+        echo "Installing zsh config..."
+        install_symlink_if_missing "$script_dir/.zshrc" "$HOME/.zshrc"
     fi
-
-    echo "Installing (only missing files)..."
-    install_symlink_if_missing "$script_dir/.zshrc" "$HOME/.zshrc"
 }
 
 function bash_it() {
@@ -147,13 +177,12 @@ function bash_it() {
     echo "Operating on bash_it theme..."
 
     if [[ "$operation" -eq 2 ]]; then
-        rm -rf "$theme_path"
-        echo "Removed"
-        return
+        echo "Removing bash_it theme..."
+        remove_symlink_if_present "$src_path" "$theme_path"
+    else
+        echo "Installing bash_it theme..."
+        install_symlink_if_missing "$src_path" "$theme_path"
     fi
-
-    echo "Installing (only missing files)..."
-    install_symlink_if_missing "$src_path" "$theme_path"
 }
 
 echo "Please select an operation:"
