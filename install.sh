@@ -6,11 +6,29 @@ function install_symlink_if_missing() {
     local src="$1"
     local dst="$2"
 
-    if [ ! -e "$dst" ]; then
-        ln -rs "$src" "$dst"
-        echo "Installed: $dst"
+    if [ -f "$src" ]; then
+        mkdir -p "$(dirname "$dst")"
+        if [ ! -e "$dst" ]; then
+            ln -rs "$src" "$dst"
+            echo "Installed: $dst"
+        else
+            echo "Exists: $dst (skipped)"
+        fi
+    elif [ -d "$src" ]; then
+        find "$src" -type f | while read -r file; do
+            rel_path="${file#"$src"/}"
+            target="$dst/$rel_path"
+            mkdir -p "$(dirname "$target")"
+
+            if [ ! -e "$target" ]; then
+                ln -rs "$file" "$target"
+                echo "Installed: $target"
+            else
+                echo "Exists: $target (skipped)"
+            fi
+        done
     else
-        echo "Already exists: $dst (skipped)"
+        echo "Warning: $src does not exist or is not a regular file/directory" >&2
     fi
 }
 
@@ -29,7 +47,6 @@ function operate() {
     fi
 
     echo "Installing (only missing files)..."
-    mkdir -p "$HOME/.config"
     install_symlink_if_missing "$src_path" "$dst_path"
 }
 
