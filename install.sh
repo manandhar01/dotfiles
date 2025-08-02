@@ -173,52 +173,60 @@ elif [[ "$operation" -ne 1 && "$operation" -ne 2 ]]; then
 fi
 
 echo "Please select a tool:"
-echo "1) bash"
-echo "2) custom_scripts"
-echo "3) sway"
-echo "4) nvim"
-echo "5) kitty "
-echo "6) waybar"
-echo "7) wofi"
-echo "8) mako"
-echo "9) swaylock"
-echo "10) fontconfig"
-echo "11) vim"
-echo "12) i3status-rust"
-echo "12) alacritty"
-echo "14) posh"
-echo "15) starship"
-echo "16) zsh"
-echo "17) wallpapers"
-echo "18) bash_it (powerline-naked-edited theme)"
+
+tools=(
+    "bash"
+    "custom_scripts"
+    "systemd user services"
+    "sway"
+    "nvim"
+    "kitty"
+    "waybar"
+    "wofi"
+    "mako"
+    "swaylock"
+    "fontconfig"
+    "vim"
+    "i3status-rust"
+    "alacritty"
+    "posh"
+    "starship"
+    "zsh"
+    "wallpapers"
+    "bash_it (powerline-naked-edited theme)"
+)
+
+# Print numbered list
+for i in "${!tools[@]}"; do
+    label="${tools[$i]}"
+    number=$((i + 1))
+    echo "$number) $label"
+done
+
 echo "0) Exit"
 
-read -rp "Enter a number (1-18): " userInput
-
+read -rp "Enter a number (1-${#tools[@]}): " userInput
 printf "\n"
 
-case $userInput in
-0) exit 0 ;;
-1) bash ;;
-2) custom_scripts ;;
-3) operate sway ;;
-4) operate nvim ;;
-5) operate kitty ;;
-6) operate waybar ;;
-7) operate wofi ;;
-8) operate mako ;;
-9) operate swaylock ;;
-10) operate fontconfig ;;
-11) vim ;;
-12) operate i3status-rust ;;
-13) operate alacritty ;;
-14) posh ;;
-15) operate starship ;;
-16) zsh ;;
-17) wallpapers ;;
-18) bash_it ;;
-*)
+if [[ "$userInput" -eq 0 ]]; then
+    exit 0
+elif ((userInput < 1 || userInput > ${#tools[@]})); then
     echo "Invalid input. Exiting." >&2
     exit 1
-    ;;
+fi
+
+# Map input to actual tool name
+tool="${tools[userInput - 1]}"
+
+# Call appropriate function
+case $tool in
+bash) bash ;;
+custom_scripts) custom_scripts ;;
+vim) vim ;;
+posh) posh ;;
+zsh) zsh ;;
+wallpapers) wallpapers ;;
+"bash_it (powerline-naked-edited theme)") bash_it ;;
+"systemd user services") operate "systemd" ;;
+*) operate "$tool" ;;
 esac

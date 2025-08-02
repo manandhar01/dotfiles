@@ -1,0 +1,11 @@
+[Unit]
+Description=Volume & Mute Change Notifications
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=%h/bin/notify_volume_change.sh
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
