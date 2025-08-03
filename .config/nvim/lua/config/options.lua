@@ -40,6 +40,7 @@ vim.opt.foldexpr = "vimtex#fold#level(v:lnum)"
 vim.opt.foldtext = "vimtex#fold#text()"
 vim.opt.foldlevel = 10
 vim.opt.foldenable = false
+vim.opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
