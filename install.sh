@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 script_dir="$(realpath "$(dirname "$0")")"
+dry_run=false
 
 function install_symlink_if_missing() {
     local src="$1"
@@ -9,10 +10,14 @@ function install_symlink_if_missing() {
     if [ -f "$src" ]; then
         mkdir -p "$(dirname "$dst")"
         if [ ! -e "$dst" ]; then
-            ln -rs "$src" "$dst"
-            echo "Installed: $dst"
+            if $dry_run; then
+                echo "🔍 [DRY RUN] Would symlink: $dst -> $src"
+            else
+                ln -rs "$src" "$dst"
+                echo "✅ Installed: $dst"
+            fi
         else
-            echo "Exists: $dst (skipped)"
+            echo "⚠️ Exists: $dst (skipped)"
         fi
     elif [ -d "$src" ]; then
         find "$src" -type f | while read -r file; do
@@ -21,14 +26,18 @@ function install_symlink_if_missing() {
             mkdir -p "$(dirname "$target")"
 
             if [ ! -e "$target" ]; then
-                ln -rs "$file" "$target"
-                echo "Installed: $target"
+                if $dry_run; then
+                    echo "🔍 [DRY RUN] Would symlink: $target -> $file"
+                else
+                    ln -rs "$file" "$target"
+                    echo "✅ Installed: $target"
+                fi
             else
-                echo "Exists: $target (skipped)"
+                echo "⚠️ Exists: $target (skipped)"
             fi
         done
     else
-        echo "Warning: $src does not exist or is not a regular file/directory" >&2
+        echo "⚠️ Warning: $src does not exist or is not a regular file/directory" >&2
     fi
 }
 
@@ -38,10 +47,14 @@ function remove_symlink_if_present() {
 
     if [ -f "$src" ]; then
         if [ -e "$dst" ]; then
-            rm -rf "$dst"
-            echo "Deleted: $dst"
+            if $dry_run; then
+                echo "🔍 [DRY RUN] Would delete: $dst"
+            else
+                rm -rf "$dst"
+                echo "🗑️ Deleted: $dst"
+            fi
         else
-            echo "Does not exists: $dst (skipped)"
+            echo "⚠️ Does not exist: $dst (skipped)"
         fi
     elif [ -d "$src" ]; then
         find "$src" -type f | while read -r file; do
@@ -49,10 +62,14 @@ function remove_symlink_if_present() {
             target="$dst/$rel_path"
 
             if [ -e "$target" ]; then
-                rm -rf "$target"
-                echo "Deleted: $target"
+                if $dry_run; then
+                    echo "🔍 [DRY RUN] Would delete: $target"
+                else
+                    rm -rf "$target"
+                    echo "🗑️ Deleted: $target"
+                fi
             else
-                echo "Does not exist: $target (skipped)"
+                echo "⚠️ Does not exist: $target (skipped)"
             fi
         done
 
@@ -62,11 +79,11 @@ function remove_symlink_if_present() {
 
             if [ -d "$target_dir" ] && [ -z "$(ls -A "$target_dir")" ]; then
                 rmdir "$target_dir"
-                echo "Removed empty directory: $target_dir"
+                echo "🗑️ Removed empty directory: $target_dir"
             fi
         done
     else
-        echo "Warning: $src does not exist or is not a regular file/directory" >&2
+        echo "⚠️ Warning: $src does not exist or is not a regular file/directory" >&2
     fi
 }
 
@@ -75,26 +92,26 @@ function operate() {
     local src_path="$script_dir/.config/$tool"
     local dst_path="$HOME/.config/$tool"
 
-    echo "Operating on $tool..."
+    echo "⏳ Operating on $2..."
 
     if [[ "$operation" -eq 2 ]]; then
-        echo "Removing $tool..."
+        echo "🚮 Removing $2..."
         remove_symlink_if_present "$src_path" "$dst_path"
     else
-        echo "Installing $tool..."
+        echo "🛠️ Installing $2..."
         install_symlink_if_missing "$src_path" "$dst_path"
     fi
 }
 
 function bash() {
-    echo "Operating on bash config..."
+    echo "⏳ Operating on $1..."
 
     if [[ "$operation" -eq 2 ]]; then
-        echo "Removing bash config..."
+        echo "🚮 Removing $1..."
         remove_symlink_if_present "$script_dir/.bashrc" "$HOME/.bashrc"
         remove_symlink_if_present "$script_dir/.inputrc" "$HOME/.inputrc"
     else
-        echo "Installing bash config..."
+        echo "🛠️ Installing $1..."
         install_symlink_if_missing "$script_dir/.bashrc" "$HOME/.bashrc"
         install_symlink_if_missing "$script_dir/.inputrc" "$HOME/.inputrc"
 
@@ -106,13 +123,13 @@ function custom_scripts() {
     local src="$script_dir/bin"
     local dst="$HOME/bin"
 
-    echo "Operating on custom scripts..."
+    echo "⏳ Operating on $1..."
 
     if [[ "$operation" -eq 2 ]]; then
-        echo "Removing custom scripts..."
+        echo "🚮 Removing $1..."
         remove_symlink_if_present "$src" "$dst"
     else
-        echo "Installing custom scripts..."
+        echo "🛠️ Installing custom scripts..."
         install_symlink_if_missing "$src" "$dst"
     fi
 }
@@ -121,51 +138,51 @@ function wallpapers() {
     local src="$script_dir/wallpapers"
     local dst="$HOME/wallpapers"
 
-    echo "Operating on wallpapers..."
+    echo "⏳ Operating on $1..."
 
     if [[ "$operation" -eq 2 ]]; then
-        echo "Removing wallpapers..."
+        echo "🚮 Removing wallpapers..."
         remove_symlink_if_present "$src" "$dst"
     else
-        echo "Installing wallpapers..."
+        echo "🛠️ Installing $1..."
         install_symlink_if_missing "$src" "$dst"
     fi
 }
 
 function vim() {
-    echo "Operating on vim config..."
+    echo "⏳ Operating on $1..."
 
     if [[ "$operation" -eq 2 ]]; then
-        echo "Removing vim config..."
+        echo "🚮 Removing $1..."
         remove_symlink_if_present "$script_dir/.vim" "$HOME/.vim"
         remove_symlink_if_present "$script_dir/.vimrc" "$HOME/.vimrc"
     else
-        echo "Installing vim config..."
+        echo "🛠️ Installing $1..."
         install_symlink_if_missing "$script_dir/.vim" "$HOME/.vim"
         install_symlink_if_missing "$script_dir/.vimrc" "$HOME/.vimrc"
     fi
 }
 
 function posh() {
-    echo "Operating on poshthemes..."
+    echo "⏳ Operating on $1..."
 
     if [[ "$operation" -eq 2 ]]; then
-        echo "Removing poshthemes..."
+        echo "🚮 Removing $1..."
         remove_symlink_if_present "$script_dir/.poshthemes" "$HOME/.poshthemes"
     else
-        echo "Installing poshthemes..."
+        echo "🛠️ Installing $1..."
         install_symlink_if_missing "$script_dir/.poshthemes" "$HOME/.poshthemes"
     fi
 }
 
 function zsh() {
-    echo "Operating on zsh config..."
+    echo "⏳ Operating on $1..."
 
     if [[ "$operation" -eq 2 ]]; then
-        echo "Removing zsh config..."
+        echo "🚮 Removing $1..."
         remove_symlink_if_present "$script_dir/.zshrc" "$HOME/.zshrc"
     else
-        echo "Installing zsh config..."
+        echo "🛠️ Installing $1..."
         install_symlink_if_missing "$script_dir/.zshrc" "$HOME/.zshrc"
     fi
 }
@@ -174,88 +191,88 @@ function bash_it() {
     local theme_path="$HOME/.bash_it/themes/powerline-naked-edited"
     local src_path="$script_dir/.bash_it/themes/powerline-naked-edited"
 
-    echo "Operating on bash_it theme..."
+    echo "⏳ Operating on $1..."
 
     if [[ "$operation" -eq 2 ]]; then
-        echo "Removing bash_it theme..."
+        echo "🚮 Removing $1..."
         remove_symlink_if_present "$src_path" "$theme_path"
     else
-        echo "Installing bash_it theme..."
+        echo "🛠️ Installing $1..."
         install_symlink_if_missing "$src_path" "$theme_path"
     fi
 }
 
-echo "Please select an operation:"
-echo "1) Install"
-echo "2) Remove"
-echo "0) Exit"
+while [[ "$1" != "" ]]; do
+    case "$1" in
+    -n | --dry-run) dry_run=true ;;
+    esac
+    shift
+done
 
-read -rp "Enter a number: " operation
+echo "👉 Please select an operation:"
+echo "1) 🛠️ Install"
+echo "2) 🗑️ Remove"
+echo "0) ❌ Exit"
 
+read -rp "🔢 Enter a number: " operation
 printf "\n"
 
 if [[ "$operation" -eq 0 ]]; then
     exit 0
 elif [[ "$operation" -ne 1 && "$operation" -ne 2 ]]; then
-    echo "Invalid input. Exiting." >&2
+    echo "❗ Invalid input. Exiting." >&2
     exit 1
 fi
 
-echo "Please select a tool:"
-
 tools=(
-    "bash"
-    "custom_scripts"
-    "systemd user services"
-    "sway"
-    "nvim"
-    "kitty"
-    "waybar"
-    "wofi"
-    "mako"
-    "swaylock"
-    "fontconfig"
-    "vim"
-    "i3status-rust"
-    "alacritty"
-    "posh"
-    "starship"
-    "zsh"
-    "wallpapers"
-    "bash_it (powerline-naked-edited theme)"
+    "🔳 bash"
+    "⚙️ custom_scripts"
+    "🛎️ systemd user services"
+    "🪟 sway"
+    "📝 nvim"
+    "🐱 kitty"
+    "📊 waybar"
+    "🔍 wofi"
+    "🔔 mako"
+    "🔒 swaylock"
+    "🔤 fontconfig"
+    "📄 vim"
+    "📈 i3status-rust"
+    "🖥️ alacritty"
+    "🎨 posh"
+    "🌠 starship"
+    "💤 zsh"
+    "🖼️ wallpapers"
+    "🎛️ bash_it (powerline-naked-edited theme)"
 )
 
-# Print numbered list
+echo "👉 Please select a tool:"
 for i in "${!tools[@]}"; do
-    label="${tools[$i]}"
-    number=$((i + 1))
-    echo "$number) $label"
+    printf "%2d) %s\n" $((i + 1)) "${tools[$i]}"
 done
+echo " 0) ❌ Exit"
 
-echo "0) Exit"
-
-read -rp "Enter a number (1-${#tools[@]}): " userInput
+read -rp "🔢 Enter a number (1-${#tools[@]}): " userInput
 printf "\n"
 
 if [[ "$userInput" -eq 0 ]]; then
     exit 0
 elif ((userInput < 1 || userInput > ${#tools[@]})); then
-    echo "Invalid input. Exiting." >&2
+    echo "❗ Invalid input. Exiting." >&2
     exit 1
 fi
 
-# Map input to actual tool name
-tool="${tools[userInput - 1]}"
+label="${tools[userInput - 1]}"
+tool="$(awk '{print $2}' <<<"$label")"
 
-# Call appropriate function
-case $tool in
-bash) bash ;;
-custom_scripts) custom_scripts ;;
-vim) vim ;;
-posh) posh ;;
-zsh) zsh ;;
-wallpapers) wallpapers ;;
-"bash_it (powerline-naked-edited theme)") bash_it ;;
-"systemd user services") operate "systemd" ;;
-*) operate "$tool" ;;
+# 🛠️ Dispatch
+case "$tool" in
+bash) bash "$label" ;;
+custom_scripts) custom_scripts "$label" ;;
+vim) vim "$label" ;;
+posh) posh "$label" ;;
+zsh) zsh "$label" ;;
+wallpapers) wallpapers "$label" ;;
+bash_it) bash_it "$label" ;;
+*) operate "$tool" "$label" ;;
 esac
