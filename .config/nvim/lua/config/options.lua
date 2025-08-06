@@ -63,6 +63,17 @@ vim.diagnostic.config({
         -- prefix = "",
         focusable = false,
         -- max_width = 60,
+        close_events = {
+            "BufLeave",
+            "BufHidden",
+            "InsertEnter",
+            "CursorMoved",
+            "CursorMovedI",
+            "InsertCharPre",
+            "LspAttach",
+            "LspDetach",
+            "WinLeave",
+        },
     },
 })
 
