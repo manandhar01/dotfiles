@@ -8,5 +8,6 @@ return {
         vim.g.gruvbox_material_enable_italic = 1
         vim.g.gruvbox_material_transparent_background = 2
         vim.g.gruvbox_material_sign_column_background = "grey"
+        vim.g.gruvbox_material_current_word = "grey background"
     end,
 }
