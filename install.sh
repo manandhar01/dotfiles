@@ -19,8 +19,11 @@ function install_symlink_if_missing() {
             if $dry_run; then
                 printf "%s🔍 [DRY RUN] Would symlink: %s -> %s%s\n" "$YELLOW" "$dst" "$src" "$RESET"
             else
-                ln -rs "$src" "$dst"
-                printf "%s✅ Installed: %s%s\n" "$GREEN" "$dst" "$RESET"
+                if ln -s "$src" "$dst"; then
+                    printf "%s✅ Installed: %s%s\n" "$GREEN" "$dst" "$RESET"
+                else
+                    printf "%s❌ Failed to install: %s%s\n" "$RED" "$dst" "$RESET"
+                fi
             fi
         else
             printf "✔️ Exists: %s (skipped)\n" "$dst"
@@ -35,8 +38,11 @@ function install_symlink_if_missing() {
                 if $dry_run; then
                     printf "%s🔍 [DRY RUN] Would symlink: %s -> %s%s\n" "$YELLOW" "$target" "$file" "$RESET"
                 else
-                    ln -rs "$file" "$target"
-                    printf "%s✅ Installed: %s%s\n" "$GREEN" "$target" "$RESET"
+                    if ln -s "$file" "$target"; then
+                        printf "%s✅ Installed: %s%s\n" "$GREEN" "$target" "$RESET"
+                    else
+                        printf "%s❌ Failed to install: %s%s\n" "$RED" "$target" "$RESET"
+                    fi
                 fi
             else
                 printf "✔️ Exists: %s (skipped)\n" "$target"
@@ -56,8 +62,11 @@ function remove_symlink_if_present() {
             if $dry_run; then
                 printf "%s🔍 [DRY RUN] Would delete: %s%s\n" "$YELLOW" "$dst" "$RESET"
             else
-                rm -rf "$dst"
-                printf "%s🗑️ Deleted: %s%s\n" "$RED" "$dst" "$RESET"
+                if rm -rf "$dst"; then
+                    printf "%s🗑️ Deleted: %s%s\n" "$RED" "$dst" "$RESET"
+                else
+                    printf "%s❌ Failed to delete: %s%s\n" "$YELLOW" "$dst" "$RESET"
+                fi
             fi
         else
             printf "✔️ Does not exist: %s (skipped)\n" "$dst"
@@ -71,8 +80,11 @@ function remove_symlink_if_present() {
                 if $dry_run; then
                     printf "%s🔍 [DRY RUN] Would delete: %s%s\n" "$YELLOW" "$target" "$RESET"
                 else
-                    rm -rf "$target"
-                    printf "%s🗑️ Deleted: %s%s\n" "$RED" "$target" "$RESET"
+                    if rm -rf "$target"; then
+                        printf "%s🗑️ Deleted: %s%s\n" "$RED" "$target" "$RESET"
+                    else
+                        printf "%s❌ Failed to delete: %s%s\n" "$YELLOW" "$target" "$RESET"
+                    fi
                 fi
             else
                 printf "✔️ Does not exist: %s (skipped)\n" "$target"
