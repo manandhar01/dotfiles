@@ -91,6 +91,20 @@ function remove_symlink_if_present() {
             fi
         done
 
+        find "$dst" -type l | while IFS= read -r link; do
+            if [ ! -e "$link" ]; then
+                if $dry_run; then
+                    printf "%s🔍 [DRY RUN] Would remove broken symlink: %s%s\n" "$YELLOW" "$link" "$RESET"
+                else
+                    if rm -f "$link"; then
+                        printf "%s🗑️ Removed broken symlink: %s%s\n" "$RED" "$link" "$RESET"
+                    else
+                        printf "%s❌ Failed to remove broken symlink: %s%s\n" "$YELLOW" "$link" "$RESET"
+                    fi
+                fi
+            fi
+        done
+
         if ! $dry_run; then
             printf "\n%s🧹 Cleaning up...%s\n\n" "$GREEN" "$RESET"
 
