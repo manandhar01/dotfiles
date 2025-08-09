@@ -90,7 +90,36 @@ function remove_symlink_if_present() {
                 printf "✔️ Does not exist: %s (skipped)\n" "$target"
             fi
         done
+        cleanup "$1" "$2"
+    else
+        printf "%s⚠️ Warning: %s does not exist or is not a regular file/directory%s\n" "$YELLOW" "$src" "$RESET" >&2
+    fi
+}
 
+function cleanup() {
+    local src="$1"
+    local dst="$2"
+
+    if [ -f "$dst" ]; then
+        return
+    fi
+
+    if [ -L "$dst" ]; then
+        if [ ! -e "$dst" ]; then
+            if $dry_run; then
+                printf "%s🔍 [DRY RUN] Would remove broken symlink: %s%s\n" "$YELLOW" "$dst" "$RESET"
+            fi
+        else
+            if rm -f "$dst"; then
+                printf "%s🗑️ Removed broken symlink: %s%s\n" "$RED" "$dst" "$RESET"
+            else
+                printf "%s❌ Failed to remove broken symlink: %s%s\n" "$YELLOW" "$dst" "$RESET"
+            fi
+
+        fi
+    fi
+
+    if [ -d "$dst" ]; then
         find "$dst" -type l | while IFS= read -r link; do
             if [ ! -e "$link" ]; then
                 if $dry_run; then
@@ -106,8 +135,6 @@ function remove_symlink_if_present() {
         done
 
         if ! $dry_run; then
-            printf "\n%s🧹 Cleaning up...%s\n\n" "$GREEN" "$RESET"
-
             find "$src" -depth -type d | while read -r dir; do
                 rel_path="${dir#"$src"/}"
                 target_dir="$dst/$rel_path"
@@ -123,8 +150,6 @@ function remove_symlink_if_present() {
                 printf "%s🗑️ Removed empty directory: %s%s\n" "$RED" "$dst" "$RESET"
             fi
         fi
-    else
-        printf "%s⚠️ Warning: %s does not exist or is not a regular file/directory%s\n" "$YELLOW" "$src" "$RESET" >&2
     fi
 }
 
@@ -133,80 +158,46 @@ function operate() {
     local src_path="$script_dir/.config/$tool"
     local dst_path="$HOME/.config/$tool"
 
-    if [[ "$operation" -eq 2 ]]; then
-        remove_symlink_if_present "$src_path" "$dst_path"
-    else
-        install_symlink_if_missing "$src_path" "$dst_path"
-    fi
+    "$2" "$src_path" "$dst_path"
 }
 
-function bash() {
-    if [[ "$operation" -eq 2 ]]; then
-        remove_symlink_if_present "$script_dir/.bashrc" "$HOME/.bashrc"
-        remove_symlink_if_present "$script_dir/.inputrc" "$HOME/.inputrc"
-    else
-        install_symlink_if_missing "$script_dir/.bashrc" "$HOME/.bashrc"
-        install_symlink_if_missing "$script_dir/.inputrc" "$HOME/.inputrc"
-    fi
+function bash_setup() {
+    "$1" "$script_dir/.bashrc" "$HOME/.bashrc"
+    "$1" "$script_dir/.inputrc" "$HOME/.inputrc"
 }
 
 function custom_scripts() {
     local src="$script_dir/bin"
     local dst="$HOME/bin"
 
-    if [[ "$operation" -eq 2 ]]; then
-        remove_symlink_if_present "$src" "$dst"
-    else
-        install_symlink_if_missing "$src" "$dst"
-    fi
+    "$1" "$src" "$dst"
 }
 
 function wallpapers() {
     local src="$script_dir/wallpapers"
     local dst="$HOME/wallpapers"
 
-    if [[ "$operation" -eq 2 ]]; then
-        remove_symlink_if_present "$src" "$dst"
-    else
-        install_symlink_if_missing "$src" "$dst"
-    fi
+    "$1" "$src" "$dst"
 }
 
 function vim() {
-    if [[ "$operation" -eq 2 ]]; then
-        remove_symlink_if_present "$script_dir/.vim" "$HOME/.vim"
-        remove_symlink_if_present "$script_dir/.vimrc" "$HOME/.vimrc"
-    else
-        install_symlink_if_missing "$script_dir/.vim" "$HOME/.vim"
-        install_symlink_if_missing "$script_dir/.vimrc" "$HOME/.vimrc"
-    fi
+    "$1" "$script_dir/.vim" "$HOME/.vim"
+    "$1" "$script_dir/.vimrc" "$HOME/.vimrc"
 }
 
 function posh() {
-    if [[ "$operation" -eq 2 ]]; then
-        remove_symlink_if_present "$script_dir/.poshthemes" "$HOME/.poshthemes"
-    else
-        install_symlink_if_missing "$script_dir/.poshthemes" "$HOME/.poshthemes"
-    fi
+    "$1" "$script_dir/.poshthemes" "$HOME/.poshthemes"
 }
 
 function zsh() {
-    if [[ "$operation" -eq 2 ]]; then
-        remove_symlink_if_present "$script_dir/.zshrc" "$HOME/.zshrc"
-    else
-        install_symlink_if_missing "$script_dir/.zshrc" "$HOME/.zshrc"
-    fi
+    "$1" "$script_dir/.zshrc" "$HOME/.zshrc"
 }
 
 function bash_it() {
     local theme_path="$HOME/.bash_it/themes/powerline-naked-edited"
     local src_path="$script_dir/.bash_it/themes/powerline-naked-edited"
 
-    if [[ "$operation" -eq 2 ]]; then
-        remove_symlink_if_present "$src_path" "$theme_path"
-    else
-        install_symlink_if_missing "$src_path" "$theme_path"
-    fi
+    "$1" "$src_path" "$theme_path"
 }
 
 while [[ "$1" != "" ]]; do
@@ -219,6 +210,7 @@ done
 printf "\n%s👉 Please select an operation:%s\n" "$GREEN" "$RESET"
 printf " 1) 🛠️ Install\n"
 printf " 2) 🗑️ Remove\n"
+printf " 3) 🧹 Clean Up\n"
 printf " 0) ❌ Exit\n\n"
 
 read -rp "${YELLOW}🔢 Enter a number: ${RESET}" operation
@@ -226,7 +218,7 @@ read -rp "${YELLOW}🔢 Enter a number: ${RESET}" operation
 if [[ "$operation" -eq 0 ]]; then
     printf "\n%s🚶🏼‍♂️ Exiting%s\n\n" "$RED" "$RESET"
     exit 0
-elif [[ "$operation" -ne 1 && "$operation" -ne 2 ]]; then
+elif [[ "$operation" -ne 1 && "$operation" -ne 2 && "$operation" -ne 3 ]]; then
     printf "\n%s❗ Invalid input. 🚶🏼‍♂️ Exiting.%s\n\n" "$RED" "$RESET" >&2
     exit 1
 fi
@@ -276,31 +268,44 @@ printf "\n%s⏳ Operating on %s...%s\n" "$GREEN" "$label" "$RESET"
 if $dry_run; then
     printf "\n%s🔍 Dry running %s...%s\n" "$GREEN" "$label" "$RESET"
 else
-    if [[ "$operation" -eq 2 ]]; then
+    if [[ "$operation" -eq 1 ]]; then
+        printf "\n%s🛠️ Installing %s...%s\n\n" "$GREEN" "$label" "$RESET"
+    elif [[ "$operation" -eq 2 ]]; then
         printf "\n%s🚮 Removing %s...%s\n\n" "$RED" "$label" "$RESET"
     else
-        printf "\n%s🛠️ Installing %s...%s\n\n" "$GREEN" "$label" "$RESET"
+        printf "\n%s🧹 Cleaning Up %s...%s\n\n" "$GREEN" "$label" "$RESET"
     fi
+fi
+
+operation_function=
+if [[ "$operation" -eq 1 ]]; then
+    operation_function=install_symlink_if_missing
+elif [[ "$operation" -eq 2 ]]; then
+    operation_function=remove_symlink_if_present
+else
+    operation_function=cleanup
 fi
 
 # 🛠️ Dispatch
 case "$tool" in
-bash) bash ;;
-custom_scripts) custom_scripts ;;
-vim) vim ;;
-posh) posh ;;
-zsh) zsh ;;
-wallpapers) wallpapers ;;
-bash_it) bash_it ;;
-*) operate "$tool" ;;
+bash) bash_setup "$operation_function" ;;
+custom_scripts) custom_scripts "$operation_function" ;;
+vim) vim "$operation_function" ;;
+posh) posh "$operation_function" ;;
+zsh) zsh "$operation_function" ;;
+wallpapers) wallpapers "$operation_function" ;;
+bash_it) bash_it "$operation_function" ;;
+*) operate "$tool" "$operation_function" ;;
 esac
 
 if $dry_run; then
     printf "\n%s💯 Dry Run Complete%s\n\n" "$GREEN" "$RESET"
 else
-    if [[ "$operation" -eq 2 ]]; then
+    if [[ "$operation" -eq 1 ]]; then
+        printf "\n%s💯 Installation Complete%s\n\n" "$GREEN" "$RESET"
+    elif [[ "$operation" -eq 2 ]]; then
         printf "\n%s💯 Removal Complete%s\n\n" "$RED" "$RESET"
     else
-        printf "\n%s💯 Installation Complete%s\n\n" "$GREEN" "$RESET"
+        printf "\n%s💯 Clean Up Complete%s\n\n" "$RED" "$RESET"
     fi
 fi
