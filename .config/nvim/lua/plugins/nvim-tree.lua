@@ -83,7 +83,7 @@ return {
 
             local preview = require("nvim-tree-preview")
 
-            vim.keymap.set("n", "p", preview.watch, opts("Preview (Watch)"))
+            vim.keymap.set("n", "pp", preview.watch, opts("Preview (Watch)"))
             vim.keymap.set("n", "<Esc>", preview.unwatch, opts("Close Preview/Unwatch"))
 
             vim.keymap.set("n", "<Tab>", function()
