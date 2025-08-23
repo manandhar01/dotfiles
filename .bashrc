@@ -143,7 +143,8 @@ export SCM_CHECK=true
 # export BASH_IT_COMMAND_DURATION=true
 # You can choose the minimum time in seconds before
 # command duration is displayed.
-#export COMMAND_DURATION_MIN_SECONDS=1
+# export COMMAND_DURATION_MIN_SECONDS=1
+# export COMMAND_DURATION_PROMPT_COLOR=2
 
 # Set Xterm/screen/Tmux title with shortened command and directory.
 # Uncomment this to set.
