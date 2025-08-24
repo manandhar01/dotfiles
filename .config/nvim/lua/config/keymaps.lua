@@ -24,6 +24,9 @@ end
 
 local opts = { noremap = true, silent = true }
 
+vim.api.nvim_set_keymap("n", "gg", "gg0", opts)
+vim.api.nvim_set_keymap("n", "G", "G$", opts)
+
 vim.api.nvim_set_keymap("n", "<leader>tw", "<Cmd>lua ToggleWrap()<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>ic", "<Cmd>lua ToggleIgnoreCase()<CR>", opts)
 
