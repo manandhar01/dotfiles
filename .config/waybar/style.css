@@ -72,6 +72,7 @@ window {
 #wireplumber,
 #bluetooth,
 #window,
+#custom-arch-updates,
 #tray {
     border-bottom: 3px solid;
     margin: 0 1px;
@@ -176,4 +177,12 @@ window {
 .paused,
 .muted {
     color: #a5a5a5;
+}
+
+.updates {
+    color: #ead196;
+}
+
+.uptodate {
+    color: #60d394;
 }

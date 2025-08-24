@@ -21,6 +21,7 @@
         "network",
         "wireplumber",
         "bluetooth",
+        "custom/arch-updates",
         "backlight",
         "battery",
         "tray"
@@ -199,5 +200,12 @@
         "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
         "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
         "on-click": "~/bin/waybar/bluetooth_connect.sh"
+    },
+
+    "custom/arch-updates": {
+        "exec": "~/bin/waybar/arch_updates.sh",
+        "interval": 600,
+        "return-type": "json",
+        "format": "󰏗 {text}"
     }
 }
