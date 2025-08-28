@@ -6,21 +6,23 @@
 get_spotify_status() {
     # Check if Spotify is running
     if pgrep -x "spotify" >/dev/null; then
-        # Fetch the status, title, artist, and mute status
+        # Fetch the status, title, artist, and volume
         status=$(playerctl --player=spotify status 2>/dev/null)
         title=$(playerctl --player=spotify metadata title 2>/dev/null)
         artist=$(playerctl --player=spotify metadata artist 2>/dev/null)
-        # muted=$(playerctl --player=spotify volume 2>/dev/null)
+        volume=$(playerctl --player=spotify volume 2>/dev/null)
 
         # Determine class based on status
         if [ "$status" = "Playing" ]; then
-            class="playing"
-            status_text="$title - $artist"
-        elif [ "$status" = "Paused" ]; then
-            class="paused"
-            status_text="$title - $artist"
+            if (($(echo "$volume <= 0" | bc -l))); then
+                class="muted"
+                status_text="$title - $artist"
+            else
+                class="playing"
+                status_text="$title - $artist"
+            fi
         else
-            class="muted"
+            class="paused"
             status_text="$title - $artist"
         fi
 
