@@ -24,6 +24,7 @@
         "custom/arch-updates",
         "backlight",
         "battery",
+        "privacy",
         "tray"
     ],
 
@@ -207,5 +208,23 @@
         "interval": 600,
         "return-type": "json",
         "format": "󰏗 {text}"
+    },
+
+    "privacy": {
+        "icon-size": 14,
+        "modules": [
+            {
+                "type": "screenshare",
+                "tooltip-icon-size": 14
+            },
+            {
+                "type": "audio-out",
+                "tooltip-icon-size": 14
+            },
+            {
+                "type": "audio-in",
+                "tooltip-icon-size": 14
+            }
+        ]
     }
 }
