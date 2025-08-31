@@ -74,7 +74,8 @@ window {
 #window,
 #custom-arch-updates,
 #privacy,
-#tray {
+#tray,
+#custom-power {
     border-bottom: 3px solid;
     margin: 0 1px;
 }
@@ -162,7 +163,8 @@ window {
     color: #ffa500;
 }
 
-#tray {
+#tray,
+#custom-power {
     color: #95d2b3;
 }
 
