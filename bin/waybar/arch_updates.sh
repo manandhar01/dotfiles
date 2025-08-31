@@ -13,26 +13,38 @@ try_checkupdates() {
     local attempt=1
 
     while [ $attempt -le $retries ]; do
-        if updates=$(checkupdates 2>/dev/null); then
+        local updates
+        updates=$(checkupdates 2>/dev/null || true)
+
+        if [[ -n "$updates" ]]; then
             echo "$updates"
             return 0
         fi
+
         sleep $delay
         ((attempt++))
     done
 
-    return 1
+    return 0
 }
 
-# Get pacman updates
-pacman_output=$(try_checkupdates || echo "")
-pacman_updates=$(echo "$pacman_output" | grep -c '.*')
-pacman_list=$(echo "$pacman_output" | awk '{print $1 " " $2 " -> " $4}' | paste -sd "\\n" -)
+pacman_output=$(try_checkupdates)
+if [[ -n "$pacman_output" ]]; then
+    pacman_updates=$(echo "$pacman_output" | wc -l)
+    pacman_list=$(echo "$pacman_output" | awk '{print $1 " " $2 " -> " $4}')
+else
+    pacman_updates=0
+    pacman_list=""
+fi
 
-# Get AUR updates
-aur_output=$(yay -Qua 2>/dev/null)
-aur_updates=$(echo "$aur_output" | grep -c '.*')
-aur_list=$(echo "$aur_output" | awk '{print $1 " " $2 " -> " $4}' | paste -sd "\\n" -)
+aur_output=$(yay -Qua 2>/dev/null || true)
+if [[ -n "$aur_output" ]]; then
+    aur_updates=$(echo "$aur_output" | wc -l)
+    aur_list=$(echo "$aur_output" | awk '{print $1 " " $2 " -> " $4}')
+else
+    aur_updates=0
+    aur_list=""
+fi
 
 total=$((pacman_updates + aur_updates))
 
@@ -41,14 +53,12 @@ if [[ "$total" -gt 0 ]]; then
     if [[ -n "$pacman_list" ]]; then
         tooltip="$tooltip\n$pacman_list"
     fi
+
     if [[ "$aur_updates" -gt 0 ]]; then
         tooltip="$tooltip\n\nAUR: $aur_updates"
-        if [[ -n "$aur_list" ]]; then
-            tooltip="$tooltip\n$aur_list"
-        fi
+        tooltip="$tooltip\n$aur_list"
     fi
 
-    # Escape JSON properly: backslashes, double quotes, and newlines
     tooltip_json=$(echo -e "$tooltip" | sed 's/\\/\\\\/g; s/"/\\"/g; s/$/\\n/' | tr -d '\n')
 
     printf '{"text":"%s","tooltip":"%s","class":"updates"}\n' \
