@@ -25,7 +25,8 @@
         "backlight",
         "battery",
         "privacy",
-        "tray"
+        "tray",
+        "custom/power"
     ],
 
     "sway/workspaces": {
@@ -226,5 +227,19 @@
                 "tooltip-icon-size": 14
             }
         ]
+    },
+
+    "custom/power": {
+        "format" : " ⏻ ",
+        "tooltip": false,
+        "menu": "on-click",
+        "menu-file": "~/.config/waybar/menus/power_menu.xml",
+        "menu-actions": {
+            "lock": "swaylock -c 550000",
+            "shutdown": "shutdown",
+            "reboot": "reboot",
+            "suspend": "systemctl suspend",
+            "hibernate": "systemctl hibernate"
+        }
     }
 }
