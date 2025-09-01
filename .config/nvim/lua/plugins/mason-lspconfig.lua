@@ -8,9 +8,9 @@ return {
                 "cssls",
                 "lua_ls",
                 "ts_ls",
-                "texlab",
-                "gopls",
-                "rust_analyzer",
+                -- "texlab",
+                -- "gopls",
+                -- "rust_analyzer",
             },
             automatic_enable = {
                 exclude = {

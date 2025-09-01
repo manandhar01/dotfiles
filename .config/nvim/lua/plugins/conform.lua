@@ -37,9 +37,9 @@ return {
             sh = { "shfmt" },
             css = { "prettier" },
             json = { "prettier", "jq", stop_after_first = true },
-            go = { "gofumpt" },
-            sql = { "sleek" },
-            tex = { "tex-fmt" },
+            -- go = { "gofumpt" },
+            -- sql = { "sleek" },
+            -- tex = { "tex-fmt" },
         },
     },
 }

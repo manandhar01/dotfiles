@@ -5,12 +5,12 @@ return {
             markdown = { "vale" },
             typescript = { "eslint_d" },
             javascript = { "eslint_d" },
-            lua = { "luacheck" },
+            -- lua = { "luacheck" },
             sh = { "shellcheck" },
             bash = { "shellcheck" },
-            ruby = { "rubocop" },
+            -- ruby = { "rubocop" },
             python = { "pylint" },
-            go = { "golangcilint" },
+            -- go = { "golangcilint" },
         }
 
         -- vim.api.nvim_create_autocmd({ "BufWritePost" }, {
