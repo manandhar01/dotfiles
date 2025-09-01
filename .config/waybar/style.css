@@ -75,7 +75,8 @@ window {
 #custom-arch-updates,
 #privacy,
 #tray,
-#custom-power {
+#custom-power,
+#custom-notification {
     border-bottom: 3px solid;
     margin: 0 1px;
 }
@@ -181,8 +182,13 @@ window {
     color: #60d394;
 }
 
+.active {
+    color: #d4bee4;
+}
+
 .paused,
-.muted {
+.muted,
+.silent {
     color: #a5a5a5;
 }
 

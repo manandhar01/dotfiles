@@ -14,7 +14,10 @@
         "sway/mode"
     ],
 
-    "modules-center": ["clock"],
+    "modules-center": [
+        "clock",
+        "custom/notification"
+    ],
 
     "modules-right": [
         "custom/spotify",
@@ -241,5 +244,13 @@
             "suspend": "systemctl suspend",
             "hibernate": "systemctl hibernate"
         }
+    },
+
+    "custom/notification": {
+        "format": "{text}",
+        "return-type": "json",
+        "exec": "~/.config/waybar/scripts/notify_toggle.sh",
+        "on-click": "~/.config/waybar/scripts/notify_toggle.sh toggle",
+        "interval": 5
     }
 }
