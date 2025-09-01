@@ -73,7 +73,9 @@ window {
 #bluetooth,
 #window,
 #custom-arch-updates,
-#tray {
+#privacy,
+#tray,
+#custom-power {
     border-bottom: 3px solid;
     margin: 0 1px;
 }
@@ -157,7 +159,12 @@ window {
     color: #f95454;
 }
 
-#tray {
+#privacy {
+    color: #ffa500;
+}
+
+#tray,
+#custom-power {
     color: #95d2b3;
 }
 

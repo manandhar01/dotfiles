@@ -24,7 +24,9 @@
         "custom/arch-updates",
         "backlight",
         "battery",
-        "tray"
+        "privacy",
+        "tray",
+        "custom/power"
     ],
 
     "sway/workspaces": {
@@ -79,27 +81,27 @@
         "format": "󱛡 {:%a|%F|%r}",
         "interval": 1,
         "tooltip-format": "<tt><small>{calendar}</small></tt>",
-            "calendar": {
-                "mode"          : "year",
-                "mode-mon-col"  : 3,
-                "weeks-pos"     : "right",
-                "on-scroll"     : 1,
-                "on-click-right": "mode",
-                "format": {
-                    "months":     "<span color='#ffead3'><b>{}</b></span>",
-                    "days":       "<span color='#ecc6d9'><b>{}</b></span>",
-                    "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
-                    "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
-                    "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
-                }
-            },
-            "actions": {
-                "on-click-right": "mode",
-                "on-click-forward": "tz_up",
-                "on-click-backward": "tz_down",
-                "on-scroll-up": "shift_up",
-                "on-scroll-down": "shift_down"
+        "calendar": {
+            "mode": "year",
+            "mode-mon-col": 3,
+            "weeks-pos": "right",
+            "on-scroll": 1,
+            "on-click-right": "mode",
+            "format": {
+                "months": "<span color='#ffead3'><b>{}</b></span>",
+                "days": "<span color='#ecc6d9'><b>{}</b></span>",
+                "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+                "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+                "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
             }
+        },
+        "actions": {
+            "on-click-right": "mode",
+            "on-click-forward": "tz_up",
+            "on-click-backward": "tz_down",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        }
     },
 
     "cpu": {
@@ -116,14 +118,14 @@
 
     "custom/network-speed": {
         "format": "{}",
-        "exec": "~/bin/networkSpeed.sh",
+        "exec": "~/.config/waybar/scripts/network_speed.sh",
         "interval": 1,
         "return-type": "json"
     },
 
     "custom/spotify": {
         "format": " {}",
-        "exec": "~/bin/spotifyStatusCheck.sh",
+        "exec": "~/.config/waybar/scripts/spotify_status_check.sh",
         "exec-if": "pgrep -x spotify > /dev/null",
         "return-type": "json",
         "interval": 2,
@@ -159,7 +161,7 @@
         "tooltip-format-linked": "Linked",
         "tooltip-format-disconnected": "Disconnected",
         "tooltip-format-disabled": "Disabled",
-        "on-click": "~/bin/toggleNetworkStatus.sh"
+        "on-click": "~/.config/waybar/scripts/toggle_network_status.sh"
     },
 
     "wireplumber": {
@@ -172,7 +174,7 @@
             "default": ["󰕿", "󰖀", "󰕾"],
             "muted": "󰖁"
         },
-        "on-click": "~/bin/waybar/device_switcher.sh",
+        "on-click": "~/.config/waybar/scripts/device_switcher.sh",
         "on-click-right": "wpctl set-mute @DEFAULT_SINK@ toggle",
         "on-scroll-up": "wpctl set-mute @DEFAULT_SINK@ 0 && wpctl set-volume @DEFAULT_SINK@ 1%+",
         "on-scroll-down": "wpctl set-mute @DEFAULT_SINK@ 0 && wpctl set-volume @DEFAULT_SINK@ 1%-"
@@ -199,13 +201,45 @@
         "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
         "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
         "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
-        "on-click": "~/bin/waybar/bluetooth_connect.sh"
+        "on-click": "~/.config/waybar/scripts/bluetooth_connect.sh"
     },
 
     "custom/arch-updates": {
-        "exec": "~/bin/waybar/arch_updates.sh",
+        "exec": "~/.config/waybar/scripts/arch_updates.sh",
         "interval": 600,
         "return-type": "json",
         "format": "󰏗 {text}"
+    },
+
+    "privacy": {
+        "icon-size": 14,
+        "modules": [
+            {
+                "type": "screenshare",
+                "tooltip-icon-size": 14
+            },
+            {
+                "type": "audio-out",
+                "tooltip-icon-size": 14
+            },
+            {
+                "type": "audio-in",
+                "tooltip-icon-size": 14
+            }
+        ]
+    },
+
+    "custom/power": {
+        "format" : " ⏻ ",
+        "tooltip": false,
+        "menu": "on-click",
+        "menu-file": "~/.config/waybar/menus/power_menu.xml",
+        "menu-actions": {
+            "lock": "swaylock -c 550000",
+            "shutdown": "shutdown",
+            "reboot": "reboot",
+            "suspend": "systemctl suspend",
+            "hibernate": "systemctl hibernate"
+        }
     }
 }

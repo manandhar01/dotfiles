@@ -6,11 +6,12 @@ return {
                 "bashls",
                 "css_variables",
                 "cssls",
-                "lua_ls",
-                "ts_ls",
-                -- "texlab",
                 -- "gopls",
+                "lemminx",
+                "lua_ls",
                 -- "rust_analyzer",
+                -- "texlab",
+                "ts_ls",
             },
             automatic_enable = {
                 exclude = {
