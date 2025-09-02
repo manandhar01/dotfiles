@@ -27,13 +27,25 @@ return {
                 lsp_format = lsp_format_opt,
             }
         end,
+        formatters = {
+            prettier_json = {
+                command = "prettier",
+                args = {
+                    "--stdin-filepath",
+                    "$FILENAME",
+                    "--parser",
+                    "json",
+                },
+                stdin = true,
+            },
+        },
         formatters_by_ft = {
             bash = { "shfmt" },
             css = { "prettier" },
             go = { "gofumpt" },
             javascript = { "prettier" },
             javascriptreact = { "prettier" },
-            json = { "prettier", "jq", stop_after_first = true },
+            json = { "prettier_json", "jq", stop_after_first = true },
             lua = { "stylua" },
             sh = { "shfmt" },
             sql = { "sleek" },
