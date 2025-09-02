@@ -14,10 +14,7 @@
         "sway/mode"
     ],
 
-    "modules-center": [
-        "clock",
-        "custom/notification"
-    ],
+    "modules-center": ["clock", "custom/notification"],
 
     "modules-right": [
         "custom/spotify",
@@ -233,7 +230,7 @@
     },
 
     "custom/power": {
-        "format" : " ⏻ ",
+        "format": " ⏻ ",
         "tooltip": false,
         "menu": "on-click",
         "menu-file": "~/.config/waybar/menus/power_menu.xml",
