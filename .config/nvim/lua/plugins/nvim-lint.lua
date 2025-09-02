@@ -11,7 +11,6 @@ return {
             ruby = { "rubocop" },
             sh = { "shellcheck" },
             typescript = { "eslint_d" },
-            xml = { "sonarlintlanguageserver" },
         }
 
         -- vim.api.nvim_create_autocmd({ "BufWritePost" }, {
