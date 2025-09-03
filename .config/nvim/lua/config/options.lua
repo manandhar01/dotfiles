@@ -45,6 +45,14 @@ vim.opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpo
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
 
+vim.api.nvim_set_hl(0, "Search", { bg = "#665c54", fg = "#cccccc", bold = true })
+vim.api.nvim_set_hl(0, "IncSearch", { bg = "#8ec07c", fg = "#000000", bold = true })
+vim.api.nvim_set_hl(0, "CursorLine", { bg = "#32302f" })
+vim.api.nvim_set_hl(0, "CursorColumn", { bg = "#3c3836" })
+vim.api.nvim_set_hl(0, "CursorLineNr", { bold = true })
+vim.api.nvim_set_hl(0, "Visual", { bg = "#213842", fg = "NONE" })
+vim.api.nvim_set_hl(0, "Cursor", { fg = "NONE", bg = "#83a598" })
+
 vim.fn.sign_define("DiagnosticSignError", { text = "✘", texthl = "DiagnosticSignError" })
 vim.fn.sign_define("DiagnosticSignWarn", { text = "⚑", texthl = "DiagnosticSignWarn" })
 vim.fn.sign_define("DiagnosticSignInfo", { text = "", texthl = "DiagnosticSignInfo" })
