@@ -20,6 +20,9 @@ alias convert2monochrome='/home/manandhar/bin/monochromed-pdf/convert2monochrome
 # alias for egrep
 alias egrep='grep -E'
 
+# alias for lazygit
+alias lg='lazygit'
+
 # alias for vi
 alias vi='vim'
 
