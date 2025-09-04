@@ -100,6 +100,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias syncClasses='sl syncClasses && prettier --config .prettierrc --write --loglevel error ./src'
+alias lg='lazygit'
 export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
 
 export PATH="/Users/manandhar/Downloads/Fortify_ScanCentral_Client_22.2.1_x64/bin:/opt/homebrew/bin:$PATH"
