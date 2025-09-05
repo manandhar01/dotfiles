@@ -53,6 +53,7 @@ return {
             typescript = { "prettier" },
             typescriptreact = { "prettier" },
             xml = { "xmlformatter" },
+            yaml = { "prettier" },
         },
     },
 }
