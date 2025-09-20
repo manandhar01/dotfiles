@@ -20,15 +20,25 @@ tx_speed=$((final_tx - initial_tx))
 
 convert_speed() {
     local speed=$1
-    if ((speed >= 1073741824)); then
-        echo "$(echo "scale=2; $speed / 1073741824" | bc) GB/s"
-    elif ((speed >= 1048576)); then
-        echo "$(echo "scale=2; $speed / 1048576" | bc) MB/s"
-    elif ((speed >= 1024)); then
-        echo "$(echo "scale=2; $speed / 1024" | bc) kB/s"
-    else
-        echo "$speed B/s"
+    local unit="B/s"
+    local value=$speed
+
+    # Promote units so the value stays < 1024
+    if ((value >= 1024)); then
+        value=$(echo "scale=2; $value/1024" | bc -l)
+        unit="kB/s"
     fi
+    if (($(echo "$value >= 1024" | bc -l))); then
+        value=$(echo "scale=2; $value/1024" | bc -l)
+        unit="MB/s"
+    fi
+    if (($(echo "$value >= 1024" | bc -l))); then
+        value=$(echo "scale=2; $value/1024" | bc -l)
+        unit="GB/s"
+    fi
+
+    # Always print with width 6, 2 decimals + unit
+    printf "%6.2f %s" "$value" "$unit"
 }
 
 rx_speed_display=$(convert_speed $rx_speed)
