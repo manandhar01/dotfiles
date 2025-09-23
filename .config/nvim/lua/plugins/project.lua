@@ -1,10 +1,11 @@
 return {
-    "ahmedkhalf/project.nvim",
-    config = function()
-        require("project_nvim").setup({
-            show_hidden = true,
-        })
-
-        require("telescope").load_extension("projects")
-    end,
+    "DrKJeff16/project.nvim",
+    dependencies = {
+        "nvim-lua/plenary.nvim",
+        "nvim-telescope/telescope.nvim",
+    },
+    opts = {
+        show_hidden = true,
+    },
+    cond = vim.fn.has("nvim-0.11") == 1,
 }

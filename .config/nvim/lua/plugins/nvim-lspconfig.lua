@@ -7,16 +7,6 @@ return {
     },
 
     config = function()
-        local lspconfig = require("lspconfig")
-        local util = require("lspconfig.util")
-
-        lspconfig.ts_ls.setup({
-            root_dir = function(fname)
-                return util.root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git")(fname)
-                    or util.path.dirname(fname) -- fallback: use file’s directory
-            end,
-        })
-
         local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
         vim.lsp.config("ts_ls", {
