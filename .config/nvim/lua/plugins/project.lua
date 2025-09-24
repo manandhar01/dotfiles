@@ -1,6 +1,7 @@
 return {
     "DrKJeff16/project.nvim",
     dependencies = {
+        "ibhagwan/fzf-lua",
         "nvim-lua/plenary.nvim",
         "nvim-telescope/telescope.nvim",
     },
