@@ -53,14 +53,16 @@ vim.api.nvim_set_hl(0, "CursorLineNr", { bold = true })
 vim.api.nvim_set_hl(0, "Visual", { bg = "#213842", fg = "NONE" })
 vim.api.nvim_set_hl(0, "Cursor", { fg = "NONE", bg = "#83a598" })
 
-vim.fn.sign_define("DiagnosticSignError", { text = "✘", texthl = "DiagnosticSignError" })
-vim.fn.sign_define("DiagnosticSignWarn", { text = "⚑", texthl = "DiagnosticSignWarn" })
-vim.fn.sign_define("DiagnosticSignInfo", { text = "", texthl = "DiagnosticSignInfo" })
-vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
-
 vim.diagnostic.config({
     virtual_text = false,
-    signs = true,
+    signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = "✘",
+            [vim.diagnostic.severity.WARN] = "⚑",
+            [vim.diagnostic.severity.INFO] = "",
+            [vim.diagnostic.severity.HINT] = "",
+        },
+    },
     underline = true,
     update_in_insert = false,
     severity_sort = true,
