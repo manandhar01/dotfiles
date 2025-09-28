@@ -39,22 +39,45 @@ vim.api.nvim_create_autocmd("CursorHold", {
 })
 
 -- organize typescript imports
+local function get_import_block(bufnr)
+    local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+    local imports = {}
+    for _, line in ipairs(lines) do
+        if line:match("^%s*import%s") then
+            table.insert(imports, line)
+        end
+    end
+    return table.concat(imports, "\n")
+end
+
 vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = { "*.ts", "*.tsx", "*.js", "*.jsx" },
-    callback = function()
-        local params = {
-            command = "_typescript.organizeImports",
-            arguments = { vim.api.nvim_buf_get_name(0) },
-            title = "",
-        }
+    callback = function(args)
+        local bufnr = args.buf
+        local new_imports = get_import_block(bufnr)
 
-        local clients = vim.lsp.get_active_clients({ bufnr = 0 })
-        for _, client in ipairs(clients) do
-            if client.name == "ts_ls" then
-                vim.lsp.buf.execute_command(params)
-                break
+        if vim.b[bufnr].last_imports ~= new_imports then
+            print(12345)
+
+            local params = {
+                command = "_typescript.organizeImports",
+                arguments = { vim.api.nvim_buf_get_name(bufnr) },
+            }
+
+            local clients = vim.lsp.get_clients({ bufnr = bufnr })
+            for _, client in ipairs(clients) do
+                if client.name == "ts_ls" then
+                    local view = vim.fn.winsaveview()
+                    vim.lsp.buf_request_sync(bufnr, "workspace/executeCommand", params, 1000)
+                    vim.fn.winrestview(view)
+                    break
+                end
             end
+
+            vim.b[bufnr].last_imports = get_import_block(bufnr)
         end
+
+        require("conform").format({ bufnr = bufnr })
     end,
-    desc = "Organize imports on save",
+    desc = "Organize imports (if changed) and format before save",
 })
