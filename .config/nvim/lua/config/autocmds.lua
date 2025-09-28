@@ -57,8 +57,6 @@ vim.api.nvim_create_autocmd("BufWritePre", {
         local new_imports = get_import_block(bufnr)
 
         if vim.b[bufnr].last_imports ~= new_imports then
-            print(12345)
-
             local params = {
                 command = "_typescript.organizeImports",
                 arguments = { vim.api.nvim_buf_get_name(bufnr) },
