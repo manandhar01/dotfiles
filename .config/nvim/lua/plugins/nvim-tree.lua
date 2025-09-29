@@ -85,17 +85,6 @@ return {
 
             vim.keymap.set("n", "pp", preview.watch, opts("Preview (Watch)"))
             vim.keymap.set("n", "<Esc>", preview.unwatch, opts("Close Preview/Unwatch"))
-
-            vim.keymap.set("n", "<Tab>", function()
-                local ok, node = pcall(api.tree.get_node_under_cursor)
-                if ok and node then
-                    if node.type == "directory" then
-                        api.node.open.edit()
-                    else
-                        preview.node(node, { toggle_focus = true })
-                    end
-                end
-            end)
         end
 
         require("nvim-tree").setup({
