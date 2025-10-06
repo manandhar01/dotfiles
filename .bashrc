@@ -51,6 +51,7 @@ export ANDROID_HOME=/home/manandhar/Android
 export ANDROID_SDK_ROOT=/home/manandhar/Android
 export PATH=$PATH:/home/manandhar/bin
 export PATH=$PATH:/home/manandhar/.local/bin
+export PATH=$PATH:/home/manandhar/.cargo/bin
 export PATH=$PATH:/home/manandhar/.local/share/gem/ruby/3.0.0/bin
 export PATH=/opt/flutter/bin:$PATH
 export PATH=$PATH:$ANDROID_HOME/tools

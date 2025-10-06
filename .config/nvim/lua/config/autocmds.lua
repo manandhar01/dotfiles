@@ -41,20 +41,24 @@ vim.api.nvim_create_autocmd("CursorHold", {
 -- organize typescript imports
 vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = { "*.ts", "*.tsx", "*.js", "*.jsx" },
-    callback = function()
+    callback = function(args)
+        local bufnr = args.buf
         local params = {
             command = "_typescript.organizeImports",
-            arguments = { vim.api.nvim_buf_get_name(0) },
-            title = "",
+            arguments = { vim.api.nvim_buf_get_name(bufnr) },
         }
 
-        local clients = vim.lsp.get_active_clients({ bufnr = 0 })
+        local clients = vim.lsp.get_clients({ bufnr = bufnr })
         for _, client in ipairs(clients) do
             if client.name == "ts_ls" then
-                vim.lsp.buf.execute_command(params)
+                local view = vim.fn.winsaveview()
+                vim.lsp.buf_request_sync(bufnr, "workspace/executeCommand", params, 1000)
+                vim.fn.winrestview(view)
                 break
             end
         end
+
+        require("conform").format({ bufnr = bufnr })
     end,
-    desc = "Organize imports on save",
+    desc = "Organize imports and format before save",
 })

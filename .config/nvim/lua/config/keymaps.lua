@@ -33,7 +33,6 @@ vim.api.nvim_set_keymap("n", "<leader>tw", "<Cmd>lua ToggleWrap()<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>ic", "<Cmd>lua ToggleIgnoreCase()<CR>", opts)
 
 vim.api.nvim_set_keymap("n", "<leader>w", ":wa<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader>q", ":%bd|e#<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>y", ':let @+ = @"<CR>', opts)
 
 vim.api.nvim_set_keymap("n", "<Esc>", "<Cmd>noh<CR>", opts)
@@ -44,3 +43,12 @@ vim.api.nvim_set_keymap("n", "<C-k>", "<C-w>k", opts)
 vim.api.nvim_set_keymap("n", "<C-l>", "<C-w>l", opts)
 
 vim.api.nvim_set_keymap("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+
+vim.keymap.set("n", "<leader>q", function()
+    local cur = vim.api.nvim_get_current_buf()
+    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+        if vim.api.nvim_buf_is_loaded(buf) and buf ~= cur then
+            vim.api.nvim_buf_delete(buf, {})
+        end
+    end
+end, { desc = "Close all but current buffer" })
