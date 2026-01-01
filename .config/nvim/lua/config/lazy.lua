@@ -24,6 +24,18 @@ vim.g.maplocalleader = " "
 -- Setup lazy.nvim
 require("lazy").setup({
     spec = {
+        -- dotenv plugin
+        {
+            {
+                "tpope/vim-dotenv",
+                lazy = false, -- load immediately
+                config = function()
+                    -- automatically load `.env` from current working directory
+                    vim.cmd("Dotenv ~/.config/nvim/.env")
+                end,
+            },
+        },
+
         -- import your plugins
         { import = "plugins" },
     },
