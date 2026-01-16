@@ -326,4 +326,7 @@ assign [instance="discord"] workspace number 8
 input * repeat_delay 300
 input * repeat_rate 50
 
+# nm-applet
+exec_always --no-startup-id "nm-applet --indicator"
+
 include /etc/sway/config.d/*
