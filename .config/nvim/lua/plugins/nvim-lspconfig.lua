@@ -57,11 +57,27 @@ return {
                     vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
                 end
 
-                map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
-                map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
-                map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
+                local telescope = require("telescope.builtin")
+
+                map("gd", telescope.lsp_definitions, "[G]oto [D]efinition")
+                map("gr", telescope.lsp_references, "[G]oto [R]eferences")
+                map("gI", telescope.lsp_implementations, "[G]oto [I]mplementation")
                 map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
                 map("K", vim.lsp.buf.hover, "")
+
+                map("<C-g>d", function()
+                    telescope.lsp_definitions({ jump_type = "vsplit" })
+                end, "[Vsplit] Goto Definition")
+                map("<C-g>r", function()
+                    telescope.lsp_references({ jump_type = "vsplit" })
+                end, "[Vsplit] Goto References")
+                map("<C-g>I", function()
+                    telescope.lsp_implementations({ jump_type = "vsplit" })
+                end, "[Vsplit] Goto Implementation")
+                map("<C-g>D", function()
+                    vim.cmd("vsplit")
+                    vim.lsp.buf.declaration()
+                end, "[Vsplit] Goto Declaration")
 
                 map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
                 map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
