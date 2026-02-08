@@ -329,4 +329,7 @@ input * repeat_rate 50
 # nm-applet
 exec_always --no-startup-id "nm-applet --indicator"
 
+# blueman-applet
+exec_always --no-startup-id "blueman-applet"
+
 include /etc/sway/config.d/*
