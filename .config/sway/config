@@ -315,10 +315,10 @@ bindsym $mod+Ctrl+Shift+F5 exec wayshot -s "$(slurp -f '%x %y %w %h')" --stdout 
 
 # Assign Apps to certain workspace
 # assign [app_id="kitty"] workspace number 1
-assign [instance="chromium"] workspace number 3
+assign [app_id="chromium"] workspace number 3
 assign [instance="code"] workspace number 3
 assign [app_id="spotube"] workspace number 9
-assign [instance="spotify"] workspace number 9
+assign [app_id="spotify"] workspace number 9
 assign [instance="signal"] workspace number 8
 assign [instance="discord"] workspace number 8
 
@@ -328,5 +328,8 @@ input * repeat_rate 50
 
 # nm-applet
 exec_always --no-startup-id "nm-applet --indicator"
+
+# blueman-applet
+exec_always --no-startup-id "blueman-applet"
 
 include /etc/sway/config.d/*
