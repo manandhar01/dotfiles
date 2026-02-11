@@ -1,6 +1,11 @@
 return {
     "nvim-treesitter/nvim-treesitter-context",
-    config = function()
-        require("treesitter-context").setup()
-    end,
+    event = "BufRead",
+    dependencies = {
+        "nvim-treesitter/nvim-treesitter",
+        event = "BufRead",
+    },
+    opts = {
+        multiwindow = true,
+    },
 }
