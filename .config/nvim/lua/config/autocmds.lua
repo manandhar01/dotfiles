@@ -62,27 +62,3 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     end,
     desc = "Organize imports and format before save",
 })
-
--- treesitter
-vim.api.nvim_create_autocmd("FileType", {
-    callback = function(args)
-        local buf = args.buf
-        local ft = vim.bo[buf].filetype
-
-        if ft == "" or vim.bo[buf].buftype ~= "" then
-            return
-        end
-
-        local ok, lang = pcall(vim.treesitter.language.get_lang, ft)
-        if not ok or not lang then
-            return
-        end
-
-        local ok_parser = pcall(vim.treesitter.get_parser, buf, lang)
-        if not ok_parser then
-            return
-        end
-
-        vim.treesitter.start(buf)
-    end,
-})
