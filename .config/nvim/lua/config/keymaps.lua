@@ -49,6 +49,8 @@ vim.api.nvim_set_keymap("v", "<leader>a", "<cmd>CodeCompanionChat Toggle<cr>", o
 vim.api.nvim_set_keymap("v", "ga", "<cmd>CodeCompanionChat Add<cr>", opts)
 vim.cmd([[cab cc CodeCompanion]])
 
+vim.api.nvim_set_keymap("n", "<leader>ai", ":lua require('copilot.suggestion').toggle_auto_trigger()<cr>", opts)
+
 vim.api.nvim_set_keymap("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 vim.keymap.set("n", "<leader>q", function()
