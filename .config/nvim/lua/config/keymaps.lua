@@ -24,34 +24,34 @@ end
 
 local opts = { noremap = true, silent = true }
 
-vim.api.nvim_set_keymap("n", "gg", "gg0", opts)
-vim.api.nvim_set_keymap("n", "G", "G$", opts)
-vim.api.nvim_set_keymap("v", "gg", "gg0", opts)
-vim.api.nvim_set_keymap("v", "G", "G$", opts)
+vim.keymap.set("n", "gg", "gg0", opts)
+vim.keymap.set("n", "G", "G$", opts)
+vim.keymap.set("v", "gg", "gg0", opts)
+vim.keymap.set("v", "G", "G$", opts)
 
-vim.api.nvim_set_keymap("n", "<leader>tw", "<Cmd>lua ToggleWrap()<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader>ic", "<Cmd>lua ToggleIgnoreCase()<CR>", opts)
+vim.keymap.set("n", "<leader>tw", "<Cmd>lua ToggleWrap()<CR>", opts)
+vim.keymap.set("n", "<leader>ic", "<Cmd>lua ToggleIgnoreCase()<CR>", opts)
 
-vim.api.nvim_set_keymap("n", "<leader>w", ":wa<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader>y", ':let @+ = @"<CR>', opts)
+vim.keymap.set("n", "<leader>w", ":wa<CR>", opts)
+vim.keymap.set("n", "<leader>y", ':let @+ = @"<CR>', opts)
 
-vim.api.nvim_set_keymap("n", "<Esc>", "<Cmd>noh<CR>", opts)
+vim.keymap.set("n", "<Esc>", "<Cmd>noh<CR>", opts)
 
-vim.api.nvim_set_keymap("n", "<C-h>", "<C-w>h", opts)
-vim.api.nvim_set_keymap("n", "<C-j>", "<C-w>j", opts)
-vim.api.nvim_set_keymap("n", "<C-k>", "<C-w>k", opts)
-vim.api.nvim_set_keymap("n", "<C-l>", "<C-w>l", opts)
+vim.keymap.set("n", "<C-h>", "<C-w>h", opts)
+vim.keymap.set("n", "<C-j>", "<C-w>j", opts)
+vim.keymap.set("n", "<C-k>", "<C-w>k", opts)
+vim.keymap.set("n", "<C-l>", "<C-w>l", opts)
 
-vim.api.nvim_set_keymap("n", "<C-a>", "<cmd>CodeCompanionActions<cr>", opts)
-vim.api.nvim_set_keymap("v", "<C-a>", "<cmd>CodeCompanionActions<cr>", opts)
-vim.api.nvim_set_keymap("n", "<leader>a", "<cmd>CodeCompanionChat Toggle<cr>", opts)
-vim.api.nvim_set_keymap("v", "<leader>a", "<cmd>CodeCompanionChat Toggle<cr>", opts)
-vim.api.nvim_set_keymap("v", "ga", "<cmd>CodeCompanionChat Add<cr>", opts)
+vim.keymap.set("n", "<C-a>", "<cmd>CodeCompanionActions<cr>", opts)
+vim.keymap.set("v", "<C-a>", "<cmd>CodeCompanionActions<cr>", opts)
+vim.keymap.set("n", "<leader>a", "<cmd>CodeCompanionChat Toggle<cr>", opts)
+vim.keymap.set("v", "<leader>a", "<cmd>CodeCompanionChat Toggle<cr>", opts)
+vim.keymap.set("v", "ga", "<cmd>CodeCompanionChat Add<cr>", opts)
 vim.cmd([[cab cc CodeCompanion]])
 
-vim.api.nvim_set_keymap("n", "<leader>ai", ":lua require('copilot.suggestion').toggle_auto_trigger()<cr>", opts)
+vim.keymap.set("n", "<leader>ai", ":lua require('copilot.suggestion').toggle_auto_trigger()<cr>", opts)
 
-vim.api.nvim_set_keymap("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 vim.keymap.set("n", "<leader>q", function()
     local cur = vim.api.nvim_get_current_buf()
