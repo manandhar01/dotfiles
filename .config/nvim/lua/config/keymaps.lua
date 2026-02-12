@@ -42,6 +42,13 @@ vim.api.nvim_set_keymap("n", "<C-j>", "<C-w>j", opts)
 vim.api.nvim_set_keymap("n", "<C-k>", "<C-w>k", opts)
 vim.api.nvim_set_keymap("n", "<C-l>", "<C-w>l", opts)
 
+vim.api.nvim_set_keymap("n", "<C-a>", "<cmd>CodeCompanionActions<cr>", opts)
+vim.api.nvim_set_keymap("v", "<C-a>", "<cmd>CodeCompanionActions<cr>", opts)
+vim.api.nvim_set_keymap("n", "<leader>a", "<cmd>CodeCompanionChat Toggle<cr>", opts)
+vim.api.nvim_set_keymap("v", "<leader>a", "<cmd>CodeCompanionChat Toggle<cr>", opts)
+vim.api.nvim_set_keymap("v", "ga", "<cmd>CodeCompanionChat Add<cr>", opts)
+vim.cmd([[cab cc CodeCompanion]])
+
 vim.api.nvim_set_keymap("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 vim.keymap.set("n", "<leader>q", function()
