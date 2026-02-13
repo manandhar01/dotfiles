@@ -1,5 +1,8 @@
 return {
     "zbirenbaum/copilot.lua",
+    -- dependencies = {
+    --     "copilotlsp-nvim/copilot-lsp",
+    -- },
     requires = {
         "copilotlsp-nvim/copilot-lsp",
     },
@@ -7,8 +10,14 @@ return {
     event = "InsertEnter",
     config = function()
         require("copilot").setup({
-            suggestion = { enabled = false },
-            panel = { enabled = false },
+            -- nes = {
+            --     enabled = true,
+            --     keymap = {
+            --         accept_and_goto = "<leader>p",
+            --         accept = false,
+            --         dismiss = "<Esc>",
+            --     },
+            -- },
         })
     end,
 }
