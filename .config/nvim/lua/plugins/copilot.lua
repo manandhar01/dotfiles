@@ -10,6 +10,9 @@ return {
     event = "InsertEnter",
     config = function()
         require("copilot").setup({
+            suggestion = {
+                auto_trigger = true,
+            },
             -- nes = {
             --     enabled = true,
             --     keymap = {
