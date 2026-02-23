@@ -5,7 +5,6 @@ return {
     event = "BufRead",
     branch = "main",
     opts = {
-
         ensure_installed = {
             "bash",
             "c",
@@ -28,6 +27,7 @@ return {
             "rust",
             "scss",
             "toml",
+            "tsx",
             "typescript",
             "vim",
             "vimdoc",
