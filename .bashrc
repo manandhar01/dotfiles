@@ -57,6 +57,10 @@ export PATH=/opt/flutter/bin:$PATH
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
+if [ -f "$HOME/.config/secrets/tabby.env" ]; then
+    source "$HOME/.config/secrets/tabby.env"
+fi
+
 # export FZF_DEFAULT_COMMAND='rg --files'
 
 # export PATH=$PATH:$HOME/.config/composer/vendor/bin:/opt/lampp/bin:/root/.local/share/gem/ruby/2.7.0/bin:~/dart-sass:$HOME/.local/bin/
