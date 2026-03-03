@@ -18,11 +18,32 @@ return {
     lazy = false,
     keys = {
         {
-            "<leader>ff", -- try it if you didn't it is a banger keybinding for a picker
+            "ff", -- try it if you didn't it is a banger keybinding for a picker
             function()
                 require("fff").find_in_git_root()
             end,
-            desc = "Open file picker",
+            desc = "FFFind files",
+        },
+        {
+            "fg",
+            function()
+                require("fff").live_grep()
+            end,
+            desc = "LiFFFe grep",
+        },
+        {
+            "fz",
+            function()
+                require("fff").live_grep({ grep = { modes = { "fuzzy", "plain" } } })
+            end,
+            desc = "Live fffuzy grep",
+        },
+        {
+            "fc",
+            function()
+                require("fff").live_grep({ query = vim.fn.expand("<cword>") })
+            end,
+            desc = "Search current word",
         },
     },
 }
