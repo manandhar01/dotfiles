@@ -19,8 +19,6 @@
     "modules-right": [
         "custom/spotify",
         "wireplumber",
-        "network",
-        "bluetooth",
         "custom/arch-updates",
         "backlight",
         "battery",
