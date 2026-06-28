@@ -35,11 +35,6 @@ vim.g.vimtex_view_method = "zathura"
 -- vim.g.vimtex_view_general_viewer = "evince"
 -- vim.g.vimtex_view_general_options = "@pdf"
 -- vim.g.vimtex_format_enabled = 1
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "vimtex#fold#level(v:lnum)"
-vim.opt.foldtext = "vimtex#fold#text()"
-vim.opt.foldlevel = 10
-vim.opt.foldenable = false
 vim.opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
