@@ -57,8 +57,6 @@ vim.api.nvim_create_autocmd("BufWritePre", {
                 break
             end
         end
-
-        require("conform").format({ bufnr = bufnr })
     end,
-    desc = "Organize imports and format before save",
+    desc = "Organize imports before save",
 })
