@@ -1,46 +1,55 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
-modes=$(makoctl mode)
+json_escape() {
+    local value=$1
+    value=${value//\\/\\\\}
+    value=${value//\"/\\\"}
+    value=${value//$'\n'/\\n}
+    value=${value//$'\r'/}
+    value=${value//$'\t'/\\t}
+    printf '%s' "$value"
+}
 
-# Collect last 10 notifications from history
-notifications=$(makoctl history |
-    awk '
-    /^Notification/ {msg=$0; sub(/^Notification [0-9]+: /, "", msg)}
-    /^  App name/   {app=$0; sub(/^  App name: /, "", app); print app "|" msg}
-  ' |
-    head -n 10 |
-    while IFS="|" read -r app msg; do
-        line="<b>${app}</b>: ${msg}"
-        # truncate to 80 chars
-        if [ ${#line} -gt 80 ]; then
-            echo "${line:0:77}..."
-        else
-            echo "$line"
-        fi
-    done)
+build_tooltip() {
+    local notifications
+    notifications=$(
+        { makoctl history 2>/dev/null || true; } |
+            awk '
+            /^Notification/ {msg=$0; sub(/^Notification [0-9]+: /, "", msg)}
+            /^  App name/   {app=$0; sub(/^  App name: /, "", app); print app "|" msg}
+        ' |
+            head -n 10 |
+            while IFS="|" read -r app msg; do
+                line="<b>${app}</b>: ${msg}"
+                if [ ${#line} -gt 80 ]; then
+                    printf '%s...\n' "${line:0:77}"
+                else
+                    printf '%s\n' "$line"
+                fi
+            done
+    )
 
-# Fallback if no notifications
-if [[ -z "$notifications" ]]; then
-    notifications="No notifications"
+    if [[ -z "$notifications" ]]; then
+        printf 'No notifications'
+    else
+        printf '%s' "$notifications"
+    fi
+}
+
+if [[ "${1-}" == "toggle" ]]; then
+    if makoctl mode | grep -qx 'do-not-disturb'; then
+        makoctl mode -r do-not-disturb
+    else
+        makoctl mode -a do-not-disturb
+    fi
+    exit 0
 fi
 
-# Escape JSON (quotes + newlines)
-tooltip=$(printf "%s\n" "$notifications" | sed 's/"/\\"/g' | sed ':a;N;$!ba;s/\n/\\n/g')
+tooltip=$(json_escape "$(build_tooltip)")
 
-while IFS= read -r mode; do
-    if [[ "$mode" == "do-not-disturb" ]]; then
-        if [[ "$1" == "toggle" ]]; then
-            makoctl mode -r do-not-disturb
-            exit 0
-        else
-            echo "{\"text\": \" 󰂛 \", \"class\": \"silent\", \"tooltip\": \"$tooltip\"}"
-            exit 0
-        fi
-    fi
-done <<<"$modes"
-
-if [[ "$1" == "toggle" ]]; then
-    makoctl mode -a do-not-disturb
+if makoctl mode | grep -qx 'do-not-disturb'; then
+    printf '{"text":" 󰂛 ","class":"silent","tooltip":"%s"}\n' "$tooltip"
 else
-    echo "{\"text\": \" 󰂚 \", \"class\": \"active\", \"tooltip\": \"$tooltip\"}"
+    printf '{"text":" 󰂚 ","class":"active","tooltip":"%s"}\n' "$tooltip"
 fi
