@@ -1,6 +1,5 @@
 return {
     "kevinhwang91/nvim-hlslens",
-    requirements = { "kevinhwang91/nvim-ufo" },
     config = function()
         require("hlslens").setup()
 
