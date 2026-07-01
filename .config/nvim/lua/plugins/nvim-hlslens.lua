@@ -1,6 +1,6 @@
 return {
     "kevinhwang91/nvim-hlslens",
-    requirements = { "kevinhwang91/nvim-ufo" },
+    event = "VeryLazy",
     config = function()
         require("hlslens").setup()
 

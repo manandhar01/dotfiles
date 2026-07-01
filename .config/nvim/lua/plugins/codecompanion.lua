@@ -1,7 +1,7 @@
 return {
     "olimorris/codecompanion.nvim",
     version = "^18.0.0",
-    opts = {},
+    cmd = { "CodeCompanion", "CodeCompanionChat", "CodeCompanionActions" },
     dependencies = {
         "nvim-lua/plenary.nvim",
         "nvim-treesitter/nvim-treesitter",
