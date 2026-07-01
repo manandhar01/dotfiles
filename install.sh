@@ -58,16 +58,18 @@ function remove_symlink_if_present() {
     local dst="$2"
 
     if [ -f "$src" ]; then
-        if [ -e "$dst" ]; then
+        if [ -L "$dst" ] && [ "$(readlink "$dst")" = "$src" ]; then
             if $dry_run; then
                 printf "%s🔍 [DRY RUN] Would delete: %s%s\n" "$YELLOW" "$dst" "$RESET"
             else
-                if rm -rf "$dst"; then
+                if rm -f "$dst"; then
                     printf "%s🗑️ Deleted: %s%s\n" "$RED" "$dst" "$RESET"
                 else
                     printf "%s❌ Failed to delete: %s%s\n" "$YELLOW" "$dst" "$RESET"
                 fi
             fi
+        elif [ -e "$dst" ]; then
+            printf "%s⚠️ Not a symlink to this repo, skipping: %s%s\n" "$YELLOW" "$dst" "$RESET"
         else
             printf "✔️ Does not exist: %s (skipped)\n" "$dst"
         fi
@@ -76,16 +78,18 @@ function remove_symlink_if_present() {
             rel_path="${file#"$src"/}"
             target="$dst/$rel_path"
 
-            if [ -e "$target" ]; then
+            if [ -L "$target" ] && [ "$(readlink "$target")" = "$file" ]; then
                 if $dry_run; then
                     printf "%s🔍 [DRY RUN] Would delete: %s%s\n" "$YELLOW" "$target" "$RESET"
                 else
-                    if rm -rf "$target"; then
+                    if rm -f "$target"; then
                         printf "%s🗑️ Deleted: %s%s\n" "$RED" "$target" "$RESET"
                     else
                         printf "%s❌ Failed to delete: %s%s\n" "$YELLOW" "$target" "$RESET"
                     fi
                 fi
+            elif [ -e "$target" ]; then
+                printf "%s⚠️ Not a symlink to this repo, skipping: %s%s\n" "$YELLOW" "$target" "$RESET"
             else
                 printf "✔️ Does not exist: %s (skipped)\n" "$target"
             fi
@@ -104,18 +108,15 @@ function cleanup() {
         return
     fi
 
-    if [ -L "$dst" ]; then
-        if [ ! -e "$dst" ]; then
-            if $dry_run; then
-                printf "%s🔍 [DRY RUN] Would remove broken symlink: %s%s\n" "$YELLOW" "$dst" "$RESET"
-            fi
+    if [ -L "$dst" ] && [ ! -e "$dst" ]; then
+        if $dry_run; then
+            printf "%s🔍 [DRY RUN] Would remove broken symlink: %s%s\n" "$YELLOW" "$dst" "$RESET"
         else
             if rm -f "$dst"; then
                 printf "%s🗑️ Removed broken symlink: %s%s\n" "$RED" "$dst" "$RESET"
             else
                 printf "%s❌ Failed to remove broken symlink: %s%s\n" "$YELLOW" "$dst" "$RESET"
             fi
-
         fi
     fi
 
@@ -191,6 +192,10 @@ function posh() {
 
 function zsh() {
     "$1" "$script_dir/.zshrc" "$HOME/.zshrc"
+}
+
+function starship() {
+    "$1" "$script_dir/.config/starship.toml" "$HOME/.config/starship.toml"
 }
 
 function bash_it() {
@@ -293,6 +298,7 @@ custom_scripts) custom_scripts "$operation_function" ;;
 vim) vim "$operation_function" ;;
 posh) posh "$operation_function" ;;
 zsh) zsh "$operation_function" ;;
+starship) starship "$operation_function" ;;
 wallpapers) wallpapers "$operation_function" ;;
 bash_it) bash_it "$operation_function" ;;
 *) operate "$tool" "$operation_function" ;;
