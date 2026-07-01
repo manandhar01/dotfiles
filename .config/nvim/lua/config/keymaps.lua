@@ -24,27 +24,32 @@ end
 
 local opts = { noremap = true, silent = true }
 
-vim.keymap.set("n", "<leader>tw", "<Cmd>lua ToggleWrap()<CR>", opts)
-vim.keymap.set("n", "<leader>ic", "<Cmd>lua ToggleIgnoreCase()<CR>", opts)
+-- opts plus a which-key description
+local function d(desc)
+    return vim.tbl_extend("force", opts, { desc = desc })
+end
 
-vim.keymap.set("n", "<leader>w", ":wa<CR>", opts)
-vim.keymap.set("n", "<leader>y", ':let @+ = @"<CR>', opts)
+vim.keymap.set("n", "<leader>tw", "<Cmd>lua ToggleWrap()<CR>", d("Toggle text wrapping"))
+vim.keymap.set("n", "<leader>ic", "<Cmd>lua ToggleIgnoreCase()<CR>", d("Toggle ignorecase/smartcase"))
 
-vim.keymap.set("n", "<Esc>", "<Cmd>noh<CR>", opts)
+vim.keymap.set("n", "<leader>w", ":wa<CR>", d("Save all buffers"))
+vim.keymap.set("n", "<leader>y", ':let @+ = @"<CR>', d("Copy last yank to system clipboard"))
 
-vim.keymap.set("n", "<C-h>", "<C-w>h", opts)
-vim.keymap.set("n", "<C-j>", "<C-w>j", opts)
-vim.keymap.set("n", "<C-k>", "<C-w>k", opts)
-vim.keymap.set("n", "<C-l>", "<C-w>l", opts)
+vim.keymap.set("n", "<Esc>", "<Cmd>noh<CR>", d("Clear search highlight"))
 
-vim.keymap.set("n", "<C-a>", "<cmd>CodeCompanionActions<cr>", opts)
-vim.keymap.set("v", "<C-a>", "<cmd>CodeCompanionActions<cr>", opts)
-vim.keymap.set("n", "<leader>a", "<cmd>CodeCompanionChat Toggle<cr>", opts)
-vim.keymap.set("v", "<leader>a", "<cmd>CodeCompanionChat Toggle<cr>", opts)
-vim.keymap.set("v", "ga", "<cmd>CodeCompanionChat Add<cr>", opts)
+vim.keymap.set("n", "<C-h>", "<C-w>h", d("Go to left window"))
+vim.keymap.set("n", "<C-j>", "<C-w>j", d("Go to lower window"))
+vim.keymap.set("n", "<C-k>", "<C-w>k", d("Go to upper window"))
+vim.keymap.set("n", "<C-l>", "<C-w>l", d("Go to right window"))
+
+vim.keymap.set("n", "<C-a>", "<cmd>CodeCompanionActions<cr>", d("CodeCompanion actions"))
+vim.keymap.set("v", "<C-a>", "<cmd>CodeCompanionActions<cr>", d("CodeCompanion actions"))
+vim.keymap.set("n", "<leader>a", "<cmd>CodeCompanionChat Toggle<cr>", d("Toggle CodeCompanion chat"))
+vim.keymap.set("v", "<leader>a", "<cmd>CodeCompanionChat Toggle<cr>", d("Toggle CodeCompanion chat"))
+vim.keymap.set("v", "ga", "<cmd>CodeCompanionChat Add<cr>", d("Add selection to CodeCompanion chat"))
 vim.cmd([[cab cc CodeCompanion]])
 
-vim.keymap.set("n", "<leader>ai", ":lua require('copilot.suggestion').toggle_auto_trigger()<cr>", opts)
+vim.keymap.set("n", "<leader>ai", ":lua require('copilot.suggestion').toggle_auto_trigger()<cr>", d("Toggle Copilot auto-trigger"))
 
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
