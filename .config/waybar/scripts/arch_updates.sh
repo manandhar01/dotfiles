@@ -11,13 +11,18 @@ try_checkupdates() {
     local retries=3
     local delay=5
     local attempt=1
+    local updates rc
 
     while [ $attempt -le $retries ]; do
-        local updates
-        updates=$(checkupdates 2>/dev/null || true)
+        updates=$(checkupdates 2>/dev/null)
+        rc=$?
 
-        if [[ -n "$updates" ]]; then
+        # 0 = updates available, 2 = no updates (both are final answers).
+        # Only genuine errors (rc 1 / other, e.g. no network yet) are retried.
+        if [ $rc -eq 0 ]; then
             echo "$updates"
+            return 0
+        elif [ $rc -eq 2 ]; then
             return 0
         fi
 
