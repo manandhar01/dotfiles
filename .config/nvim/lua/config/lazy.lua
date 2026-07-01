@@ -22,18 +22,18 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Setup lazy.nvim
+local default_colorscheme = "gruvbox-material"
+
 require("lazy").setup({
     spec = {
         -- dotenv plugin
         {
-            {
-                "tpope/vim-dotenv",
-                lazy = false, -- load immediately
-                config = function()
-                    -- automatically load `.env` from current working directory
-                    vim.cmd("Dotenv ~/.config/nvim/.env")
-                end,
-            },
+            "tpope/vim-dotenv",
+            lazy = false, -- load immediately
+            config = function()
+                -- automatically load `.env` from current working directory
+                vim.cmd("Dotenv ~/.config/nvim/.env")
+            end,
         },
 
         -- import your plugins
@@ -41,9 +41,9 @@ require("lazy").setup({
     },
     -- Configure any other settings here. See the documentation for more details.
     -- colorscheme that will be used when installing plugins.
-    install = { colorscheme = { "gruvbox-material" } },
-    -- automatically check for plugin updates
-    checker = { enabled = true },
+    install = { colorscheme = { default_colorscheme } },
+    -- automatically check for plugin updates (without notification spam)
+    checker = { enabled = true, notify = false },
     ui = {
         icons = vim.g.have_nerd_font and {} or {
             cmd = "⌘",
@@ -63,7 +63,7 @@ require("lazy").setup({
     },
 })
 
-vim.cmd("colorscheme gruvbox-material")
+vim.cmd.colorscheme(default_colorscheme)
 
 require("config.options")
 require("config.keymaps")

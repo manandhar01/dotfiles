@@ -16,7 +16,6 @@ vim.opt.cursorline = true
 vim.opt.cursorcolumn = true
 vim.opt.scrolloff = 10
 vim.opt.sidescrolloff = 10
-vim.opt.syntax = "enable"
 vim.opt.smartindent = true
 vim.opt.autoindent = true
 vim.opt.tabstop = 4
@@ -30,7 +29,7 @@ vim.opt.swapfile = false
 vim.opt.title = true
 vim.opt.titlelen = 0
 vim.opt.titlestring = "nvim %{expand('%:p')}"
-vim.wo.wrap = false
+vim.opt.wrap = false
 vim.g.vimtex_view_method = "zathura"
 -- vim.g.vimtex_view_general_viewer = "evince"
 -- vim.g.vimtex_view_general_options = "@pdf"
@@ -68,7 +67,7 @@ vim.diagnostic.config({
     severity_sort = true,
     float = {
         border = "rounded",
-        source = "always",
+        source = true,
         -- header = "",
         -- prefix = "",
         focusable = false,
@@ -90,15 +89,3 @@ vim.diagnostic.config({
 vim.schedule(function()
     vim.opt.clipboard = "unnamedplus"
 end)
-
-vim.g.rustaceanvim = {
-    server = {
-        default_settings = {
-            ["rust-analyzer"] = {
-                diagnostics = {
-                    disabled = { "unlinked-file" },
-                },
-            },
-        },
-    },
-}
