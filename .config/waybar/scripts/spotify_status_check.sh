@@ -11,19 +11,19 @@ get_spotify_status() {
         title=$(playerctl --player=spotify metadata title 2>/dev/null)
         artist=$(playerctl --player=spotify metadata artist 2>/dev/null)
         volume=$(playerctl --player=spotify volume 2>/dev/null)
+        [ -z "$volume" ] && volume=0
+
+        status_text="$title - $artist"
 
         # Determine class based on status
         if [ "$status" = "Playing" ]; then
             if (($(echo "$volume <= 0" | bc -l))); then
                 class="muted"
-                status_text="$title - $artist"
             else
                 class="playing"
-                status_text="$title - $artist"
             fi
         else
             class="paused"
-            status_text="$title - $artist"
         fi
 
         # Output JSON
