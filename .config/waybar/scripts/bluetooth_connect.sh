@@ -44,7 +44,7 @@ if [[ "$choice" == "[ 🔍 Scan for new devices ]" ]]; then
 
     new=$(bluetoothctl devices | grep "^Device" | awk '{print $2 " " substr($0, index($0,$3))}')
     new_only=$(comm -13 <(echo "$paired_raw" | awk '{print $1}' | sort) <(echo "$new" | awk '{print $1}' | sort) | while read -r mac; do
-        echo "$new" | grep "$mac"
+        echo "$new" | awk -v m="$mac" '$1 == m'
     done)
 
     choice=$( (

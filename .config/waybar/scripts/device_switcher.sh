@@ -2,6 +2,9 @@
 
 pkill -x wofi
 
+# Snapshot PipeWire state once and reuse it for every lookup below
+pw_dump=$(pw-dump)
+
 choose_device() {
     type="$1"
 
@@ -24,14 +27,14 @@ choose_device() {
         ;;
     esac
 
-    default_name=$(pw-dump | jq -r '.[] | select(.type == "PipeWire:Interface:Metadata" and .props."metadata.name" == "default") | .metadata[] | select(.key == "'"$default_key"'") | .value.name')
-    active_id=$(pw-dump | jq -r --arg name "$default_name" '.[] | select(.type == "PipeWire:Interface:Node" and .info.props."node.name" == $name) | .id')
+    default_name=$(printf '%s' "$pw_dump" | jq -r '.[] | select(.type == "PipeWire:Interface:Metadata" and .props."metadata.name" == "default") | .metadata[] | select(.key == "'"$default_key"'") | .value.name')
+    active_id=$(printf '%s' "$pw_dump" | jq -r --arg name "$default_name" '.[] | select(.type == "PipeWire:Interface:Node" and .info.props."node.name" == $name) | .id')
 
     if [ -z "$active_id" ]; then
         active_id=""
     fi
 
-    menu=$(pw-dump | jq -r --arg class "$class" '
+    menu=$(printf '%s' "$pw_dump" | jq -r --arg class "$class" '
       .[]
       | select(.type == "PipeWire:Interface:Node")
       | select(.info.props."media.class" == $class)
@@ -80,7 +83,7 @@ case "$choice" in
 "Audio Sink")
     id=$(choose_device "AudioSink")
     if [ -n "$id" ]; then
-        desc=$(pw-dump | jq -r --arg id "$id" '.[] | select(.type == "PipeWire:Interface:Node" and .id == ($id | tonumber)) | .info.props."node.description"')
+        desc=$(printf '%s' "$pw_dump" | jq -r --arg id "$id" '.[] | select(.type == "PipeWire:Interface:Node" and .id == ($id | tonumber)) | .info.props."node.description"')
         if wpctl set-default "$id"; then
             notify-send "Device Selection" "Selected Audio Sink: $desc"
         else
@@ -92,7 +95,7 @@ case "$choice" in
 "Audio Source")
     id=$(choose_device "AudioSource")
     if [ -n "$id" ]; then
-        desc=$(pw-dump | jq -r --arg id "$id" '.[] | select(.type == "PipeWire:Interface:Node" and .id == ($id | tonumber)) | .info.props."node.description"')
+        desc=$(printf '%s' "$pw_dump" | jq -r --arg id "$id" '.[] | select(.type == "PipeWire:Interface:Node" and .id == ($id | tonumber)) | .info.props."node.description"')
         if wpctl set-default "$id"; then
             notify-send "Device Selection" "Selected Audio Source: $desc"
         else
@@ -104,7 +107,7 @@ case "$choice" in
 "Video Sink")
     id=$(choose_device "VideoSink")
     if [ -n "$id" ]; then
-        desc=$(pw-dump | jq -r --arg id "$id" '.[] | select(.type == "PipeWire:Interface:Node" and .id == ($id | tonumber)) | .info.props."node.description"')
+        desc=$(printf '%s' "$pw_dump" | jq -r --arg id "$id" '.[] | select(.type == "PipeWire:Interface:Node" and .id == ($id | tonumber)) | .info.props."node.description"')
         if wpctl set-default "$id"; then
             notify-send "Device Selection" "Selected Video Sink: $desc"
         else
@@ -116,7 +119,7 @@ case "$choice" in
 "Video Source")
     id=$(choose_device "VideoSource")
     if [ -n "$id" ]; then
-        desc=$(pw-dump | jq -r --arg id "$id" '.[] | select(.type == "PipeWire:Interface:Node" and .id == ($id | tonumber)) | .info.props."node.description"')
+        desc=$(printf '%s' "$pw_dump" | jq -r --arg id "$id" '.[] | select(.type == "PipeWire:Interface:Node" and .id == ($id | tonumber)) | .info.props."node.description"')
         if wpctl set-default "$id"; then
             notify-send "Device Selection" "Selected Video Source: $desc"
         else
