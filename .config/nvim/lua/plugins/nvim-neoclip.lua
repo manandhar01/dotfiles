@@ -10,6 +10,11 @@ return {
             enable_persistent_history = true,
         })
 
-        vim.api.nvim_set_keymap("n", "<leader>p", "<cmd>Telescope neoclip<CR>", { noremap = true, silent = true })
+        vim.keymap.set(
+            "n",
+            "<leader>p",
+            "<cmd>Telescope neoclip<CR>",
+            { noremap = true, silent = true, desc = "Clipboard history (neoclip)" }
+        )
     end,
 }

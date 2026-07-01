@@ -146,8 +146,13 @@ return {
             },
         })
 
-        vim.api.nvim_set_keymap("n", "<leader>e", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
-        vim.api.nvim_set_keymap("n", "<leader>r", ":NvimTreeRefresh<CR>", { noremap = true, silent = true })
-        vim.api.nvim_set_keymap("n", "<leader><leader>f", ":NvimTreeFindFile<CR>", { noremap = true, silent = true })
+        vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { noremap = true, silent = true, desc = "Toggle file tree" })
+        vim.keymap.set("n", "<leader>r", ":NvimTreeRefresh<CR>", { noremap = true, silent = true, desc = "Refresh file tree" })
+        vim.keymap.set(
+            "n",
+            "<leader><leader>f",
+            ":NvimTreeFindFile<CR>",
+            { noremap = true, silent = true, desc = "Find current file in tree" }
+        )
     end,
 }
